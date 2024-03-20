@@ -68,6 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
+    <Content Include="App_Data\SianemaCinemaDB.mdf" />
+    <Content Include="App_Data\SianemaCinemaDB_log.ldf">
+      <DependentUpon>SianemaCinemaDB.mdf</DependentUpon>
+    </Content>
     <Content Include="ContactUs.aspx" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
@@ -137,6 +141,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
