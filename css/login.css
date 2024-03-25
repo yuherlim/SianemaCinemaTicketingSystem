@@ -1,0 +1,111 @@
+/* to be removed after integration */
+:root {
+  --green: #6ae500;
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #6b6b6b;
+  --black-transparent: rgba(0, 0, 0, 0.7); /* Transparent black color */
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white); /* Set text color to white for better contrast */
+  padding-top: 70px; /* Add padding to the top of the body to accommodate the fixed navbar */
+}
+
+/* general styles start */
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+section {
+  margin-bottom: 100px;
+}
+
+.content-wrapper {
+  width: 100%;
+  padding: 0 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 20px;
+}
+/* general styles end */
+
+/* login page start */
+
+main {
+  padding-top: 100px;
+}
+
+main.login div.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* login-block section start */
+
+main.login section.login-block {
+  display: flex;
+  flex-direction: column;
+  background: #212529;
+  border-radius: 5px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 50px;
+  padding: 50px 15px;
+}
+
+main.login section.login-block span.login-key {
+  background: url(./images/login/login-sprite.png) no-repeat center center;
+  background-position: 0 0;
+  width: 91px;
+  height: 71px;
+  display: inline-block;
+  position: relative;
+  top: -5px;
+  left: 15px;
+  background-size: auto;
+  top: -35px;
+}
+
+main.login section.login-block span.login-key::before {
+  content: "";
+  background: url(./images/login/login-sprite.png) no-repeat center center;
+  background-position: -143px 0;
+  width: 37px;
+  height: 32px;
+  position: absolute;
+  left: 23px;
+  bottom: 13px;
+}
+
+main.login section.login-block div.login-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+/* login-block section end */
+
+main.login section.image-block div.testing-image img {
+  max-width: 100%;
+}
+
+@media only screen and (min-width: 1000px) {
+  main.login div.row {
+    flex-direction: row-reverse;
+    gap: 15px;
+    justify-content: center;
+  }
+
+}
+
+/* login page end */
