@@ -110,6 +110,13 @@
     <Compile Include="MP.Master.designer.cs">
       <DependentUpon>MP.Master</DependentUpon>
     </Compile>
+    <Compile Include="MPA.Master.cs">
+      <DependentUpon>MPA.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MPA.Master.designer.cs">
+      <DependentUpon>MPA.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
@@ -121,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MP.Master" />
+    <Content Include="MPA.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
