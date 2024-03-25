@@ -71,6 +71,8 @@
     <Content Include="ContactUs.aspx" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
+    <Content Include="MovieDetails.aspx" />
+    <Content Include="Movies.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -102,6 +104,20 @@
     </Compile>
     <Compile Include="Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MovieDetails.aspx.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MovieDetails.aspx.designer.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Movies.aspx.cs">
+      <DependentUpon>Movies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Movies.aspx.designer.cs">
+      <DependentUpon>Movies.aspx</DependentUpon>
     </Compile>
     <Compile Include="MP.Master.cs">
       <DependentUpon>MP.Master</DependentUpon>
