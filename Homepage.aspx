@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP.Master" AutoEventWireup="true" CodeBehind="Homepage.aspx.cs" Inherits="SianemaCinemaTicketingSystem.Homepage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         /* Overlay */
@@ -66,18 +67,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    
+
 
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="ads1.png" alt="First slide" height="400px">
+                <img class="d-block w-100" src="ad1.png" alt="First slide" height="400">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="ads2.png" alt="Second slide" height="400px">
+                <img class="d-block w-100" src="ad2.png" alt="Second slide" height="400">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="ads3.png" alt="Third slide" height="400px">
+                <img class="d-block w-100" src="ad3.png" alt="Third slide" height="400">
             </div>
         </div>
 
@@ -153,21 +154,21 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
-    <div class="card view">
-        <img class="img-fluid" alt="showingNow3" src="sn3.jpg" width="360" height="80">
-        <div class="mask">
-            <div class="col">
-                <ul class="deco">
-                    <li><a href="#!" class="btn-book-now">Book Now</a></li>
-                    <li>
-                        <br />
-                    </li>
-                    <li><a href="#!" class="btn-more-info">More Info</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+                                        <div class="card view">
+                                            <img class="img-fluid" alt="showingNow3" src="sn3.jpg" width="360" height="80">
+                                            <div class="mask">
+                                                <div class="col">
+                                                    <ul class="deco">
+                                                        <li><a href="#!" class="btn-book-now">Book Now</a></li>
+                                                        <li>
+                                                            <br />
+                                                        </li>
+                                                        <li><a href="#!" class="btn-more-info">More Info</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
