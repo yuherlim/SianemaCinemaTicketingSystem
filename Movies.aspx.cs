@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +14,29 @@ namespace SianemaCinemaTicketingSystem
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!IsPostBack)
+            {
+                SqlConnection conn;
+                string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                conn = new SqlConnection(strCon);
+                conn.Open();
+
+                string strToRetrieve = "Select * From Movie";
+
+                SqlCommand cmdToRetrieve;
+                cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
+
+                SqlDataReader movieReader = cmdToRetrieve.ExecuteReader();
+                MovieRepeater.DataSourceID = null;
+                MovieRepeater.DataSource = movieReader;
+                MovieRepeater.DataBind();
+
+                conn.Close();
+                
+            }
         }
+
+        
     }
 }
