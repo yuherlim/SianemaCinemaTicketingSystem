@@ -68,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
+    <Content Include="adminModule\adminCss.css" />
+    <Content Include="adminModule\manageMovie.html" />
     <Content Include="App_Data\SianemaCinemaDB.mdf" />
     <Content Include="App_Data\SianemaCinemaDB_log.ldf">
       <DependentUpon>SianemaCinemaDB.mdf</DependentUpon>
@@ -78,6 +80,7 @@
     <Content Include="Test.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
+    <Content Include="ManageMovie.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutUs.aspx.cs">
@@ -136,6 +139,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageMovie.aspx.cs">
+      <DependentUpon>ManageMovie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageMovie.aspx.designer.cs">
+      <DependentUpon>ManageMovie.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

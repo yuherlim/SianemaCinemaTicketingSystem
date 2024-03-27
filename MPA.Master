@@ -7,12 +7,9 @@
     <title></title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesomse/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="adminModule/adminCss.css" />
+   
 
     <style>
         :root {
@@ -27,7 +24,7 @@
         body {
             background-color: var(--creamwhite);
             color: var(--lightbrown);
-            padding-top: 70px; /* Add padding to the top of the body to accommodate the fixed navbar */
+            padding-top: 100px; /* Add padding to the top of the body to accommodate the fixed navbar */
         }
 
         /* Apply underline on hover with animation only for navigation links */
@@ -35,10 +32,12 @@
             font-size: 16px;
             color: var(--darkgray); /* Set initial text color to white */
             position: relative; /* Position relative to contain pseudo-element */
+        
         }
 
         .navbar {
             background-color: var(--lightgray-transparent); /* Set the navbar background color to light gray transparent */
+           
         }
 
         .navbar-nav .nav-link::before {
@@ -52,6 +51,8 @@
             visibility: hidden; /* Initially hidden */
             transform: scaleX(0); /* Initially scaled to 0 width */
             transition: all 0.3s ease-in-out; /* Animation transition */
+                margin-bottom:100px;
+         
         }
 
         .navbar-nav .nav-link:hover::before {
@@ -152,7 +153,7 @@
                 <img src="logoSianemaAdmin.png" alt="Logo" width="160" height="60">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"   ></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -177,6 +178,10 @@
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
 
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
 
 </body>

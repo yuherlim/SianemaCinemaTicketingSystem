@@ -20,8 +20,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
-    <br />
     <!-- add hall button -->
     <div class="container">
         <div class="row justify-content-center">
