@@ -68,12 +68,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
+    <Content Include="App_Data\SianemaCinemaDB.mdf" />
+    <Content Include="App_Data\SianemaCinemaDB_log.ldf">
+      <DependentUpon>SianemaCinemaDB.mdf</DependentUpon>
+    </Content>
     <Content Include="ContactUs.aspx" />
     <Content Include="css\login.css" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
     <Content Include="images\login\login-image-sianema.png" />
     <Content Include="images\login\login-sprite.png" />
+    <Content Include="MovieDetails.aspx" />
+    <Content Include="Movies.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
@@ -106,6 +112,20 @@
     </Compile>
     <Compile Include="Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MovieDetails.aspx.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MovieDetails.aspx.designer.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Movies.aspx.cs">
+      <DependentUpon>Movies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Movies.aspx.designer.cs">
+      <DependentUpon>Movies.aspx</DependentUpon>
     </Compile>
     <Compile Include="MP.Master.cs">
       <DependentUpon>MP.Master</DependentUpon>
@@ -148,6 +168,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
