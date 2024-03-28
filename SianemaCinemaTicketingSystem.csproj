@@ -78,6 +78,7 @@
     <Content Include="Homepage.aspx" />
     <Content Include="images\login\login-image-sianema.png" />
     <Content Include="images\login\login-sprite.png" />
+    <Content Include="js\login.js" />
     <Content Include="MovieDetails.aspx" />
     <Content Include="Movies.aspx" />
     <Content Include="Test.aspx" />
