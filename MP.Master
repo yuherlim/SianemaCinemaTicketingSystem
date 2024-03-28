@@ -121,6 +121,7 @@
         .btn-primary:hover {
             color: var(--green);
             background-color: var(--white);
+            border-color: var(--white);
         }
 
         .btn-primary:not(:disabled):not(.disabled).active,
@@ -128,11 +129,14 @@
         .show>.btn-primary.dropdown-toggle {
             background-color: var(--green);
             border-color: var(--green);
+            box-shadow: none;
+            outline: none;
         }
 
         .btn-primary:focus {
             color: var(--green);
             background-color: var(--white);
+            border-color: var(--dark-green);
             box-shadow: 0 0 0 0.2rem var(--dark-green);
         }
     </style>
