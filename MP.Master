@@ -113,29 +113,6 @@
         }
     </style>
 
-
-    <script>
-        // to show the current page at the nav bar
-        $(document).ready(function () {
-            // Get the current page URL
-            var currentPageUrl = window.location.pathname.toLowerCase();
-            console.log("Current Page URL:", currentPageUrl);
-
-            // Loop through each navigation link
-            $(".navbar-nav .nav-link").each(function () {
-                // Get the href attribute of the link and convert it to lowercase
-                var linkUrl = $(this).attr("href").toLowerCase();
-                console.log("Link URL:", linkUrl);
-
-                // Check if the link URL is contained within the current page URL
-                if (currentPageUrl.indexOf(linkUrl) !== -1) {
-                    // the 'active-link' class to the current link
-                    $(this).addClass("active-link");
-                    return false; // Exit the loop once the match is found
-                }
-            });
-        });
-    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -231,6 +208,29 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        // to show the current page at the nav bar
+        $(document).ready(function () {
+            // Get the current page URL
+            var currentPageUrl = window.location.pathname.toLowerCase();
+            console.log("Current Page URL:", currentPageUrl);
+
+            // Loop through each navigation link
+            $(".navbar-nav .nav-link").each(function () {
+                // Get the href attribute of the link and convert it to lowercase
+                var linkUrl = $(this).attr("href").toLowerCase();
+                console.log("Link URL:", linkUrl);
+
+                // Check if the link URL is contained within the current page URL
+                if (currentPageUrl.indexOf(linkUrl) !== -1) {
+                    // the 'active-link' class to the current link
+                    $(this).addClass("active-link");
+                    return false; // Exit the loop once the match is found
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
