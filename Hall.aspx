@@ -11,12 +11,9 @@
             }
         }
     </script>
-    <style>
-        #collapse1 {
-            overflow-y: scroll;
-            height: 200px;
-        }
-    </style>
+
+    <link rel="stylesheet" href="css/admin/manageHall.css" />
+    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -25,9 +22,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <div id="row1">
+                <button type="button"  id="btnAdd" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Add Hall
                 </button>
+                </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
