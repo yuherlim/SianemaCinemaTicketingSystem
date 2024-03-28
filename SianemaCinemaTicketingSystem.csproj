@@ -69,8 +69,11 @@
   <ItemGroup>
     <Content Include="AboutUs.aspx" />
     <Content Include="ContactUs.aspx" />
+    <Content Include="css\login.css" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
+    <Content Include="images\login\login-image-sianema.png" />
+    <Content Include="images\login\login-sprite.png" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
