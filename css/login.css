@@ -11,6 +11,19 @@ section {
   margin: 0 auto;
 }
 
+.fa {
+  padding: initial;
+  font-size: inherit;
+  width: initial;
+  text-align: initial;
+  text-decoration: initial;
+  margin: initial;
+}
+
+.form-control:focus {
+  border-color: var(--green);
+}
+
 /* general styles end */
 
 /* login page start */
@@ -67,10 +80,13 @@ main.login section.login-block div.login-fields {
   flex-direction: column;
 }
 
+main.login section.login-block div.login-fields div.password-field a:hover {
+  color: var(--green);
+}
+
 /* login-block section end */
 
 /* image-block section start */
-
 main.login section.image-block div.testing-image img {
   width: 100%;
 }
