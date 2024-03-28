@@ -80,6 +80,10 @@ main.login section.login-block div.login-fields {
   flex-direction: column;
 }
 
+main.login section.login-block div.login-fields div.password-field a {
+  color: var(--gray);
+}
+
 main.login section.login-block div.login-fields div.password-field a:hover {
   color: var(--green);
 }

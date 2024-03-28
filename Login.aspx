@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-check mb-3">
+                            <div class="form-check mb-5">
                                 <input type="checkbox" class="form-check-input" id="rememberMe">
                                 <label class="form-check-label" for="rememberMe">Remember Me</label>
                             </div>
