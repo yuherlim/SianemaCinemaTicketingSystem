@@ -92,12 +92,6 @@
         </a>
     </div>
 
-    <script>
-        $('.carousel').carousel({
-            interval: 3000
-        });
-    </script>
-
 
     <section class="pt-5 pb-5">
         <div class="container">
@@ -286,5 +280,11 @@
                 </div>
             </div>
     </section>
+
+    <script>
+        $('.carousel').carousel({
+            interval: 3000
+        });
+    </script>
 
 </asp:Content>
