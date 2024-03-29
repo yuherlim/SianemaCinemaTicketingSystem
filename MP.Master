@@ -38,6 +38,10 @@
             background-color: var(--black-transparent); /* Set the navbar background color to black transparent */
         }
 
+        .navbar-toggler-icon {
+            background-image: url('./images/hamburger.svg');
+        }
+
         .navbar-nav .nav-link::before {
             content: ''; /* Create a pseudo-element */
             position: absolute; /* Position relative to parent link */
