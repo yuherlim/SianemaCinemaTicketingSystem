@@ -153,6 +153,13 @@
             border-color: var(--green);
             background-color: var(--green);
         }
+
+        .content-wrapper {
+            width: 100%;
+            padding: 0 30px;
+            max-width: 1690px;
+            margin: 0 auto;
+        }
     </style>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
