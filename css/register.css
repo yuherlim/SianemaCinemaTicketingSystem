@@ -1,0 +1,24 @@
+﻿/* general styles start */
+section {
+  margin-bottom: 50px;
+}
+
+.fa {
+  padding: initial;
+  font-size: inherit;
+  width: initial;
+  text-align: initial;
+  text-decoration: initial;
+  margin: initial;
+}
+
+.form-control:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
+}
+/* general styles end */
+
+/* register page start */
+main {
+  padding-top: 100px;
+}

@@ -74,6 +74,7 @@
     </Content>
     <Content Include="ContactUs.aspx" />
     <Content Include="css\login.css" />
+    <Content Include="css\register.css" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
     <Content Include="images\movieCoverPhoto\yoloCover.png" />
