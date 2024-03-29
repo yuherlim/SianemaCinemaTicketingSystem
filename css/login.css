@@ -4,13 +4,6 @@ section {
   margin-bottom: 50px;
 }
 
-.content-wrapper {
-  width: 100%;
-  padding: 0 30px;
-  max-width: 1690px;
-  margin: 0 auto;
-}
-
 .fa {
   padding: initial;
   font-size: inherit;
@@ -22,6 +15,7 @@ section {
 
 .form-control:focus {
   border-color: var(--green);
+  box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
 }
 
 /* general styles end */
@@ -54,30 +48,33 @@ main.login section.login-block {
 main.login section.login-block span.login-key {
   background: url('../images/login/login-sprite.png') no-repeat center center;
   background-position: 0 0;
-  width: 91px;
-  height: 71px;
+  width: 70px;
+  height: 55px;
   display: inline-block;
-  position: relative;
-  top: -5px;
-  left: 15px;
-  background-size: auto;
-  top: -35px;
+  position: absolute;
+  top: -30px;
+  background-size: 150px auto;
 }
 
 main.login section.login-block span.login-key::before {
   content: "";
   background: url('../images/login/login-sprite.png') no-repeat center center;
-  background-position: -143px 0;
-  width: 37px;
-  height: 32px;
+  background-position: -105px 0;
+  width: 31px;
+  height: 26px;
   position: absolute;
-  left: 23px;
-  bottom: 13px;
+  left: 15px;
+  bottom: 10px;
+  background-size: 150px auto;
 }
 
 main.login section.login-block div.login-fields {
   display: flex;
   flex-direction: column;
+}
+
+main.login section.login-block div.login-fields div.username-field label span {
+  color: red;
 }
 
 main.login section.login-block div.login-fields div.password-field a {
@@ -88,8 +85,54 @@ main.login section.login-block div.login-fields div.password-field a:hover {
   color: var(--green);
 }
 
-/* login-block section end */
 
+main.login section.login-block div.login-fields div.password-field label span {
+  color: red;
+}
+
+main.login section.login-block div.login-fields input#rememberMe {
+  accent-color: var(--green);
+}
+
+main.login section.login-block div.login-fields div.btn-group {
+  display: flex;
+  flex-direction: column;
+}
+
+main.login section.login-block div.login-fields div.btn-group div.login-btn-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main.login section.login-block div.login-fields div.btn-group div.login-btn-row button.login-btn {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 40px;
+  padding: 0px 20px;
+}
+
+main.login section.login-block div.login-fields div.btn-group div.login-btn-row a.forget-password {
+  color: var(--green);
+}
+
+main.login section.login-block div.login-fields div.btn-group div.login-btn-row a.forget-password:hover {
+  text-decoration: none;
+}
+
+main.login section.login-block div.login-fields div.btn-group h5.new-to-sianema-title span {
+  font-weight: 900;
+}
+
+main.login section.login-block div.login-fields div.btn-group div.join-now-btn a.join-now {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 40px;
+  padding: 0 15px;
+}
+
+/*main.login section.login-block div.login-fields div.btn-group div.login-btn-row button.login-btn*/
+/* login-block section end */
 /* image-block section start */
 main.login section.image-block div.testing-image img {
   width: 100%;
@@ -109,8 +152,9 @@ main.login section.image-block div.testing-image img {
   main.login div.row {
     flex-direction: row-reverse;
     flex-wrap: nowrap;
-    gap: 30px;
+    gap: 100px;
     justify-content: center;
+    align-items: center;
     margin-bottom: 50px;
   }
 
@@ -118,7 +162,43 @@ main.login section.image-block div.testing-image img {
 
   main.login section.login-block {
     width: 50%;
+    padding: 100px 15px;
   }
+
+  main.login section.login-block span.login-key {
+    width: 91px;
+    height: 71px;
+    left: -20px;
+    top: 15px;
+    background-size: auto;
+  }
+
+  main.login section.login-block span.login-key::before {
+    background-position: -143px 0;
+    width: 37px;
+    height: 32px;
+    left: 23px;
+    bottom: 13px;
+    background-size: auto;
+  }
+
+  main.login section.login-block div.login-fields {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  main.login section.login-block div.login-fields div.btn-group div.login-btn-row button.login-btn {
+    font-size: 22px;
+    line-height: 46px;
+    padding: 0px 35px;
+  }
+
+  main.login section.login-block div.login-fields div.btn-group div.join-now-btn a.join-now {
+    font-size: 18px;
+    line-height: 46px;
+    padding: 0 25px;
+  }
+
 
   /* login-block section end */
 

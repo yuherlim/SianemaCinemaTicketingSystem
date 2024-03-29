@@ -38,6 +38,10 @@
             background-color: var(--black-transparent); /* Set the navbar background color to black transparent */
         }
 
+        .navbar-toggler-icon {
+            background-image: url('./images/hamburger.svg');
+        }
+
         .navbar-nav .nav-link::before {
             content: ''; /* Create a pseudo-element */
             position: absolute; /* Position relative to parent link */
@@ -126,7 +130,7 @@
 
         .btn-primary:not(:disabled):not(.disabled).active,
         .btn-primary:not(:disabled):not(.disabled):active,
-        .show>.btn-primary.dropdown-toggle {
+        .show > .btn-primary.dropdown-toggle {
             background-color: var(--green);
             border-color: var(--green);
             box-shadow: none;
@@ -138,6 +142,23 @@
             background-color: var(--white);
             border-color: var(--dark-green);
             box-shadow: 0 0 0 0.2rem var(--dark-green);
+        }
+
+        .btn-outline-primary {
+            color: var(--green);
+            border-color: rgba(238, 238, 238, 0.33);
+        }
+
+        .btn-outline-primary:hover {
+            border-color: var(--green);
+            background-color: var(--green);
+        }
+
+        .content-wrapper {
+            width: 100%;
+            padding: 0 30px;
+            max-width: 1690px;
+            margin: 0 auto;
         }
     </style>
 

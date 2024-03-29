@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SianemaCinemaTicketingSystem.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="SianemaCinemaTicketingSystem.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Sia nema - Login</title>
+    <title>SIA NEMA - Login</title>
     <link rel="stylesheet" href="./css/login.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,31 +13,15 @@
                     <span class="login-key"></span>
                     <div class="login-fields">
                         <h4>Welcome back!</h4>
-                        <%--<div class="username-field">
-                            <label for="email">Email ID</label>
-                            <input type="email" name="email" id="email" required>
-                            <span class="input-border"></span>
-                        </div>--%>
-
-                        <%--<div class="password-field">
-                            <label for="password">Password<span>*</span></label>
-                            <input type="password" name="password" id="password" required>
-                            <i class="show-password"></i>
-                            <span class="input-border"></span>
-                        </div>--%>
-
-                        <%--<div class="remember-me-field">
-                            <input type="checkbox" name="rememberMe" id="rememberMe">
-                            <label for="rememberMe"></label>
-                        </div>--%>
 
                         <form>
                             <div class="form-group username-field">
                                 <label for="email">Email address<span>*</span></label>
                                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
                             </div>
+
                             <div class="form-group password-field">
-                                <label for="password">Password</label>
+                                <label for="password">Password<span>*</span></label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password" placeholder="Password">
                                     <div class="input-group-append">
@@ -47,24 +31,23 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-check mb-5">
                                 <input type="checkbox" class="form-check-input" id="rememberMe">
                                 <label class="form-check-label" for="rememberMe">Remember Me</label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
+
+                            <div class="btn-group">
+                                <div class="login-btn-row mb-5">
+                                    <button type="submit" class="btn btn-primary login-btn" title="LOGIN">LOGIN</button>
+                                    <a href="#" class="forget-password" title="Forgot Password?">Forgot Password?</a>
+                                </div>
+                                <h5 class="new-to-sianema-title mb-3">New to <span>SIA NEMA?</span></h5>
+                                <div class="join-now-btn">
+                                    <a class="btn btn-outline-primary join-now" href="#" title="JOIN NOW" role="button">JOIN NOW</a>
+                                </div>
+                            </div>
                         </form>
-
-                        <div class="btn-group">
-                            <div class="login-btn-row">
-                                <button type="submit" class="login-btn" title="LOGIN">LOGIN</button>
-                                <a href="#" class="forget-password" title="Forgot Password?">Forgot Password?</a>
-                            </div>
-                            <h5 class="new-to-sianema-title">New to <span>Sia Nema?</span></h5>
-                            <div class="join-now-btn">
-                                <a href="#" class="join-now" title="JOIN NOW">JOIN NOW</a>
-                            </div>
-                        </div>
-
                     </div>
                 </section>
                 <section class="image-block">
