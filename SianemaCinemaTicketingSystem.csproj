@@ -86,10 +86,9 @@
     <Content Include="images\login\login-image-sianema.png" />
     <Content Include="images\login\login-sprite.png" />
     <Content Include="js\login.js" />
-
     <Content Include="MovieDetails.aspx" />
     <Content Include="Movies.aspx" />
-    <Content Include="Test.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
   </ItemGroup>
@@ -151,12 +150,12 @@
       <DependentUpon>MPA.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
