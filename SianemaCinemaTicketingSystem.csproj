@@ -85,10 +85,12 @@
     <Content Include="images\moviePoster\yolo.jpg" />
     <Content Include="images\login\login-image-sianema.png" />
     <Content Include="images\login\login-sprite.png" />
+    <Content Include="images\seatIcon\chair.png" />
+    <Content Include="images\seatIcon\couplechair.png" />
     <Content Include="js\login.js" />
-
     <Content Include="MovieDetails.aspx" />
     <Content Include="Movies.aspx" />
+    <Content Include="MovieSeatSelection.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
@@ -135,6 +137,13 @@
     </Compile>
     <Compile Include="Movies.aspx.designer.cs">
       <DependentUpon>Movies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MovieSeatSelection.aspx.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MovieSeatSelection.aspx.designer.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
     </Compile>
     <Compile Include="MP.Master.cs">
       <DependentUpon>MP.Master</DependentUpon>

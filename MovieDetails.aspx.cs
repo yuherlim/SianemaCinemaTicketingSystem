@@ -41,30 +41,17 @@ namespace SianemaCinemaTicketingSystem
 
             }
 
-            conn.Close();
-
             DateTime currentDate = DateTime.Today;
 
-            for (int i = 0; i < 7; i++)
-            {
-                DateTime nextDate = currentDate.AddDays(i);
+             date1.Text = "Today\n" + currentDate.ToString("dd-MMM").ToUpper();
+             date2.Text = currentDate.AddDays(1).ToString("ddd\ndd-MMM").ToUpper();
+             date3.Text = currentDate.AddDays(2).ToString("ddd\ndd-MMM").ToUpper();
+             date4.Text = currentDate.AddDays(3).ToString("ddd\ndd-MMM").ToUpper();
+             date5.Text = currentDate.AddDays(4).ToString("ddd\ndd-MMM").ToUpper();
+             date6.Text = currentDate.AddDays(5).ToString("ddd\ndd-MMM").ToUpper();
+             date7.Text = currentDate.AddDays(6).ToString("ddd\ndd-MMM").ToUpper();
 
-                Button btnDate = (Button)FindControl("date" + (i + 1)); // Find the button control
-                if (btnDate != null)
-                {
-                    btnDate.Text = "<h3>" + nextDate.ToString("dddd") + "</h3><p>" + nextDate.ToString("dd/MM") + "</p>"; // Set HTML content for the button
-                }
-            }
-
-             date1.Text = currentDate.ToString("dd/MM");
-             date2.Text = currentDate.AddDays(1).ToString("dd/MM");
-             date3.Text = currentDate.AddDays(2).ToString("dd/MM");
-             date4.Text = currentDate.AddDays(3).ToString("dd/MM");
-             date5.Text = currentDate.AddDays(4).ToString("dd/MM");
-             date6.Text = currentDate.AddDays(5).ToString("dd/MM");
-             date7.Text = currentDate.AddDays(6).ToString("dd/MM");
-
-            
+            conn.Close();
         }   
     }
 }

@@ -91,6 +91,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <form class="form1" runat="server">
         <section class="movie-container">
             <h2>Movies in SiaNema</h2>
 
@@ -123,4 +124,5 @@
 
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Movie]"></asp:SqlDataSource>
         </section>
+        </form>
 </asp:Content>
