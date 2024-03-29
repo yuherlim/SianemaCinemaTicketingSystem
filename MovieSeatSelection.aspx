@@ -26,9 +26,19 @@
                     <p id="movieDate" runat="server">27 Mar 2024</p>
                     <p id="movieTime" runat="server">10:00 PM</p>
                 </div>
-                
+            </div>
+
+        <div class="seat-select-part">
+            <div class="seat-description">
 
             </div>
+
+            <img src="wew.png" alt="screen-direction" />   
+            
+            
+
+
+        </div>
 
 
         </form>
