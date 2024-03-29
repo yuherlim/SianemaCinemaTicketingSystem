@@ -28,9 +28,9 @@ namespace SianemaCinemaTicketingSystem
                 cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
 
                 SqlDataReader movieReader = cmdToRetrieve.ExecuteReader();
-                MovieRepeater.DataSourceID = null;
-                MovieRepeater.DataSource = movieReader;
-                MovieRepeater.DataBind();
+                movieRepeater.DataSourceID = null;
+                movieRepeater.DataSource = movieReader;
+                movieRepeater.DataBind();
 
                 conn.Close();
                 
