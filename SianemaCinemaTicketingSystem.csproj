@@ -73,8 +73,10 @@
       <DependentUpon>SianemaCinemaDB.mdf</DependentUpon>
     </Content>
     <Content Include="ContactUs.aspx" />
+    <Content Include="css\login.css" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
+<<<<<<< HEAD
     <Content Include="images\movieCoverPhoto\yoloCover.png" />
     <Content Include="images\moviePoster\crew.jpg" />
     <Content Include="images\moviePoster\exhuma.jpg" />
@@ -82,6 +84,11 @@
     <Content Include="images\moviePoster\panda4.jpg" />
     <Content Include="images\moviePoster\yodha.jpg" />
     <Content Include="images\moviePoster\yolo.jpg" />
+=======
+    <Content Include="images\login\login-image-sianema.png" />
+    <Content Include="images\login\login-sprite.png" />
+    <Content Include="js\login.js" />
+>>>>>>> 606249896bc56e4953ad05bdf988dacce8c0cc16
     <Content Include="MovieDetails.aspx" />
     <Content Include="Movies.aspx" />
     <Content Include="Test.aspx" />

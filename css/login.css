@@ -1,42 +1,29 @@
-/* to be removed after integration */
-:root {
-  --green: #6ae500;
-  --white: #ffffff;
-  --black: #000000;
-  --gray: #6b6b6b;
-  --black-transparent: rgba(0, 0, 0, 0.7); /* Transparent black color */
-}
-
-body {
-  background-color: var(--black);
-  color: var(--white); /* Set text color to white for better contrast */
-  padding-top: 70px; /* Add padding to the top of the body to accommodate the fixed navbar */
-}
-
 /* general styles start */
 
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
 section {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .content-wrapper {
   width: 100%;
-  padding: 0 15px;
-  max-width: 1200px;
+  padding: 0 30px;
+  max-width: 1690px;
   margin: 0 auto;
 }
 
-h4 {
-  font-size: 24px;
+.fa {
+  padding: initial;
+  font-size: inherit;
+  width: initial;
+  text-align: initial;
+  text-decoration: initial;
+  margin: initial;
 }
 
-h5 {
-  font-size: 20px;
+.form-control:focus {
+  border-color: var(--green);
 }
+
 /* general styles end */
 
 /* login page start */
@@ -49,6 +36,7 @@ main.login div.row {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 15px;
 }
 
 /* login-block section start */
@@ -60,12 +48,11 @@ main.login section.login-block {
   border-radius: 5px;
   position: relative;
   width: 100%;
-  margin-bottom: 50px;
   padding: 50px 15px;
 }
 
 main.login section.login-block span.login-key {
-  background: url(./images/login/login-sprite.png) no-repeat center center;
+  background: url('../images/login/login-sprite.png') no-repeat center center;
   background-position: 0 0;
   width: 91px;
   height: 71px;
@@ -79,7 +66,7 @@ main.login section.login-block span.login-key {
 
 main.login section.login-block span.login-key::before {
   content: "";
-  background: url(./images/login/login-sprite.png) no-repeat center center;
+  background: url('../images/login/login-sprite.png') no-repeat center center;
   background-position: -143px 0;
   width: 37px;
   height: 32px;
@@ -93,19 +80,59 @@ main.login section.login-block div.login-fields {
   flex-direction: column;
 }
 
+main.login section.login-block div.login-fields div.password-field a {
+  color: var(--gray);
+}
+
+main.login section.login-block div.login-fields div.password-field a:hover {
+  color: var(--green);
+}
+
 /* login-block section end */
 
+/* image-block section start */
 main.login section.image-block div.testing-image img {
-  max-width: 100%;
+  width: 100%;
 }
+
+/* image-block section end */
+
+/* desktop styles start */
+
+/* login row start */
 
 @media only screen and (min-width: 1000px) {
+  section {
+    margin-bottom: 0px;
+  }
+  
   main.login div.row {
     flex-direction: row-reverse;
-    gap: 15px;
+    flex-wrap: nowrap;
+    gap: 30px;
     justify-content: center;
+    margin-bottom: 50px;
   }
 
+  /* login-block section start */
+
+  main.login section.login-block {
+    width: 50%;
+  }
+
+  /* login-block section end */
+
+  /* image-block section start */
+
+  main.login section.image-block {
+    width: 50%;
+  }
+
+  /* image-block section end */
 }
+
+/* login row end */
+
+/* desktop styles end */
 
 /* login page end */
