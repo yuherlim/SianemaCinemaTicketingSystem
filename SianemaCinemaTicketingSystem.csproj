@@ -94,6 +94,7 @@
     <Content Include="images\seatIcon\selectedseat.png" />
     <Content Include="images\seatIcon\unavailableseat.png" />
     <Content Include="js\login.js" />
+    <Content Include="js\register.js" />
     <Content Include="MovieDetails.aspx" />
     <Content Include="Movies.aspx" />
     <Content Include="Register.aspx" />

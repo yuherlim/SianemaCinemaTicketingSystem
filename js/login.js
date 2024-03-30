@@ -1,18 +1,18 @@
 ﻿$(document).ready(function () {
-    show_hide_password();
+    show_hide_password("password-field");
 });
 
-function show_hide_password() {
-    $(".password-field a").on('click', function (event) {
+function show_hide_password(password_field_type) {
+    $(`.${password_field_type} a`).on('click', function (event) {
         event.preventDefault();
-        if ($('.password-field input').attr("type") == "text") {
-            $('.password-field input').attr('type', 'password');
-            $('.password-field i.show-hide-password').addClass("fa-eye-slash");
-            $('.password-field i.show-hide-password').removeClass("fa-eye");
-        } else if ($('.password-field input').attr("type") == "password") {
-            $('.password-field input').attr('type', 'text');
-            $('.password-field i.show-hide-password').removeClass("fa-eye-slash");
-            $('.password-field i.show-hide-password').addClass("fa-eye");
+        if ($(`.${password_field_type} input`).attr("type") == "text") {
+            $(`.${password_field_type} input`).attr('type', 'password');
+            $(`.${password_field_type} i.show-hide-password`).addClass("fa-eye-slash");
+            $(`.${password_field_type} i.show-hide-password`).removeClass("fa-eye");
+        } else if ($(`.${password_field_type} input`).attr("type") == "password") {
+            $(`.${password_field_type} input`).attr('type', 'text');
+            $(`.${password_field_type} i.show-hide-password`).removeClass("fa-eye-slash");
+            $(`.${password_field_type} i.show-hide-password`).addClass("fa-eye");
         }
     });
 }
