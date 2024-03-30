@@ -78,9 +78,9 @@
             color: var(--white);
         }
 
-        .footer-link:hover {
-            color: var(--green);
-        }
+            .footer-link:hover {
+                color: var(--green);
+            }
 
         .heading4 {
             font-size: 18px;
@@ -122,37 +122,37 @@
             border-color: var(--green);
         }
 
-        .btn-primary:hover {
-            color: var(--green);
-            background-color: var(--white);
-            border-color: var(--white);
-        }
+            .btn-primary:hover {
+                color: var(--green);
+                background-color: var(--white);
+                border-color: var(--white);
+            }
 
-        .btn-primary:not(:disabled):not(.disabled).active,
-        .btn-primary:not(:disabled):not(.disabled):active,
-        .show > .btn-primary.dropdown-toggle {
-            background-color: var(--green);
-            border-color: var(--green);
-            box-shadow: none;
-            outline: none;
-        }
+            .btn-primary:not(:disabled):not(.disabled).active,
+            .btn-primary:not(:disabled):not(.disabled):active,
+            .show > .btn-primary.dropdown-toggle {
+                background-color: var(--green);
+                border-color: var(--green);
+                box-shadow: none;
+                outline: none;
+            }
 
-        .btn-primary:focus {
-            color: var(--green);
-            background-color: var(--white);
-            border-color: var(--dark-green);
-            box-shadow: 0 0 0 0.2rem var(--dark-green);
-        }
+            .btn-primary:focus {
+                color: var(--green);
+                background-color: var(--white);
+                border-color: var(--dark-green);
+                box-shadow: 0 0 0 0.2rem var(--dark-green);
+            }
 
         .btn-outline-primary {
             color: var(--green);
             border-color: rgba(238, 238, 238, 0.33);
         }
 
-        .btn-outline-primary:hover {
-            border-color: var(--green);
-            background-color: var(--green);
-        }
+            .btn-outline-primary:hover {
+                border-color: var(--green);
+                background-color: var(--green);
+            }
 
         .content-wrapper {
             width: 100%;
@@ -160,6 +160,7 @@
             max-width: 1690px;
             margin: 0 auto;
         }
+
     </style>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
