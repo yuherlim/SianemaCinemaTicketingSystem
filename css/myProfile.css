@@ -3,7 +3,7 @@
 
 /* section.my-profile-container start */
 main.my-profile section.my-profile-container {
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 main.my-profile section.my-profile-container h4 {
@@ -82,6 +82,13 @@ main.my-profile section.save-changes {
   justify-content: center;
 }
 
+main.my-profile section.save-changes div.save-btn-container .save-btn {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 20px;
+  line-height: 40px;
+}
+
 /* section.save-changes styles end */
 
 /* desktop styles start */
@@ -119,6 +126,16 @@ main.my-profile section.save-changes {
   }
 
   /* section.my-profile-container end */
+
+  /* section.save-changes styles start */
+
+  main.my-profile section.save-changes div.save-btn-container .save-btn {
+    font-size: 22px;
+    padding: 0 35px;
+    line-height: 46px;
+  }
+
+  /* section.save-changes styles end */
 }
 
 /* desktop styles end */
