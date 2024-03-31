@@ -44,7 +44,7 @@
                                 </div>
                                 <h5 class="new-to-sianema-title mb-3">New to <span>SIA NEMA?</span></h5>
                                 <div class="join-now-btn">
-                                    <a class="btn btn-outline-primary join-now" href="#" title="JOIN NOW" role="button">JOIN NOW</a>
+                                    <a class="btn btn-outline-primary join-now" href="Register.aspx" title="JOIN NOW" role="button">JOIN NOW</a>
                                 </div>
                             </div>
                         </form>

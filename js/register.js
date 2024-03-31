@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
+    //for password field
     show_hide_password("password-field");
+    //for confirm password field
+    show_hide_password("confirm-password-field");
 });
 
 function show_hide_password(password_field_type) {

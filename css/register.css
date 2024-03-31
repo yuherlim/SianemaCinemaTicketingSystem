@@ -16,9 +16,146 @@ section {
   border-color: var(--green);
   box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
 }
+
+.content-wrapper {
+  max-width: 1130px;
+}
 /* general styles end */
 
 /* register page start */
 main {
   padding-top: 100px;
 }
+
+/* section.title-row start */
+
+main.register section.title-row div.register-title-block {
+  display: flex;
+  gap: 20px;
+}
+
+main.register section.title-row div.register-title-block span.register-key {
+  background: url('../images/login/login-sprite.png') no-repeat center center;
+  background-position: 0 0;
+  width: 70px;
+  height: 55px;
+  display: inline-block;
+  position: relative;
+  left: -5px;
+  top: -10px;
+  background-size: 150px auto;
+}
+
+main.register section.title-row div.register-title-block span.register-key::before {
+  content: "";
+  background: url('../images/login/login-sprite.png') no-repeat center center;
+  background-position: -105px 0;
+  width: 31px;
+  height: 26px;
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  background-size: 150px auto;
+}
+
+/* section.title-row end */
+
+/* section.register-fields-row start */
+
+main.register section.register-fields-row form div.field-group {
+  margin-bottom: 60px;
+}
+
+main.register section.register-fields-row form div.row div.col {
+  flex-basis: 100%;
+  margin-bottom: 30px;
+}
+
+main.register section.register-fields-row form div.row div.password-field a,
+main.register section.register-fields-row form div.row div.confirm-password-field a {
+  color: var(--gray);
+}
+
+main.register section.register-fields-row form div.row div.password-field a:hover,
+main.register section.register-fields-row form div.row div.confirm-password-field a:hover {
+  color: var(--green);
+}
+
+
+main.register section.register-fields-row form div.row div.col label span {
+  color: red;
+}
+
+main.register section.register-fields-row form div.btn-group {
+  display: flex;
+  flex-direction: column;
+}
+
+main.register section.register-fields-row form div.password-info-block {
+  margin-bottom: 30px;
+}
+
+main.register section.register-fields-row form div.password-info-block h3.password-info-title {
+  margin-bottom: 1rem;
+}
+
+main.register section.register-fields-row form div.password-info-block ul.password-info li {
+  margin-bottom: 0.5rem;
+}
+
+main.register section.register-fields-row form div.btn-group > * {
+  flex: 0 1 auto;
+}
+
+main.register section.register-fields-row form div.btn-group div.register-btn-container {
+  margin-bottom: 30px;
+}
+
+main.register section.register-fields-row form div.btn-group div.register-btn-container button.register-btn {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 40px;
+  padding: 0px 20px;
+}
+
+main.register section.register-fields-row form div.btn-group div.login-btn-container a.login-btn {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 40px;
+  padding: 0 15px;
+}
+
+/* section.register-fields-row end */
+
+/* desktop styles start */
+
+@media only screen and (min-width: 1000px) {
+  /* section.register-fields-row start */
+
+  main.register section.register-fields-row form div.row {
+    margin-bottom: 30px;
+  }
+
+  main.register section.register-fields-row form div.row div.col {
+    flex-basis: 0;
+    margin-bottom: 0;
+  }
+
+  main.register section.register-fields-row form div.btn-group div.register-btn-container button.register-btn {
+    font-size: 22px;
+    line-height: 46px;
+    padding: 0px 35px;
+  }
+
+  main.register section.register-fields-row form div.btn-group div.login-btn-container a.login-btn {
+    font-size: 18px;
+    line-height: 46px;
+    padding: 0 25px;
+  }
+
+  /* section.register-fields-row end */
+}
+
+/* desktop styles end */
+
+/* register page end */
