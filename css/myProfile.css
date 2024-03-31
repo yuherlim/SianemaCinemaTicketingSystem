@@ -1,0 +1,125 @@
+﻿/* general styles start */
+/* general styles end */
+
+/* section.my-profile-container start */
+main.my-profile section.my-profile-container {
+  margin-bottom: 20px;
+}
+
+main.my-profile section.my-profile-container h6 {
+  margin-bottom: 20px;
+}
+
+main.my-profile section.my-profile-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+main.my-profile section.my-profile-container form div.profile-pic-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+main.my-profile section.my-profile-container form div.profile-pic-block img {
+  max-width: 100%;
+}
+
+main.my-profile section.my-profile-container form div.profile-pic-block div.upload-photo-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+main.my-profile section.my-profile-container form div.profile-pic-block .upload-photo-btn-container {
+  border: 1px solid #e5e5e5;
+}
+
+input[type=file]::file-selector-button {
+  background-color: transparent;
+  color: var(--green);
+  border: 0px;
+  border-right: 1px solid #e5e5e5;
+  padding: 10px 15px;
+  margin-right: 20px;
+  transition: .5s;
+}
+
+input[type=file]::file-selector-button:hover {
+  color: var(--white);
+  background-color: var(--green);
+  border: 0px;
+  border-right: 1px solid #e5e5e5;
+}
+
+main.my-profile section.my-profile-container form div.field-group .row span {
+  color: red;
+}
+
+main.my-profile section.my-profile-container form div.field-group .row .col,
+main.my-profile section.my-profile-container form div.field-group .row .col-6 {
+  flex-basis: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+main.my-profile section.my-profile-container form div.field-group div.row div.gender-field p {
+  margin-bottom: 0.5rem;
+}
+
+main.my-profile section.my-profile-container form div.field-group div.row div.gender-field input {
+  accent-color: var(--green);
+}
+
+/* section.my-profile-container end */
+
+/* section.save-changes styles start */
+
+main.my-profile section.save-changes {
+  display: flex;
+  justify-content: center;
+}
+
+/* section.save-changes styles end */
+
+/* desktop styles start */
+
+@media only screen and (min-width: 1000px) {
+
+  /* section.my-profile-container start */
+
+  main.my-profile section.my-profile-container form {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    align-items: center;
+  }
+
+  main.my-profile section.my-profile-container form div.profile-pic-block {
+    flex: 0 1 33%;
+  }
+
+  main.my-profile section.my-profile-container form div.profile-pic-block {
+    margin-bottom: 0px;
+  }
+
+  main.my-profile section.my-profile-container form div.field-group {
+    flex: 0 1 77%;
+  }
+
+  main.my-profile section.my-profile-container form div.field-group .row .col {
+    flex-basis: 0;
+  }
+
+  main.my-profile section.my-profile-container form div.field-group .row .col-6 {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  /* section.my-profile-container end */
+}
+
+/* desktop styles end */
+

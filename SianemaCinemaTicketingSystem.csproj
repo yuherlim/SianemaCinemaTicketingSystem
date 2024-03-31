@@ -74,7 +74,9 @@
     </Content>
     <Content Include="ContactUs.aspx" />
     <Content Include="css\login.css" />
+    <Content Include="css\myProfile.css" />
     <Content Include="css\register.css" />
+    <Content Include="css\transactionHistory.css" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
     <Content Include="images\movieCoverPhoto\yoloCover.png" />
@@ -95,10 +97,14 @@
     <Content Include="images\seatIcon\unavailableseat.png" />
     <Content Include="js\login.js" />
     <Content Include="js\register.js" />
+    <Content Include="js\userAccount.js" />
     <Content Include="MovieDetails.aspx" />
     <Content Include="Movies.aspx" />
+    <Content Include="MyProfile.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="MovieSeatSelection.aspx" />
+    <Content Include="css\userAccount.css" />
+    <Content Include="TransactionHistory.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
   </ItemGroup>
@@ -166,6 +172,13 @@
     <Compile Include="MPA.Master.designer.cs">
       <DependentUpon>MPA.Master</DependentUpon>
     </Compile>
+    <Compile Include="MyProfile.aspx.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProfile.aspx.designer.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
@@ -181,11 +194,26 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TransactionHistory.aspx.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransactionHistory.aspx.designer.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccount.master.cs">
+      <DependentUpon>UserAccount.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserAccount.master.designer.cs">
+      <DependentUpon>UserAccount.master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MP.Master" />
     <Content Include="MPA.Master" />
     <None Include="packages.config" />
+    <Content Include="UserAccount.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
