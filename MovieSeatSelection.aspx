@@ -46,7 +46,12 @@
             gap: 10px;
         }
 
+        .selected-seat-display {
+            text-align: center;
+        }
+
         .seat-selection-body {
+            padding-top: 40px;
             background: #1d1d1d;
             padding-bottom: 100px;
         }
@@ -54,7 +59,7 @@
         .seat-select-part {
             max-width: 70%;
             display: flex;
-            padding-top: 40px;
+            padding-top: 30px;
             justify-content: center;
             margin: 0 auto;
         }
@@ -82,22 +87,46 @@
             }
 
         .seat-container {
-            max-width: 50%;
+            max-width: 40%;
             display: flex;
             flex-wrap: wrap;
-            gap: 5px; /* Add gap between seats */
+            gap: 10px; /* Add gap between seats */
             margin: 0 auto;
             padding-top: 30px;
         }
 
-        .seat {
-            width: calc((100% - 13 * 5px) / 14); /* Calculate the width of each seat */
-            height: 30%; /* Set the height of each seat */
+        .seat-wrapper {
+            width: calc((100% - 13 * 10px) / 14); /* Calculate the width of each seat */
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .seat-number {
+            bottom: -20px;
+            left: 50%;
+            text-align: center;
+            font-size: 12px;
+            color: white;
         }
 
         .continueButton {
+            background-color: var(--white);
+            color: var(--black);
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
             display: block;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
             margin: 30px auto;
+            border-radius: 3px;
+        }
+
+        .continueButton:hover {
+            background-color: var(--green);
+            color: var(--white);
         }
     </style>
 </asp:Content>
@@ -117,7 +146,14 @@
             </div>
         </div>
 
+
         <section class="seat-selection-body">
+
+            <div class="selected-seat-display">
+                <asp:Label ID="SelectedSeat" runat="server" Text="Your Seats : "></asp:Label>
+            </div>
+
+
             <div class="seat-select-part">
                 <div class="seat-description">
                     <img src="./images/seatIcon/selectedseat.png" alt="selectedseat" width="20" height="20" />
@@ -145,15 +181,17 @@
             <div class="seat-container">
                 <asp:Repeater ID="SeatRepeater" runat="server">
                     <ItemTemplate>
-                        <asp:ImageButton ID="SeatButton" ImageUrl="./images/seatIcon/singleseat.png" runat="server" CssClass="seat" Text='<%# Eval("SeatNumber") %>' />
+                        <div class="seat-wrapper">
+                            <asp:ImageButton ID="SeatButton" ImageUrl="./images/seatIcon/singleseat.png" runat="server" CssClass="seat" Text='<%# Eval("SeatNumber") %>' />
+                            <span class="seat-number"><%# Eval("SeatNumber") %></span>
+                        </div>
                     </ItemTemplate>
                 </asp:Repeater>
-
             </div>
 
 
 
-            <asp:Button ID="continueButton" runat="server" Text="Continue" CssClass="continueButton" />
+            <asp:Button ID="continueButton" runat="server" Text="Continue" CssClass="continueButton" OnClick="continueButton_Click"/>
 
 
 
@@ -161,5 +199,17 @@
         </section>
     </form>
 </asp:Content>
+
+
 <asp:Content ID="Content3" ContentPlaceHolderID="js" runat="server">
+    <script>
+        $(document).ready(function () {
+            $(".seat").click(function () {
+                // Change src attribute of image
+                $(this).attr("src", "./images/seatIcon/selectedseat.png");
+                var seatNumber = $(".seat").text();
+                $("#SelectedSeat").append("seatNumber")
+            });
+        });
+    </script>
 </asp:Content>
