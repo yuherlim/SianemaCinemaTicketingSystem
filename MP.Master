@@ -24,7 +24,7 @@
         body {
             background-color: var(--black);
             color: var(--white); /* Set text color to white for better contrast */
-            padding-top: 70px; /* Add padding to the top of the body to accommodate the fixed navbar */
+            padding-top: 86px; /* Add padding to the top of the body to accommodate the fixed navbar */
         }
 
         /* Apply underline on hover with animation only for navigation links */
