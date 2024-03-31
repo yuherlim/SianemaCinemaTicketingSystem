@@ -66,6 +66,7 @@
         }
 
         .movie-row {
+            padding-top:30px;
             display:flex;
             flex-wrap:wrap;
             gap:40px;
@@ -73,7 +74,7 @@
         }
 
         .movie-container {
-            width:80%;
+            max-width:60%;
             padding-top:50px;
             padding-right:15px;
             padding-left:15px;
@@ -100,7 +101,7 @@
 
                 <ItemTemplate>
                     <div class="card view">
-                        <asp:Image ID="moviePoster" runat="server" ImageUrl='<%# Eval("moviePoster") %>' Height="600" Width="400" />
+                        <asp:Image ID="moviePoster" runat="server" ImageUrl='<%# Eval("moviePoster") %>' Height="300" Width="200" />
                         <div class="mask">
                             <div class="col">
                                 <ul class="deco">

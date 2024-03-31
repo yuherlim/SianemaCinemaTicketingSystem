@@ -59,21 +59,76 @@
             padding: 20px;
         }
 
+        .ticket-header {
+            color: var(--green);
+            font-weight: 500;
+        }
+
         table, th, td {
             border: 2px solid white;
             border-collapse: collapse;
         }
 
         table {
-            width:100%;
+            width: 100%;
         }
 
-        .auto-style1, .auto-style2, .auto-style3{
-            padding:5px 10px;
-            width:30%
+        .auto-style1, .auto-style2, .auto-style3 {
+            padding: 5px 10px;
+            width: 30%
         }
 
+        .total-payment-botnav {
+            background: black;
+            margin-top: 50px;
+            padding: 40px 0;
+            width: 100%;
+        }
 
+        .total-amount {
+            text-align: center;
+        }
+
+        .pay-button {
+            background-color: var(--white);
+            color: var(--black);
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 30px auto;
+            border-radius: 3px;
+        }
+
+            .pay-button:hover {
+                background-color: var(--green);
+                color: var(--white);
+            }
+
+        .card-details-fill-container {
+            width: 70%;
+            margin: 0 auto;
+            padding-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </asp:Content>
 
@@ -99,9 +154,6 @@
         <section class="payment-container">
             <div class="payment-body">
                 <h1 id="Payment-Header">Payment Option</h1>
-                <div class="credit-debit-card-payment">
-                    <asp:RadioButton ID="creditDebitPay" runat="server" Text="Credit/Debit Card" />
-                </div>
             </div>
 
 
@@ -144,6 +196,27 @@
 
                 </div>
 
+            </div>
+
+            <div class="card-details-fill-container">
+                <div class="form-group">
+                    <asp:Label ID="lblCardNumber" runat="server">Card Number</asp:Label>
+                    <asp:TextBox ID="txtCardNumber" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblCVV" runat="server">CVV</asp:Label>
+                    <asp:TextBox ID="txtCVV" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblExpiryDate" runat="server">Expiry Date</asp:Label>
+                    <asp:TextBox ID="txtExpiryDate" runat="server" CssClass="form-control" placeholder="MM/YYYY"></asp:TextBox>
+                </div>
+
+            </div>
+
+            <div class="total-payment-botnav">
+                <h2 class="total-amount">RM 39.00</h2>
+                <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="pay-button" />
             </div>
         </section>
     </form>
