@@ -1,2 +1,58 @@
-﻿body {
+﻿/* transaction history navbar styles start */
+
+nav.transaction-history-nav .nav-link {
+  color: var(--white);
 }
+
+nav.transaction-history-nav .nav-link:hover {
+  color: var(--green);
+  transition: all 0.3s ease-in-out; /* Animation transition */
+}
+
+nav.transaction-history-nav .nav-link.active {
+  font-weight: 700;
+}
+
+nav.transaction-history-nav .nav-link:hover {
+  color: var(--green);
+}
+
+nav.transaction-history-nav .nav-link {
+  color: var(--white); /* Set initial text color to white */
+  position: relative; /* Position relative to contain pseudo-element */
+}
+
+nav.transaction-history-nav .nav-link::before {
+  content: ''; /* Create a pseudo-element */
+  position: absolute; /* Position relative to parent link */
+  width: 100%; /* Full width */
+  height: 1px; /* Underline thickness */
+  bottom: 0; /* Align at the bottom */
+  left: 0; /* Align at the left */
+  background-color: var(--green); /* Underline color */
+  visibility: hidden; /* Initially hidden */
+  transform: scaleX(0); /* Initially scaled to 0 width */
+  transition: all 0.3s ease-in-out; /* Animation transition */
+}
+
+nav.transaction-history-nav .nav-link:hover::before {
+  visibility: visible; /* Make the underline visible on hover */
+  transform: scaleX(1); /* Expand the underline to full width */
+}
+
+/*underline for active link*/
+nav.transaction-history-nav a.nav-link.active::before {
+  content: ''; /* Create a pseudo-element */
+  position: absolute; /* Position relative to parent link */
+  width: 100%; /* Full width */
+  height: 1px; /* Underline thickness */
+  bottom: 0; /* Align at the bottom */
+  left: 0; /* Align at the left */
+  background-color: var(--green); /* Underline color */
+  visibility: visible;
+  transform: scaleX(0.5);
+}
+
+/* transaction history navbar styles end */
+
+
