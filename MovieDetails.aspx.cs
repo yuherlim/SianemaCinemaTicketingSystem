@@ -52,6 +52,11 @@ namespace SianemaCinemaTicketingSystem
              date7.Text = currentDate.AddDays(6).ToString("ddd\ndd-MMM").ToUpper();
 
             conn.Close();
-        }   
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MovieSeatSelection.aspx");
+        }
     }
 }

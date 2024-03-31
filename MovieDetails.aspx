@@ -203,12 +203,12 @@
                     <h2 class="classic-header">Classic</h2>
 
                     <div class="chair-image-container">
-                        <img src="./images/seatIcon/chair.png" height="50" width="50" class="chair-image" />
-                        <img src="./images/seatIcon/couplechair.png" height="70" width="70" class="chair-image" />
+                        <img src="./images/seatIcon/singleseat.png" height="50" width="50" class="chair-image" />
+                        <img src="./images/seatIcon/coupleseat.png" height="70" width="70" class="chair-image" />
 
                     </div>
                     <div class="movie-time">
-                        <asp:Button ID="Button1" runat="server" CssClass="time-button" Text="08:00 AM" />
+                        <asp:Button ID="Button1" runat="server" CssClass="time-button" Text="08:00 AM" OnClick="Button1_Click" />
                         <asp:Button ID="Button2" runat="server" CssClass="time-button" Text="11:00 AM" />
                         <asp:Button ID="Button3" runat="server" CssClass="time-button" Text="04:00 PM" />
                         <asp:Button ID="Button4" runat="server" CssClass="time-button" Text="08:00 PM" />

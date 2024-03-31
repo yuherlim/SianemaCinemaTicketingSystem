@@ -11,7 +11,7 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class MovieSeatSelection
+    public partial class Payment
     {
 
         /// <summary>
@@ -51,30 +51,21 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl movieTime;
 
         /// <summary>
-        /// SelectedSeat control.
+        /// seatsId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SelectedSeat;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seatsId;
 
         /// <summary>
-        /// SeatRepeater control.
+        /// creditDebitPay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater SeatRepeater;
-
-        /// <summary>
-        /// continueButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button continueButton;
+        protected global::System.Web.UI.WebControls.RadioButton creditDebitPay;
     }
 }

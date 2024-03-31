@@ -15,51 +15,37 @@ namespace SianemaCinemaTicketingSystem
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            /*
-            SqlConnection conn;
-            string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            
+                // Assume you have already retrieved the number of rows and columns from the database
+                int numRows = 7;
+                int numColumns = 14;
 
-            conn = new SqlConnection(strCon);
-            conn.Open();
+                // Generate seat data based on the number of rows and columns
+                List<object> seats = GenerateSeatData(numRows, numColumns);
 
-            string strToRetrieve = "Select * From Movie";
+                // Bind seat data to repeater
+                SeatRepeater.DataSource = seats;
+                SeatRepeater.DataBind();
 
-            SqlCommand cmdToRetrieve;
-            cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
-
-            SqlDataReader seatDetailsReader = cmdToRetrieve.ExecuteReader();
-
-            if (seatDetailsReader.Read())
-            {
-
-
-            }
-            */
-
-
-
-            // Assume you have already retrieved the number of rows and columns from the database
-            int numRows = 7;
-            int numColumns = 14;
-
-            // Generate seat data based on the number of rows and columns
-            List<object> seats = GenerateSeatData(numRows, numColumns);
-
-            // Bind seat data to repeater
-            SeatRepeater.DataSource = seats;
-            SeatRepeater.DataBind();
+                
         }
 
         private List<object> GenerateSeatData(int numRows, int numColumns)
         {
             List<object> seats = new List<object>();
 
-            for (int row = 1; row <= numRows; row++)
+            // Define an array of letters to use for row labels
+            string[] rowLetters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+
+            for (int row = 0; row < numRows; row++)
             {
+                // Get the row letter from the array based on the current row index
+                string rowLetter = rowLetters[row];
+
                 for (int col = 1; col <= numColumns; col++)
                 {
-                    // Generate a dynamic seat object with row and column numbers
-                    var seat = new { RowNumber = row, ColumnNumber = col, SeatNumber = $"Seat {row}-{col}" };
+                    // Generate a dynamic seat object with row letter and column number
+                    var seat = new { RowLetter = rowLetter, ColumnNumber = col, SeatNumber = $"{rowLetter}-{col}" };
                     seats.Add(seat);
                 }
             }
@@ -67,6 +53,9 @@ namespace SianemaCinemaTicketingSystem
             return seats;
         }
 
-
+        protected void continueButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Payment.aspx");
+        }
     }
 }

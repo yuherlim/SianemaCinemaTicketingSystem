@@ -105,11 +105,11 @@
                             <div class="col">
                                 <ul class="deco">
                                     <li><p class="movie-name"><%# Eval("movieName") %></></li>
-                                    <li><a href="#!" class="btn-book-now">Book Now</a></li>
+                                    <li><a href="MovieDetails.aspx" class="btn-book-now">Book Now</a></li>
                                     <li>
                                         <br />
                                     </li>
-                                    <li><a href="#!" class="btn-more-info">More Info</a></li>
+                                    <li><a href="MovieDetails.aspx" class="btn-more-info">More Info</a></li>
                                 </ul>
                             </div>
                         </div>
