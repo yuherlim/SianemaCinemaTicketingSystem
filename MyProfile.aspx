@@ -8,7 +8,7 @@
     <main class="my-profile">
         <div class="content-wrapper">
             <section class="my-profile-container">
-                <h6>My Profile</h6>
+                <h4>My Profile</h4>
                 <form>
                     <div class="profile-pic-block">
                         <img src="./images/myProfile/default-profile-pic.png" alt="Profile Picture">
