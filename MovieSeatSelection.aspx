@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP.Master" AutoEventWireup="true" CodeBehind="MovieSeatSelection.aspx.cs" Inherits="SianemaCinemaTicketingSystem.MovieSeatSelection" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>SIA NEMA - Booking - Seats</title>
     <style>
         body {
             padding-top: 0px;
@@ -18,7 +19,7 @@
             position: relative;
         }
 
-            .movie-seat-selection-navbar img {
+            .top-nav-logo {
                 position: absolute;
                 left: 10%;
             }
@@ -40,12 +41,14 @@
             }
 
         .movie-seat-hall-time {
-            display: flex;
-            flex-wrap: wrap;
+            display:flex;
+            flex-direction:row;
             justify-content: center;
-            gap: 10px;
         }
 
+        .icon-image {
+            margin:0 5px;
+        }
         .selected-seat-display {
             text-align: center;
         }
@@ -134,12 +137,15 @@
     <form class="form1" runat="server">
         <div class="movie-seat-selection-navbar">
             <div class="movie-seat-selection-container">
-                <img src="logoSianema.png" alt="Logo" width="160" height="60">
+                <img src="logoSianema.png" alt="Logo" width="160" height="60" class="top-nav-logo">
                 <div class="movie-seat-selection-header">
                     <h3 id="movieName" runat="server">YOLO</h3>
                     <div class="movie-seat-hall-time">
+                        <img src="./images/cinemaIcon/hall.png" width="20" height="20" class="icon-image"/>
                         <p id="hallNum" runat="server">Hall 1</p>
+                        <img src="./images/cinemaIcon/date.png" width="20" height="20" class="icon-image"/>
                         <p id="movieDate" runat="server">27 Mar 2024</p>
+                        <img src="./images/cinemaIcon/time.png" width="20" height="20" class="icon-image"/>
                         <p id="movieTime" runat="server">10:00 PM</p>
                     </div>
                 </div>
@@ -150,7 +156,7 @@
         <section class="seat-selection-body">
 
             <div class="selected-seat-display">
-                <asp:Label ID="SelectedSeat" runat="server" Text="Your Seats : "></asp:Label>
+                <h4 id="selectedSeat"></h4>
             </div>
 
 
@@ -182,7 +188,7 @@
                 <asp:Repeater ID="SeatRepeater" runat="server">
                     <ItemTemplate>
                         <div class="seat-wrapper">
-                            <asp:ImageButton ID="SeatButton" ImageUrl="./images/seatIcon/singleseat.png" runat="server" CssClass="seat" Text='<%# Eval("SeatNumber") %>' />
+                            <img class="seat" src="./images/seatIcon/singleseat.png" alt="<%# Eval("SeatNumber") %>"/>
                             <span class="seat-number"><%# Eval("SeatNumber") %></span>
                         </div>
                     </ItemTemplate>
@@ -205,10 +211,24 @@
     <script>
         $(document).ready(function () {
             $(".seat").click(function () {
-                // Change src attribute of image
-                $(this).attr("src", "./images/seatIcon/selectedseat.png");
-                var seatNumber = $(".seat").text();
-                $("#SelectedSeat").append("seatNumber")
+                var image = $(this).attr("src")
+                if (image == "./images/seatIcon/singleseat.png") {
+                    // Change src attribute of image
+                    $(this).attr("src", "./images/seatIcon/selectedseat.png");
+                    $(this).addClass("selected-seat-id")
+                }
+                else {
+                    // Change src attribute of image
+                    $(this).attr("src", "./images/seatIcon/singleseat.png");
+                    $(this).removeClass("selected-seat-id")
+                }
+
+                var selectedSeats = [];
+                $(".selected-seat-id").each(function () {
+                    selectedSeats.push($(this).attr("alt"));
+                });
+                $("#selectedSeat").text(selectedSeats.join(", "));
+
             });
         });
     </script>

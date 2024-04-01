@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP.Master" AutoEventWireup="true" CodeBehind="MovieDetails.aspx.cs" Inherits="SianemaCinemaTicketingSystem.MovieDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>SIA NEMA - Movies Details</title>
     <style>
         .movie-details-container {
             position: relative;
