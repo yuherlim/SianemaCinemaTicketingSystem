@@ -77,6 +77,7 @@
     <Content Include="css\myProfile.css" />
     <Content Include="css\register.css" />
     <Content Include="css\transactionHistory.css" />
+    <Content Include="css\transactionHistoryDetails.css" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
     <Content Include="images\cinemaIcon\date.png" />
@@ -110,6 +111,7 @@
     <Content Include="MovieSeatSelection.aspx" />
     <Content Include="css\userAccount.css" />
     <Content Include="TransactionHistory.aspx" />
+    <Content Include="TransactionHistoryDetails.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
   </ItemGroup>
@@ -212,6 +214,13 @@
     </Compile>
     <Compile Include="TransactionHistory.aspx.designer.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionHistoryDetails.aspx.cs">
+      <DependentUpon>TransactionHistoryDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransactionHistoryDetails.aspx.designer.cs">
+      <DependentUpon>TransactionHistoryDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserAccount.master.cs">
       <DependentUpon>UserAccount.master</DependentUpon>

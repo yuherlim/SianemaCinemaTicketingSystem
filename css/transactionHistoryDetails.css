@@ -1,0 +1,132 @@
+﻿/* movie details styles start */
+
+main.transaction-history-details section.movie-cover-photo img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  -webkit-mask-image: linear-gradient(to top, transparent 9%, black 80%);
+}
+
+main.transaction-history-details section.movie-details {
+  margin: 0 auto;
+  background: black;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+
+
+main.transaction-history-details div.card {
+  border-color: var(--ticket-grey);
+  margin-bottom: 20px;
+}
+
+main.transaction-history-details div.card div.card-body,
+main.transaction-history-details div.card div.card-footer {
+  background-color: var(--ticket-grey);
+  border-color: var(--white);
+}
+
+main.transaction-history-details div.card div.card-body div.card-title,
+main.transaction-history-details div.card div.card-body div.card-text {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+
+main.transaction-history-details div.card div.card-body div.card-title {
+  margin-bottom: 30px;
+}
+
+main.transaction-history-details div.card div.card-body div.card-title p {
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+main.transaction-history-details div.card div.card-body div.card-title .movie-name,
+main.transaction-history-details div.card div.card-body div.card-title .movie-classification {
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+main.transaction-history-details div.card div.card-body div.card-text {
+  margin-bottom: 20px;
+}
+
+main.transaction-history-details div.card div.card-body div.card-text p {
+  margin-bottom: 0px;
+}
+
+main.transaction-history-details div.card div.card-body div.card-text div.with-icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* movie details styles end */
+
+
+/* purchase details styles start */
+
+.payment-container {
+  padding: 50px 0px;
+  background: #1d1d1d;
+}
+
+.payment-body, .credit-debit-card-container {
+  margin: 0 auto;
+  background: black;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.ticket-header {
+  color: var(--green);
+  font-weight: 500;
+}
+
+table, th, td {
+  border: 2px solid white;
+  border-collapse: collapse;
+}
+
+table {
+  width: 100%;
+}
+
+.auto-style1, .auto-style2, .auto-style3 {
+  padding: 5px 10px;
+  width: 30%
+}
+
+.total-payment-botnav {
+  background: black;
+  margin-top: 50px;
+  padding: 40px 0;
+  width: 100%;
+}
+
+.total-amount {
+  text-align: center;
+}
+
+/* purchase details styles end */
+
+/* desktop styles start */
+
+@media only screen and (min-width: 1000px) {
+  /* movie details styles start */
+  main.transaction-history-details section.movie-details {
+    max-width: 60%;
+  }
+
+  /* movie details styles end */
+
+  /* purchase details styles start*/
+  .payment-body, .credit-debit-card-container {
+    max-width: 60%;
+  }
+  /* purchase details styles end */
+}
+
+/* desktop styles end */
