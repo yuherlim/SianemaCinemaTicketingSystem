@@ -45,7 +45,7 @@
                                 <div class="login-btn-row mb-5">
                                     <%--<button type="submit" class="btn btn-primary login-btn" title="LOGIN">LOGIN</button>--%>
                                     <asp:Button ID="LoginButton" runat="server" Text="LOGIN" CssClass="btn btn-primary login-btn" title="LOGIN" />
-                                    <a href="#" class="forget-password" title="Forgot Password?">Forgot Password?</a>
+                                    <a href="./ForgotPassword.aspx" class="forget-password" title="Forgot Password?">Forgot Password?</a>
                                 </div>
                                 
                                 <h5 class="new-to-sianema-title mb-3">New to <span>SIA NEMA?</span></h5>

@@ -73,11 +73,13 @@
       <DependentUpon>SianemaCinemaDB.mdf</DependentUpon>
     </Content>
     <Content Include="ContactUs.aspx" />
+    <Content Include="css\forgotPassword.css" />
     <Content Include="css\login.css" />
     <Content Include="css\myProfile.css" />
     <Content Include="css\register.css" />
     <Content Include="css\transactionHistory.css" />
     <Content Include="css\transactionHistoryDetails.css" />
+    <Content Include="ForgotPassword.aspx" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
     <Content Include="images\cinemaIcon\date.png" />
@@ -130,6 +132,13 @@
     </Compile>
     <Compile Include="ContactUs.aspx.designer.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Hall.aspx.cs">
       <DependentUpon>Hall.aspx</DependentUpon>
