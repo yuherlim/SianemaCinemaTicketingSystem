@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP.Master" AutoEventWireup="true" CodeBehind="Movies.aspx.cs" Inherits="SianemaCinemaTicketingSystem.Movies" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>SIA NEMA - Movies</title>
     <style>
         /* Overlay */
         .mask {

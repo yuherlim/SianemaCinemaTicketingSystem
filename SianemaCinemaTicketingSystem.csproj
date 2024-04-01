@@ -77,6 +77,10 @@
     <Content Include="css\register.css" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
+    <Content Include="images\cinemaIcon\date.png" />
+    <Content Include="images\cinemaIcon\hall.png" />
+    <Content Include="images\cinemaIcon\seat.png" />
+    <Content Include="images\cinemaIcon\time.png" />
     <Content Include="images\movieCoverPhoto\yoloCover.png" />
     <Content Include="images\moviePoster\crew.jpg" />
     <Content Include="images\moviePoster\exhuma.jpg" />
