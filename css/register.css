@@ -111,14 +111,14 @@ main.register section.register-fields-row form div.btn-group div.register-btn-co
   margin-bottom: 30px;
 }
 
-main.register section.register-fields-row form div.btn-group div.register-btn-container button.register-btn {
+main.register section.register-fields-row form div.btn-group div.register-btn-container .register-btn {
   font-size: 14px;
   font-weight: 700;
   line-height: 40px;
   padding: 0px 20px;
 }
 
-main.register section.register-fields-row form div.btn-group div.login-btn-container a.login-btn {
+main.register section.register-fields-row form div.btn-group div.login-btn-container .login-btn {
   font-size: 14px;
   font-weight: 700;
   line-height: 40px;
@@ -141,13 +141,13 @@ main.register section.register-fields-row form div.btn-group div.login-btn-conta
     margin-bottom: 0;
   }
 
-  main.register section.register-fields-row form div.btn-group div.register-btn-container button.register-btn {
+  main.register section.register-fields-row form div.btn-group div.register-btn-container .register-btn {
     font-size: 22px;
     line-height: 46px;
     padding: 0px 35px;
   }
 
-  main.register section.register-fields-row form div.btn-group div.login-btn-container a.login-btn {
+  main.register section.register-fields-row form div.btn-group div.login-btn-container .login-btn {
     font-size: 18px;
     line-height: 46px;
     padding: 0 25px;
