@@ -52,7 +52,7 @@
                 </section>
                 <section class="image-block">
                     <div class="testing-image">
-                        <img src="./images/login/login-image-sianema.png" alt="placeholder">
+                        <img src="./images/login/login-image-sianema.png" alt="Welcome to Sia Nema">
                     </div>
                 </section>
             </div>

@@ -131,11 +131,11 @@ main.login section.login-block div.login-fields div.btn-group div.join-now-btn a
   padding: 0 15px;
 }
 
-/*main.login section.login-block div.login-fields div.btn-group div.login-btn-row button.login-btn*/
 /* login-block section end */
+
 /* image-block section start */
 main.login section.image-block div.testing-image img {
-  width: 100%;
+  max-width: 100%;
 }
 
 /* image-block section end */
