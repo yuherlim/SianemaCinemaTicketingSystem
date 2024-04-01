@@ -90,7 +90,7 @@ main.login section.login-block div.login-fields div.password-field label span {
   color: red;
 }
 
-main.login section.login-block div.login-fields input#rememberMe {
+main.login section.login-block div.login-fields input[type="checkbox"] {
   accent-color: var(--green);
 }
 
@@ -105,7 +105,7 @@ main.login section.login-block div.login-fields div.btn-group div.login-btn-row 
   align-items: center;
 }
 
-main.login section.login-block div.login-fields div.btn-group div.login-btn-row button.login-btn {
+main.login section.login-block div.login-fields div.btn-group div.login-btn-row .login-btn {
   font-size: 14px;
   font-weight: 700;
   line-height: 40px;
@@ -124,7 +124,7 @@ main.login section.login-block div.login-fields div.btn-group h5.new-to-sianema-
   font-weight: 900;
 }
 
-main.login section.login-block div.login-fields div.btn-group div.join-now-btn a.join-now {
+main.login section.login-block div.login-fields div.btn-group div.join-now-btn .join-now {
   font-size: 14px;
   font-weight: 700;
   line-height: 40px;
@@ -187,13 +187,13 @@ main.login section.image-block div.testing-image img {
     margin: 0 auto;
   }
 
-  main.login section.login-block div.login-fields div.btn-group div.login-btn-row button.login-btn {
+  main.login section.login-block div.login-fields div.btn-group div.login-btn-row .login-btn {
     font-size: 22px;
     line-height: 46px;
     padding: 0px 35px;
   }
 
-  main.login section.login-block div.login-fields div.btn-group div.join-now-btn a.join-now {
+  main.login section.login-block div.login-fields div.btn-group div.join-now-btn .join-now {
     font-size: 18px;
     line-height: 46px;
     padding: 0 25px;

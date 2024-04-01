@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     show_hide_password("password-field");
+    cssClassInjection();
 });
 
 function show_hide_password(password_field_type) {
@@ -15,4 +16,10 @@ function show_hide_password(password_field_type) {
             $(`.${password_field_type} i.show-hide-password`).addClass("fa-eye");
         }
     });
+}
+
+function cssClassInjection() {
+    //css class injection to checkbox server controls.
+    $('.form-check input').addClass("form-check-input");
+    $('.form-check label').addClass("form-check-label");
 }
