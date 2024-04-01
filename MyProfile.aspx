@@ -79,7 +79,7 @@
                                 <div class="col-6 birthdate-field">
                                     <label for="birthdate">Date of Birth<span>*</span></label>
                                     <%--<input type="date" class="form-control" id="birthdate" placeholder="">--%>
-                                    <asp:TextBox ID="BirthDate" runat="server" CssClass="form-control" type="date" placeholder=""></asp:TextBox>
+                                    <asp:TextBox ID="BirthDate" runat="server" CssClass="form-control" TextMode="Date" placeholder=""></asp:TextBox>
                                 </div>
                             </div>
                         </div>
