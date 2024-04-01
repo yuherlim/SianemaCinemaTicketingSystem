@@ -101,6 +101,7 @@
     <Content Include="images\seatIcon\selectedseat.png" />
     <Content Include="images\seatIcon\unavailableseat.png" />
     <Content Include="js\login.js" />
+    <Content Include="js\myProfile.js" />
     <Content Include="js\register.js" />
     <Content Include="js\userAccount.js" />
     <Content Include="MovieDetails.aspx" />

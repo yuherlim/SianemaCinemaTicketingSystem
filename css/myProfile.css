@@ -2,38 +2,35 @@
 /* general styles end */
 
 /* section.my-profile-container start */
-main.my-profile section.my-profile-container {
-  margin-bottom: 50px;
-}
-
 main.my-profile section.my-profile-container h4 {
   margin-bottom: 20px;
 }
 
-main.my-profile section.my-profile-container form {
+main.my-profile section.my-profile-container div.my-profile-fields {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin-bottom: 50px;
 }
 
-main.my-profile section.my-profile-container form div.profile-pic-block {
+main.my-profile section.my-profile-container div.my-profile-fields div.profile-pic-block {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-main.my-profile section.my-profile-container form div.profile-pic-block img {
+main.my-profile section.my-profile-container div.my-profile-fields div.profile-pic-block img {
   max-width: 100%;
 }
 
-main.my-profile section.my-profile-container form div.profile-pic-block div.upload-photo-container {
+main.my-profile section.my-profile-container div.my-profile-fields div.profile-pic-block div.upload-photo-container {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-main.my-profile section.my-profile-container form div.profile-pic-block .upload-photo-btn-container {
+main.my-profile section.my-profile-container div.my-profile-fields div.profile-pic-block .upload-photo-btn-container {
   border: 1px solid #e5e5e5;
 }
 
@@ -54,42 +51,46 @@ input[type=file]::file-selector-button:hover {
   border-right: 1px solid #e5e5e5;
 }
 
-main.my-profile section.my-profile-container form div.field-group .row span {
+main.my-profile section.my-profile-container div.my-profile-fields div.field-group .row span {
   color: red;
 }
 
-main.my-profile section.my-profile-container form div.field-group .row .col,
-main.my-profile section.my-profile-container form div.field-group .row .col-6 {
+main.my-profile section.my-profile-container div.my-profile-fields div.field-group .row .col,
+main.my-profile section.my-profile-container div.my-profile-fields div.field-group .row .col-6 {
   flex-basis: 100%;
   max-width: 100%;
   margin-bottom: 20px;
 }
 
-main.my-profile section.my-profile-container form div.field-group div.row div.gender-field p {
+main.my-profile section.my-profile-container div.my-profile-fields div.field-group div.row div.gender-field p {
   margin-bottom: 0.5rem;
 }
 
-main.my-profile section.my-profile-container form div.field-group div.row div.gender-field input {
+main.my-profile section.my-profile-container div.my-profile-fields div.field-group div.row div.gender-field input {
   accent-color: var(--green);
+}
+
+main.my-profile section.my-profile-container div.my-profile-fields div.field-group div.row div.gender-field tbody {
+  display: flex;
 }
 
 /* section.my-profile-container end */
 
-/* section.save-changes styles start */
+/* div.save-changes styles start */
 
-main.my-profile section.save-changes {
+main.my-profile div.save-changes {
   display: flex;
   justify-content: center;
 }
 
-main.my-profile section.save-changes div.save-btn-container .save-btn {
+main.my-profile div.save-changes div.save-btn-container .save-btn {
   font-size: 14px;
   font-weight: 700;
   padding: 0 20px;
   line-height: 40px;
 }
 
-/* section.save-changes styles end */
+/* div.save-changes styles end */
 
 /* desktop styles start */
 
@@ -97,45 +98,45 @@ main.my-profile section.save-changes div.save-btn-container .save-btn {
 
   /* section.my-profile-container start */
 
-  main.my-profile section.my-profile-container form {
+  main.my-profile section.my-profile-container div.my-profile-fields {
     display: flex;
     flex-direction: row;
     gap: 100px;
     align-items: center;
   }
 
-  main.my-profile section.my-profile-container form div.profile-pic-block {
+  main.my-profile section.my-profile-container div.my-profile-fields div.profile-pic-block {
     flex: 0 1 33%;
   }
 
-  main.my-profile section.my-profile-container form div.profile-pic-block {
+  main.my-profile section.my-profile-container div.my-profile-fields div.profile-pic-block {
     margin-bottom: 0px;
   }
 
-  main.my-profile section.my-profile-container form div.field-group {
+  main.my-profile section.my-profile-container div.my-profile-fields div.field-group {
     flex: 0 1 77%;
   }
 
-  main.my-profile section.my-profile-container form div.field-group .row .col {
+  main.my-profile section.my-profile-container div.my-profile-fields div.field-group .row .col {
     flex-basis: 0;
   }
 
-  main.my-profile section.my-profile-container form div.field-group .row .col-6 {
+  main.my-profile section.my-profile-container div.my-profile-fields div.field-group .row .col-6 {
     flex-basis: 50%;
     max-width: 50%;
   }
 
   /* section.my-profile-container end */
 
-  /* section.save-changes styles start */
+  /* div.save-changes styles start */
 
-  main.my-profile section.save-changes div.save-btn-container .save-btn {
+  main.my-profile div.save-changes div.save-btn-container .save-btn {
     font-size: 22px;
     padding: 0 35px;
     line-height: 46px;
   }
 
-  /* section.save-changes styles end */
+  /* div.save-changes styles end */
 }
 
 /* desktop styles end */
