@@ -19,6 +19,7 @@
             --black: #000000;
             --gray: #6b6b6b;
             --black-transparent: rgba(0, 0, 0, 0.7); /* Transparent black color */
+            --ticket-grey: #303030;
         }
 
         body {

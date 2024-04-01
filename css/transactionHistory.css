@@ -55,4 +55,22 @@ nav.transaction-history-nav a.nav-link.active::before {
 
 /* transaction history navbar styles end */
 
+/* tab-content styles start */
 
+main.transaction-history div.tab-container div.tab-content div.card {
+  border-color: var(--ticket-grey);
+}
+
+main.transaction-history div.tab-container div.tab-content div.card div.card-header {
+  /*border-color: var(--white);*/
+}
+
+
+main.transaction-history div.tab-container div.tab-content div.card div.card-header,
+main.transaction-history div.tab-container div.tab-content div.card div.card-body,
+main.transaction-history div.tab-container div.tab-content div.card div.card-footer {
+  background-color: var(--ticket-grey);
+  border-color: var(--white);
+}
+
+/* tab-content styles end */
