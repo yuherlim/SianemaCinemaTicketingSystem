@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col name-field">
                                 <label for="name">Name<span>*</span></label>
-                                <input type="text" class="form-control" id="name" placeholder="">
+                                <input type="text" class="form-control" id="name" placeholder="" value="User 1">
                             </div>
 
                             <div class="col gender-field">

@@ -150,6 +150,9 @@
             border-color: rgba(238, 238, 238, 0.33);
         }
 
+        .btn-outline-primary:not(:disabled):not(.disabled).active,
+        .btn-outline-primary:not(:disabled):not(.disabled):active,
+        .show > .btn-outline-primary.dropdown-toggle,
         .btn-outline-primary:hover {
             border-color: var(--green);
             background-color: var(--green);
@@ -160,6 +163,20 @@
             padding: 0 30px;
             max-width: 1690px;
             margin: 0 auto;
+        }
+
+        .btn-secondary:not(:disabled):not(.disabled).active,
+        .btn-secondary:not(:disabled):not(.disabled):active,
+        .show > .btn-secondary.dropdown-toggle {
+            background-color: var(--ticket-grey);
+        }
+
+        .btn-secondary.focus, .btn-secondary:focus {
+            background-color: var(--ticket-grey);
+        }
+
+        .dropdown-item.active, .dropdown-item:active {
+            background-color: var(--green);
         }
     </style>
 
@@ -191,6 +208,17 @@
                         <a class="nav-link" href="ContactUs.aspx">Contact Us</a>
                     </li>
                 </ul>
+                <a class="btn btn-primary login-btn my-2 my-sm-0 mr-sm-2" href="Login.aspx" title="LOGIN" role="button">LOGIN</a>
+                <a class="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" href="Register.aspx" title="JOIN NOW" role="button">JOIN NOW</a>
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle mr-sm-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User 1
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="./MyProfile.aspx">Edit Profile</a>
+                        <a class="dropdown-item" href="./TransactionHistory.aspx">Transaction History</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -279,6 +307,11 @@
                     $(this).addClass("active-link");
                     return false; // Exit the loop once the match is found
                 }
+            });
+
+            //making sure the color remains after the dropdown toggle goes out of focus.
+            $(".dropdown-toggle").focusout(function () {
+                $(this).css("background-color", "var(--ticket-grey)");
             });
         });
     </script>
