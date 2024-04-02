@@ -73,7 +73,6 @@
       <DependentUpon>SianemaCinemaDB.mdf</DependentUpon>
     </Content>
     <Content Include="ContactUs.aspx" />
-<<<<<<< HEAD
     <Content Include="css\admin\hallTimeSlot.css" />
     <Content Include="css\admin\manageHall.css" />
     <Content Include="css\admin\manageMovie.css" />
@@ -84,7 +83,6 @@
     <Content Include="js\admin\hallTimeSlot.js" />
     <Content Include="js\admin\manage-movie.js" />
     <Content Include="js\admin\mpa.js" />
-=======
     <Content Include="css\forgotPassword.css" />
     <Content Include="css\login.css" />
     <Content Include="css\myProfile.css" />
@@ -127,7 +125,6 @@
     <Content Include="css\userAccount.css" />
     <Content Include="TransactionHistory.aspx" />
     <Content Include="TransactionHistoryDetails.aspx" />
->>>>>>> master
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="ManageMovie.aspx" />
@@ -204,9 +201,8 @@
     <Compile Include="MPA.Master.designer.cs">
       <DependentUpon>MPA.Master</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Properties\AssemblyInfo.cs" />
-=======
+
     <Compile Include="MyProfile.aspx.cs">
       <DependentUpon>MyProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -229,7 +225,6 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
->>>>>>> master
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -237,7 +232,6 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="ManageMovie.aspx.cs">
       <DependentUpon>ManageMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -251,7 +245,7 @@
     </Compile>
     <Compile Include="HallTimeSlot.aspx.designer.cs">
       <DependentUpon>HallTimeSlot.aspx</DependentUpon>
-=======
+	</Compile>
     <Compile Include="TransactionHistory.aspx.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -272,7 +266,6 @@
     </Compile>
     <Compile Include="UserAccount.master.designer.cs">
       <DependentUpon>UserAccount.master</DependentUpon>
->>>>>>> master
     </Compile>
   </ItemGroup>
   <ItemGroup>
