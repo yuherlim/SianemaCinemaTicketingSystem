@@ -11,44 +11,53 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class ContactUs
+    public partial class MyProfile
     {
 
         /// <summary>
-        /// form1 control.
+        /// ProfilePhotoUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.FileUpload ProfilePhotoUpload;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// Username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.TextBox Username;
 
         /// <summary>
-        /// OccurDate control.
+        /// GenderRadioButtonList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox OccurDate;
+        protected global::System.Web.UI.WebControls.RadioButtonList GenderRadioButtonList;
 
         /// <summary>
-        /// ContactName control.
+        /// Address control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ContactName;
+        protected global::System.Web.UI.WebControls.TextBox Address;
+
+        /// <summary>
+        /// StateDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList StateDropDownList;
 
         /// <summary>
         /// Email control.
@@ -60,39 +69,30 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
-        /// ContactNumber control.
+        /// MobileNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ContactNumber;
+        protected global::System.Web.UI.WebControls.TextBox MobileNumber;
 
         /// <summary>
-        /// Comment control.
+        /// BirthDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Comment;
+        protected global::System.Web.UI.WebControls.TextBox BirthDate;
 
         /// <summary>
-        /// CustomFile control.
+        /// SaveChangesButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload CustomFile;
-
-        /// <summary>
-        /// Submit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Submit;
+        protected global::System.Web.UI.WebControls.Button SaveChangesButton;
     }
 }

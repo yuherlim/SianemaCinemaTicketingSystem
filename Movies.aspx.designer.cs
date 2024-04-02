@@ -11,34 +11,25 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class MP
+    public partial class Movies
     {
 
         /// <summary>
-        /// head control.
+        /// movieRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.Repeater movieRepeater;
 
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
-
-        /// <summary>
-        /// js control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder js;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }

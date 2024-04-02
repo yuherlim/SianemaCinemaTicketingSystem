@@ -73,6 +73,7 @@
       <DependentUpon>SianemaCinemaDB.mdf</DependentUpon>
     </Content>
     <Content Include="ContactUs.aspx" />
+<<<<<<< HEAD
     <Content Include="css\admin\hallTimeSlot.css" />
     <Content Include="css\admin\manageHall.css" />
     <Content Include="css\admin\manageMovie.css" />
@@ -83,6 +84,50 @@
     <Content Include="js\admin\hallTimeSlot.js" />
     <Content Include="js\admin\manage-movie.js" />
     <Content Include="js\admin\mpa.js" />
+=======
+    <Content Include="css\forgotPassword.css" />
+    <Content Include="css\login.css" />
+    <Content Include="css\myProfile.css" />
+    <Content Include="css\register.css" />
+    <Content Include="css\transactionHistory.css" />
+    <Content Include="css\transactionHistoryDetails.css" />
+    <Content Include="ForgotPassword.aspx" />
+    <Content Include="Hall.aspx" />
+    <Content Include="Homepage.aspx" />
+    <Content Include="images\cinemaIcon\date.png" />
+    <Content Include="images\cinemaIcon\hall.png" />
+    <Content Include="images\cinemaIcon\seat.png" />
+    <Content Include="images\cinemaIcon\time.png" />
+    <Content Include="images\movieCoverPhoto\yoloCover.png" />
+    <Content Include="images\moviePoster\crew.jpg" />
+    <Content Include="images\moviePoster\exhuma.jpg" />
+    <Content Include="images\moviePoster\gozilla.jpg" />
+    <Content Include="images\moviePoster\panda4.jpg" />
+    <Content Include="images\moviePoster\yodha.jpg" />
+    <Content Include="images\moviePoster\yolo.jpg" />
+    <Content Include="images\login\login-image-sianema.png" />
+    <Content Include="images\login\login-sprite.png" />
+    <Content Include="images\screen\screen.png" />
+    <Content Include="images\screen\upArrow.png" />
+    <Content Include="images\seatIcon\singleseat.png" />
+    <Content Include="images\seatIcon\coupleseat.png" />
+    <Content Include="images\seatIcon\soldseat.png" />
+    <Content Include="images\seatIcon\selectedseat.png" />
+    <Content Include="images\seatIcon\unavailableseat.png" />
+    <Content Include="js\login.js" />
+    <Content Include="js\myProfile.js" />
+    <Content Include="js\register.js" />
+    <Content Include="js\userAccount.js" />
+    <Content Include="MovieDetails.aspx" />
+    <Content Include="Movies.aspx" />
+    <Content Include="MyProfile.aspx" />
+    <Content Include="Payment.aspx" />
+    <Content Include="Register.aspx" />
+    <Content Include="MovieSeatSelection.aspx" />
+    <Content Include="css\userAccount.css" />
+    <Content Include="TransactionHistory.aspx" />
+    <Content Include="TransactionHistoryDetails.aspx" />
+>>>>>>> master
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="ManageMovie.aspx" />
@@ -103,6 +148,13 @@
     <Compile Include="ContactUs.aspx.designer.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Hall.aspx.cs">
       <DependentUpon>Hall.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -116,6 +168,27 @@
     </Compile>
     <Compile Include="Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MovieDetails.aspx.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MovieDetails.aspx.designer.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Movies.aspx.cs">
+      <DependentUpon>Movies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Movies.aspx.designer.cs">
+      <DependentUpon>Movies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MovieSeatSelection.aspx.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MovieSeatSelection.aspx.designer.cs">
+      <DependentUpon>MovieSeatSelection.aspx</DependentUpon>
     </Compile>
     <Compile Include="MP.Master.cs">
       <DependentUpon>MP.Master</DependentUpon>
@@ -131,7 +204,32 @@
     <Compile Include="MPA.Master.designer.cs">
       <DependentUpon>MPA.Master</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Properties\AssemblyInfo.cs" />
+=======
+    <Compile Include="MyProfile.aspx.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProfile.aspx.designer.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.aspx.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Payment.aspx.designer.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+>>>>>>> master
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -139,6 +237,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ManageMovie.aspx.cs">
       <DependentUpon>ManageMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -152,12 +251,35 @@
     </Compile>
     <Compile Include="HallTimeSlot.aspx.designer.cs">
       <DependentUpon>HallTimeSlot.aspx</DependentUpon>
+=======
+    <Compile Include="TransactionHistory.aspx.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransactionHistory.aspx.designer.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionHistoryDetails.aspx.cs">
+      <DependentUpon>TransactionHistoryDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransactionHistoryDetails.aspx.designer.cs">
+      <DependentUpon>TransactionHistoryDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccount.master.cs">
+      <DependentUpon>UserAccount.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserAccount.master.designer.cs">
+      <DependentUpon>UserAccount.master</DependentUpon>
+>>>>>>> master
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MP.Master" />
     <Content Include="MPA.Master" />
     <None Include="packages.config" />
+    <Content Include="UserAccount.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

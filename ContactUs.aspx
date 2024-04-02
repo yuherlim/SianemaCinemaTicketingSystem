@@ -58,26 +58,33 @@
                         </asp:DropDownList>
 
                         <label class="cu-label" for="datepicker">Occur Date :</label>
-                        <input type="text" class="form-control mb-2" id="datepicker" placeholder="YYYY-MM-DD">
+                        <%--<input type="text" class="form-control mb-2" id="datepicker" placeholder="YYYY-MM-DD">--%>
+                        <asp:TextBox ID="OccurDate" runat="server" CssClass="form-control mb-2" TextMode="Date" placeholder="YYYY-MM-DD"></asp:TextBox>
 
                         <label class="cu-label" for="inlineFormInput">Contact Name :</label>
-                        <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Sia Yeong Sheng">
+                        <%--<input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Sia Yeong Sheng">--%>
+                        <asp:TextBox ID="ContactName" runat="server" CssClass="form-control mb-2" type="text" placeholder="Sia Yeong Sheng"></asp:TextBox>
 
                         <label for="inputEmail3" class="cu-label">Email :</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="siasia@gmail.com">
+                        <%--<input type="email" class="form-control" id="inputEmail" placeholder="siasia@gmail.com">--%>
+                        <asp:TextBox ID="Email" runat="server" CssClass="form-control" type="email" placeholder="siasia@gmail.com"></asp:TextBox>
 
                         <label class="cu-label" for="typePhone">Contact Number : </label>
-                        <input type="tel" id="typePhone" class="form-control" />
+                        <%--<input type="tel" id="typePhone" class="form-control" />--%>
+                        <asp:TextBox ID="ContactNumber" runat="server" CssClass="form-control" type="tel"></asp:TextBox>
 
                         <label for="comment" class="cu-label">Description :</label>
-                        <textarea class="form-control" id="comment" rows="3"></textarea>
+                        <%--<textarea class="form-control" id="comment" rows="3"></textarea>--%>
+                        <asp:TextBox ID="Comment" runat="server" CssClass="form-control" type="text" TextMode="MultiLine" rows="3"></asp:TextBox>
 
                         <div class="custom-file">
                             <label class="custom-file-label" for="customFile">Choose file</label>
-                            <input type="file" class="custom-file-input" id="customFile">
+                            <%--<input type="file" class="custom-file-input" id="customFile">--%>
+                            <asp:FileUpload ID="CustomFile" runat="server" CssClass="custom-file-input" />
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    <%--<button type="submit" class="btn btn-primary mt-3">Submit</button>--%>
+                    <asp:Button ID="Submit" runat="server" Text="Submit" CssClass="btn btn-primary mt-3"/>
                 </form>
             </div>
         </div>

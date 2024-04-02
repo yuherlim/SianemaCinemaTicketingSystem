@@ -7,11 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace SianemaCinemaTicketingSystem
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Payment : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

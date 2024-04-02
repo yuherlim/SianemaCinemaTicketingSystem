@@ -1,0 +1,47 @@
+﻿nav.user-account-nav {
+  margin: 20px 0;
+}
+
+nav.user-account-nav .nav-link {
+  color: var(--white);
+}
+
+nav.user-account-nav .nav-link:hover {
+  color: var(--green);
+}
+
+nav.user-account-nav .nav-link {
+  color: var(--white); /* Set initial text color to white */
+  position: relative; /* Position relative to contain pseudo-element */
+}
+
+nav.user-account-nav .nav-link::before {
+  content: ''; /* Create a pseudo-element */
+  position: absolute; /* Position relative to parent link */
+  width: 100%; /* Full width */
+  height: 1px; /* Underline thickness */
+  bottom: 0; /* Align at the bottom */
+  left: 0; /* Align at the left */
+  background-color: var(--green); /* Underline color */
+  visibility: hidden; /* Initially hidden */
+  transform: scaleX(0); /* Initially scaled to 0 width */
+  transition: all 0.3s ease-in-out; /* Animation transition */
+}
+
+nav.user-account-nav .nav-link:hover::before {
+  visibility: visible; /* Make the underline visible on hover */
+  transform: scaleX(1); /* Expand the underline to full width */
+}
+
+/*underline for active link*/
+nav.user-account-nav a.nav-link.active-link::before {
+  content: ''; /* Create a pseudo-element */
+  position: absolute; /* Position relative to parent link */
+  width: 100%; /* Full width */
+  height: 1px; /* Underline thickness */
+  bottom: 0; /* Align at the bottom */
+  left: 0; /* Align at the left */
+  background-color: var(--green); /* Underline color */
+  visibility: visible;
+  transform: scaleX(0.5);
+}

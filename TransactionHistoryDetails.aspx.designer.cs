@@ -11,43 +11,52 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class Login
+    public partial class TransactionHistoryDetails
     {
 
         /// <summary>
-        /// Email control.
+        /// SingleSeatPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Email;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatPrice;
 
         /// <summary>
-        /// Password control.
+        /// SingleSeatAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Password;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatAmount;
 
         /// <summary>
-        /// RememberMe control.
+        /// CoupleSeatPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RememberMe;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell CoupleSeatPrice;
 
         /// <summary>
-        /// LoginButton control.
+        /// CoupleSeatAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LoginButton;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell CoupleSeatAmount;
+
+        /// <summary>
+        /// SubTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell SubTotal;
     }
 }
