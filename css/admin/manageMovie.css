@@ -1,0 +1,208 @@
+div.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: calc(80vw);
+    padding: 0.75rem;
+}
+
+div.row {
+    display: flex;
+    margin: unset;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.card-header {
+    padding: unset;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    background-color: Background;
+}
+
+#row1 {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 5px;
+}
+
+#row2 {
+    justify-content: center;
+    overflow-y: auto;
+    width: 100%;
+    height: calc(70vh);
+}
+
+.row1Space {
+    flex-grow: 1;
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+#row1 > * {
+    width: auto;
+}
+
+.table {
+    width: 100%;
+    max-height: 100%;
+    border-collapse: separate !important;
+}
+
+tbody tr:first-child {
+    display: none;
+}
+
+.header {
+    position: sticky; /* make the table heads sticky */
+    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+    background-color: white;
+    border: unset;
+    font-size: 14px
+}
+
+
+.border {
+    height: 2px;
+    padding: 0px !important;
+    background-color: black;
+}
+
+.emptySlot {
+    width: 0px !important;
+    padding: 0px !important;
+}
+
+td, th {
+    border: unset;
+    border-bottom: 1px solid rgb(54, 54, 66);
+    align-content: center;
+}
+
+td {
+    font-size: 12px;
+}
+
+
+
+.btnViewMovie, .btnEditMovie {
+    background-color: var(--green);
+    width: 100%;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: var(--green);
+}
+
+
+.modal {
+    padding-top: 100px;
+}
+
+.modalColon {
+    margin-right:5px;
+}
+
+.modal-dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: calc(60vw);
+    height: calc(85vh);
+    padding: 0.7rem;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    max-width: none;
+}
+
+.modal-content {
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.modal-body {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.modalRow1 {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 99 !important;
+}
+
+.modalText {
+    width: 120px;
+}
+
+
+.modalRow2, .modalRow3, .modalRow5 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.row2Section1, .row2Section2 {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.row2Section2-1, .row2Section2-2{
+    display: flex;
+    flex-direction: column;
+    margin-bottom:16px;
+}
+
+.movImage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#movPosterImage {
+    height: 150px;
+    width: 100px;
+    background-color: aqua;
+}
+
+#movCoverPhotoImage {
+    height: 125px;
+    width: 200px;
+    background-color: aqua;
+}
+
+.movDistributor, .movReleaseDate, .movScreenFrom, .movScreenUntil {
+    width: 45%;
+}
+
+.modalRow4 {
+    display: flex;
+    flex-direction: column;
+}
+
+.select2-container {
+    width: 100% !important;
+}
