@@ -73,16 +73,20 @@
       <DependentUpon>SianemaCinemaDB.mdf</DependentUpon>
     </Content>
     <Content Include="ContactUs.aspx" />
+    <Content Include="css\admin\hallTimeSlot.css" />
     <Content Include="css\admin\manageHall.css" />
     <Content Include="css\admin\manageMovie.css" />
     <Content Include="css\admin\mpAdmin.css" />
     <Content Include="css\login.css" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
-    <Content Include="Test.aspx" />
+    <Content Include="js\admin\hallTimeSlot.js" />
+    <Content Include="js\admin\manage-movie.js" />
+    <Content Include="js\admin\mpa.js" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="ManageMovie.aspx" />
+    <Content Include="HallTimeSlot.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutUs.aspx.cs">
@@ -128,13 +132,6 @@
       <DependentUpon>MPA.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -148,6 +145,13 @@
     </Compile>
     <Compile Include="ManageMovie.aspx.designer.cs">
       <DependentUpon>ManageMovie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HallTimeSlot.aspx.cs">
+      <DependentUpon>HallTimeSlot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HallTimeSlot.aspx.designer.cs">
+      <DependentUpon>HallTimeSlot.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
