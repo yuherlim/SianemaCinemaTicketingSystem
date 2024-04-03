@@ -141,22 +141,31 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.TextBox txtCVV;
 
         /// <summary>
-        /// lblExpiryDate control.
+        /// LabelExpired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblExpiryDate;
+        protected global::System.Web.UI.WebControls.Label LabelExpired;
 
         /// <summary>
-        /// txtExpiryDate control.
+        /// DropDownListMonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtExpiryDate;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListMonth;
+
+        /// <summary>
+        /// DropDownListYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListYear;
 
         /// <summary>
         /// TotalAmount control.
