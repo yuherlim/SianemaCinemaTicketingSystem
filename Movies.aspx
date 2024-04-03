@@ -102,7 +102,7 @@
 
                 <ItemTemplate>
                     <div class="card view">
-                        <asp:Image ID="moviePoster" runat="server" ImageUrl='<%# Eval("moviePoster") %>' Height="300" Width="200" />
+                        <asp:Image ID="moviePoster" runat="server" ImageUrl='<%# Eval("moviePoster") %>' Height="400" Width="300" />
                         <div class="mask">
                             <div class="col">
                                 <ul class="deco">
@@ -118,8 +118,6 @@
                     </div>
 
                 </ItemTemplate>
-                <FooterTemplate>
-                </FooterTemplate>
 
             </asp:Repeater>
                 </div>

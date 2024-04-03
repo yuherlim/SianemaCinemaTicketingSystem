@@ -137,6 +137,8 @@
                 border-color: var(--green);
                 box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
             }
+
+
     </style>
 </asp:Content>
 
@@ -213,22 +215,48 @@
             <div class="card-details-fill-container">
                 <div class="form-group">
                     <asp:Label ID="lblCardNumber" runat="server">Card Number</asp:Label>
-                    <asp:TextBox ID="txtCardNumber" runat="server" CssClass="form-control" MaxLength="16" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                    <asp:TextBox ID="txtCardNumber" runat="server" CssClass="form-control" MaxLength="16" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblCVV" runat="server">CVV</asp:Label>
-                    <asp:TextBox ID="txtCVV" runat="server" CssClass="form-control" MaxLength="3" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                    <asp:TextBox ID="txtCVV" runat="server" CssClass="form-control" MaxLength="3" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </div>
                 <div class="form-group">
-                    <asp:Label ID="lblExpiryDate" runat="server">Expiry Date</asp:Label>
-                    <asp:TextBox ID="txtExpiryDate" runat="server" CssClass="form-control" placeholder="MM/YYYY"></asp:TextBox>
+                    <asp:Label ID="LabelExpired" runat="server">Expired Date</asp:Label>
+                    <asp:DropDownList ID="DropDownListMonth" runat="server">
+                        <asp:ListItem Value="1">01</asp:ListItem>
+                        <asp:ListItem Value="2">02</asp:ListItem>
+                        <asp:ListItem Value="3">03</asp:ListItem>
+                        <asp:ListItem Value="4">04</asp:ListItem>
+                        <asp:ListItem Value="5">05</asp:ListItem>
+                        <asp:ListItem Value="6">06</asp:ListItem>
+                        <asp:ListItem Value="7">07</asp:ListItem>
+                        <asp:ListItem Value="8">08</asp:ListItem>
+                        <asp:ListItem Value="9">09</asp:ListItem>
+                        <asp:ListItem>10</asp:ListItem>
+                        <asp:ListItem>11</asp:ListItem>
+                        <asp:ListItem>12</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:DropDownList ID="DropDownListYear" runat="server">
+                        <asp:ListItem>2024</asp:ListItem>
+                        <asp:ListItem>2025</asp:ListItem>
+                        <asp:ListItem>2026</asp:ListItem>
+                        <asp:ListItem>2027</asp:ListItem>
+                        <asp:ListItem>2028</asp:ListItem>
+                        <asp:ListItem>2029</asp:ListItem>
+                        <asp:ListItem>2030</asp:ListItem>
+                        <asp:ListItem>2031</asp:ListItem>
+                        <asp:ListItem>2032</asp:ListItem>
+                        <asp:ListItem>2033</asp:ListItem>
+                        <asp:ListItem>2034</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
 
             </div>
 
             <div class="total-payment-botnav">
                 <h2 class="total-amount" id="TotalAmount" runat="server">RM 39.00</h2>
-                <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="pay-button" />
+                <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="pay-button" OnClick="PayButton_Click" />
             </div>
         </section>
     </form>

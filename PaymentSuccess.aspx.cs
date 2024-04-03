@@ -7,15 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace SianemaCinemaTicketingSystem
 {
-    public partial class Payment : System.Web.UI.Page
+    public partial class PaymentSucess : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
 
-        protected void PayButton_Click(object sender, EventArgs e)
+        protected void viewTicketButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PaymentSuccess.aspx");
+            Response.Redirect("TransactionHistory.aspx");
         }
     }
 }
