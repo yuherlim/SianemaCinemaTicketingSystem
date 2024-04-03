@@ -7,6 +7,10 @@
         dropdownParent: $('#modalMovie')
     });
 
+    $('#sltClass').select2({
+        dropdownParent: $('#modalMovie')
+    });
+
     $('#sltLanguage').select2({
         dropdownParent: $('#modalMovie')
     });
@@ -91,7 +95,7 @@
         enableTime: true,
         noCalendar: true,
         dateFormat: "h:i",
-        time_24hr: false,
+        time_24hr: true,
 
     });
 
@@ -106,12 +110,10 @@
     const tpMovEndTime = $('#tpMovEndTime');
     const tpMovDuration = $('#tpMovDuration');
     const tpMtnEndTime = $('#tpMtnEndTime');
-    const tpMtnDuration = $('#tpMtnDuration');
 
     tpMovEndTime.prop('disabled', true);
     tpMovDuration.prop('disabled', true);
     tpMtnEndTime.prop('disabled', true);
-    tpMtnDuration.prop('disabled', true);
 
     $(".tabs").click(function () {
 
@@ -141,6 +143,13 @@
                 });
             }
         });
+
+        if ($("#modalTSTitle").text() == "Assign Movie") {
+            $("#modalTSTitle").text("Add Maintenance");
+        } else {
+            $("#modalTSTitle").text("Assign Movie");
+        }
+
     });
 
 });
@@ -187,5 +196,7 @@ var timeSlot = $('.timeSlotMovieName');
 //}
 timeSlot = timeSlot.filter(function () { return $(this).text().toLowerCase() === "yolo"; })
 timeSlot.parent().css("grid-column", "40 / span 15");
+
+
 
 console.log(timeSlot.length);

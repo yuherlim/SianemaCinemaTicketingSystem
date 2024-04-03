@@ -6,6 +6,11 @@ $(document).ready(function () {
         dropdownParent: $('#modalMovie')
     });
 
+
+    $('#sltClass').select2({
+        dropdownParent: $('#modalMovie')
+    });
+
     $('#sltLanguage').select2({
         dropdownParent: $('#modalMovie')
     });

@@ -1,0 +1,285 @@
+﻿div.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: calc(30vw);
+    padding: 0.75rem;
+}
+
+div.row {
+    display: flex;
+    margin: unset;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.card-header {
+    padding: unset;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    background-color: Background;
+}
+
+#row1 {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 5px;
+}
+
+#row2 {
+    justify-content: center;
+    overflow-y: auto;
+    width: 100%;
+    height: min-content;;
+}
+
+.row1Space {
+    flex-grow: 1;
+    font-weight: bold;
+    font-size:24px;
+}
+
+#row1 > * {
+    width: auto;
+}
+
+
+/* general styles start */
+
+section {
+    margin-bottom: 50px;
+}
+
+.fa {
+    padding: initial;
+    font-size: inherit;
+    width: initial;
+    text-align: initial;
+    text-decoration: initial;
+    margin: initial;
+}
+
+.form-control:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
+}
+
+/* general styles end */
+
+/* login page start */
+
+main {
+    padding-top: 100px;
+}
+
+    main.login div.row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 15px;
+    }
+
+    /* login-block section start */
+
+    main.login section.login-block {
+        display: flex;
+        flex-direction: column;
+        background: #212529;
+        border-radius: 5px;
+        position: relative;
+        width: 100%;
+        padding: 50px 15px;
+    }
+
+        main.login section.login-block span.login-key {
+            background: url('../../images/login/login-sprite.png') no-repeat center center;
+            background-position: 0 0;
+            width: 70px;
+            height: 55px;
+            display: inline-block;
+            position: absolute;
+            top: -30px;
+            background-size: 150px auto;
+        }
+
+            main.login section.login-block span.login-key::before {
+                content: "";
+                background: url('../../images/login/login-sprite.png') no-repeat center center;
+                background-position: -105px 0;
+                width: 31px;
+                height: 26px;
+                position: absolute;
+                left: 15px;
+                bottom: 10px;
+                background-size: 150px auto;
+            }
+
+        main.login section.login-block div.login-fields {
+            display: flex;
+            flex-direction: column;
+        }
+
+            main.login section.login-block div.login-fields div.username-field label span {
+                color: red;
+            }
+
+            main.login section.login-block div.login-fields div.password-field a {
+                color: var(--gray);
+            }
+
+                main.login section.login-block div.login-fields div.password-field a:hover {
+                    color: var(--green);
+                }
+
+
+            main.login section.login-block div.login-fields div.password-field label span {
+                color: red;
+            }
+
+            main.login section.login-block div.login-fields input[type="checkbox"] {
+                accent-color: var(--green);
+            }
+
+            main.login section.login-block div.login-fields div.btn-group {
+                display: flex;
+                flex-direction: column;
+            }
+
+                main.login section.login-block div.login-fields div.btn-group div.login-btn-row {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                    main.login section.login-block div.login-fields div.btn-group div.login-btn-row .login-btn {
+                        font-size: 14px;
+                        font-weight: 700;
+                        line-height: 40px;
+                        padding: 0px 20px;
+                    }
+
+                    main.login section.login-block div.login-fields div.btn-group div.login-btn-row a.forget-password {
+                        color: var(--green);
+                    }
+
+                        main.login section.login-block div.login-fields div.btn-group div.login-btn-row a.forget-password:hover {
+                            text-decoration: none;
+                        }
+
+                main.login section.login-block div.login-fields div.btn-group h5.new-to-sianema-title span {
+                    font-weight: 900;
+                }
+
+                main.login section.login-block div.login-fields div.btn-group div.join-now-btn .join-now {
+                    font-size: 14px;
+                    font-weight: 700;
+                    line-height: 40px;
+                    padding: 0 15px;
+                }
+
+    /* login-block section end */
+
+    /* image-block section start */
+    main.login section.image-block div.testing-image img {
+        max-width: 100%;
+    }
+
+/* image-block section end */
+
+/* desktop styles start */
+
+/* login row start */
+
+@media only screen and (min-width: 1000px) {
+    section {
+        margin-bottom: 0px;
+    }
+
+    main.login div.row {
+        flex-direction: row-reverse;
+        flex-wrap: nowrap;
+        gap: 100px;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+
+    /* login-block section start */
+
+    main.login section.login-block {
+        width: 50%;
+        padding: 100px 15px;
+    }
+
+        main.login section.login-block span.login-key {
+            width: 91px;
+            height: 71px;
+            left: -20px;
+            top: 15px;
+            background-size: auto;
+        }
+
+            main.login section.login-block span.login-key::before {
+                background-position: -143px 0;
+                width: 37px;
+                height: 32px;
+                left: 23px;
+                bottom: 13px;
+                background-size: auto;
+            }
+
+        main.login section.login-block div.login-fields {
+            width: 75%;
+            margin: 0 auto;
+        }
+
+            main.login section.login-block div.login-fields div.btn-group div.login-btn-row .login-btn {
+                font-size: 22px;
+                line-height: 46px;
+                padding: 0px 35px;
+            }
+
+            main.login section.login-block div.login-fields div.btn-group div.join-now-btn .join-now {
+                font-size: 18px;
+                line-height: 46px;
+                padding: 0 25px;
+            }
+
+
+    /* login-block section end */
+
+    /* image-block section start */
+
+    main.login section.image-block {
+        width: 50%;
+    }
+
+    /* image-block section end */
+}
+
+/* login row end */
+
+/* desktop styles end */
+
+/* login page end */
+.username-field,.password-field{
+    margin-bottom:10px;
+}
+
+#navbarSupportedContent, #btnLogout{
+    display:none !important;
+}
+
+.container-fluid{
+    padding-right:12px !important;
+    justify-content:center !important;
+}

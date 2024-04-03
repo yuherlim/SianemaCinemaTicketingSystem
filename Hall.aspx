@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MPA.Master" AutoEventWireup="true" CodeBehind="Hall.aspx.cs" Inherits="SianemaCinemaTicketingSystem.Hall" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         function displayHallImage() {
@@ -12,259 +13,170 @@
         }
     </script>
 
-    <link rel="stylesheet" href="css/admin/manageHall.css" />
-    
+    <link rel="stylesheet" href="css/admin/hall.css" />
+    <script defer src="js/admin/hall.js"></script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!-- add hall button -->
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <!-- Button trigger modal -->
-                <div id="row1">
-                <button type="button"  id="btnAdd" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add Hall
-                </button>
+    <form runat="server">
+        <div class="container">
+            <div class="card card-fluid">
+                <div id="row1" class="card-header row">
+                    <span class="row1Space">Manage Hall</span>
+                    <asp:DropDownList ID="ddlFilter" class="ddlFilter" runat="server">
+                        <asp:ListItem Value="All Hall"></asp:ListItem>
+                        <asp:ListItem Value="Large Hall"></asp:ListItem>
+                        <asp:ListItem Value="Small Hall"></asp:ListItem>
+                    </asp:DropDownList>
+                    <%--Add Hall Button--%>
+                    <asp:Button ID="btnAddHall" runat="server" ClientIDMode="static" CssClass="btn btn-primary btn-sm btnAdd" OnClick="btnAddHall_Click"
+                        Text="Add Hall" />
                 </div>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+
+                <div id="row2" class="row">
+                    <%--Hall List table--%>
+                    <asp:GridView ID="gvHall" CssClass="table" BorderWidth="0px" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowSorting="True" ClientIDMode="Static">
+                        <Columns>
+                            <asp:TemplateField ShowHeader="False">
+                                <HeaderTemplate>
+                                    <thead class="header">
+                                        <tr>
+                                            <th class="emptySlot" colspan="1"></th>
+                                            <th colspan="1">Hall Name</th>
+                                            <th colspan="1">Hall Type</th>
+                                            <th colspan="1"></th>
+                                            <th colspan="1"></th>
+                                        </tr>
+                                        <tr class="headerBorder">
+                                            <th class="border" colspan="5"></th>
+                                        </tr>
+                                    </thead>
+                                </HeaderTemplate>
+
+                            </asp:TemplateField>
+
+
+                            <asp:BoundField ItemStyle-CssClass="hallName" DataField="hallName" HeaderText="Genre" ShowHeader="False" />
+                            <asp:BoundField ItemStyle-CssClass="hallType" DataField="hallType" HeaderText="Duration" ShowHeader="False" />
+                            <asp:TemplateField ShowHeader="False">
+                                <ItemTemplate>
+                                    <button type="button" id="btnView" class="btn btn-primary btn-sm btnViewHall">
+                                        View
+                                    </button>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField ShowHeader="False">
+                                <ItemTemplate>
+                                    <button type="button" id="btnEdit" class="btn btn-primary btn-sm btnRemoveHall">
+                                        Remove
+                                    </button>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                            </asp:TemplateField>
+                        </Columns>
+                        <EmptyDataTemplate>
+                            <div align="center">No records found.</div>
+                        </EmptyDataTemplate>
+                    </asp:GridView>
+
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Hall]"></asp:SqlDataSource>
+
+                </div>
+
+                <!-- Hall Modal -->
+                <div class="modal fade" id="modalHall" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Hall</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                <h1 class="modal-title fs-5" id="modalTitle">Add Hall</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form id="form1" runat="server">
-                                    <div class="row">
-                                        <div class="col">Hall ID :</div>
-                                        <div class="col">
-                                            <asp:Label ID="lblHallid" runat="server" Text="test"></asp:Label>
-                                        </div>
-                                        <div class="col"></div>
+                                <div id="modalRowID" class="modalRow1 modalRow">
+                                    <div class="modalText">Hall ID</div>
+                                    <div class="modalColon">: </div>
+                                    <div id="modalID">
+                                        Hall-01
                                     </div>
-                                    <br />
-                                    <div class="row border border-dark"></div>
-                                    <br />
-                                    <label class="label" for="datepicker">Select Hall Type:</label>
-                                    <div class="row p-2">
-                                        <div class="col">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="hallType" id="largeHall" value="Large" onclick="displayHallImage()" checked>
-                                                <label class="form-check-label" for="largeHall">
-                                                    Large Hall
-                                                </label>
+                                </div>
+
+                                <div class="modalRow2 modalRow">
+                                    <section class="row2Section1">
+                                        <div class="mb-3 hallName">
+                                            <label for="hallName" class="form-label">Hall Name</label>
+                                            <asp:TextBox ID="hallName" CssClass="form-control modalInputField hallNameInput" runat="server" ClientIDMode="Static" disabled="true"></asp:TextBox>
+                                        </div>
+                                    </section>
+
+                                    <section class="row2Section2">
+                                        <div class="mb-3 hallType">
+                                            <label for="hallType" class="form-label">Hall Type</label>
+                                            <div class="radioButtonContainer">
+                                                <input type="radio" id="hallType1" name="hallType" class="modalInputField" value="Large" onclick="displayHallImage()" checked="checked">
+                                                <label for="hallType1">Large</label><br>
+                                                <input type="radio" id="hallType2" name="hallType" class="modalInputField" value="Small" onclick="displayHallImage()">
+                                                <label for="hallType2">Small</label><br>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="hallType" id="smallHall" value="Small" onclick="displayHallImage()">
-                                                <label class="form-check-label" for="smallHall">
-                                                    Small Hall
-                                                </label>
-                                            </div>
-                                        </div>
+                                    </section>
+
+                                </div>
+
+                                <div class="modalRow3 modalRow">
+                                    <div class="hallImage">
+                                        <asp:Image ID="hallImage" runat="server" ClientIDMode="Static" />
                                     </div>
-                                    <br />
-                                    <img id="hallImage" src="largehall.png" alt="Hall Image" width="470px" height="300px">
-                                    <br />
-                                    <br />
+
+                                </div>
 
 
-                                </form>
+
+                                <div class="modal-footer">
+                                    <button type="button" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                    <asp:Button ID="btnConfirm" runat="server" ClientIDMode="static" CssClass="btn btn-secondary"
+                                        Text="Confirm" />
+                                </div>
+
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
-                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
 
 
-    <!-- view large hall modal -->
-    <div class="modal fade" id="viewLargeHallModal" tabindex="-1" role="dialog" aria-labelledby="viewLargeHallModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewLargeHallModalLabel">Hall Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">Hall ID :</div>
-                        <div class="col">
-                            <asp:Label ID="viewHallId" runat="server" Text="hall id"></asp:Label>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row border border-dark"></div>
-                    <br />
-
-                    <label class="label" for="datepicker">Hall Type:</label>
-                    <div class="row p-2">
-                        <div class="col">
-                            Large Hall
-                        </div>
-                    </div>
-                    <br />
-                    <img id="viewLargeHallImage" src="largehall.png" alt="Hall Image" width="470px" height="300px">
-                    <br />
-                    <br />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- view small hall modal -->
-    <div class="modal fade" id="viewSmallHallModal" tabindex="-1" role="dialog" aria-labelledby="viewSmallHallModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewSmallHallModalLabel">Hall Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">Hall ID :</div>
-                        <div class="col">
-                            <asp:Label ID="viewHallId2" runat="server" Text="hall id"></asp:Label>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row border border-dark"></div>
-                    <br />
-
-                    <label class="label" for="datepicker">Hall Type:</label>
-                    <div class="row p-2">
-                        <div class="col">
-                            Small Hall
-                        </div>
-                    </div>
-                    <br />
-                    <img id="viewSmallHallImage" src="smallhall.png" alt="Hall Image" width="470px" height="300px">
-                    <br />
-                    <br />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-    <!-- table -->
-    <div class="container">
 
-        <div class="row justify-content-center">
-            <div class="col-md-8">
 
-                <div class="form-row align-items-center">
-                    <table class="table table-bordered table-striped mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Hall</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Hall 1</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewLargeHallModal">
-                                        View
-                                    </button>
 
-                                    <button type="button" class="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Hall 2</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewSmallHallModal">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Hall 3</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewSmallHallModal">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
 
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Hall 4</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewLargeHallModal">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Hall 5</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewSmallHallModal">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Hall 6</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewSmallHallModal">
-                                        View
-                                    </button>
-                                    <button type="button" class="btn btn-secondary">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </form>
 </asp:Content>
 

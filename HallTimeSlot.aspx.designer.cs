@@ -105,6 +105,42 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtSypnosis;
 
         /// <summary>
+        /// btnRemoveMov control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemoveMov;
+
+        /// <summary>
+        /// lblHallName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHallName;
+
+        /// <summary>
+        /// lblHallType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHallType;
+
+        /// <summary>
+        /// rptAddTSMovie control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptAddTSMovie;
+
+        /// <summary>
         /// movTimeSlotPosterImage control.
         /// </summary>
         /// <remarks>

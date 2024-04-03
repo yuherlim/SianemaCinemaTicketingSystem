@@ -11,8 +11,17 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class Hall
+    public partial class WebForm1
     {
+
+        /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
         /// ddlFilter control.
@@ -24,22 +33,13 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.DropDownList ddlFilter;
 
         /// <summary>
-        /// btnAddHall control.
+        /// gvMaintenance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddHall;
-
-        /// <summary>
-        /// gvHall control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvHall;
+        protected global::System.Web.UI.WebControls.GridView gvMaintenance;
 
         /// <summary>
         /// SqlDataSource1 control.
@@ -51,30 +51,12 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
-        /// hallName control.
+        /// Textarea1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox hallName;
-
-        /// <summary>
-        /// hallImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image hallImage;
-
-        /// <summary>
-        /// btnConfirm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirm;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea Textarea1;
     }
 }

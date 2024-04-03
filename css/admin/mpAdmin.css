@@ -100,3 +100,16 @@ body {
 .active-link {
     color: var(--green) !important; /* Change text color to green */
 }
+
+.container-fluid {
+    padding-right:30px;
+    width: calc(80vw);
+    max-width:1400px;
+}
+
+
+#btnLogout {
+    background-color: var(--green);
+    width: 60px;
+    color: black;
+}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace SianemaCinemaTicketingSystem
 {
@@ -8,5 +9,18 @@ namespace SianemaCinemaTicketingSystem
         {
 
         }
+
+        protected void btnAddHall_Click(object sender, EventArgs e)
+        {
+            hallName.Text = "Hall 01";
+            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$(document).ready(function () {openModal();});", true);
+            
+
+
+
+        }
+
     }
+
+    
 }

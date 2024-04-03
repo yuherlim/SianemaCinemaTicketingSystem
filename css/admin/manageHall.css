@@ -1,15 +1,1 @@
-﻿#collapse1 {
-    overflow-y: scroll;
-    height: 200px;
-}
-
-#btnAdd {
-    background-color: brown;
-}
-
-#row1{
-    display:flex;
-    flex-direction:row;
-    justify-content:flex-end;
-    margin-bottom:10px;
-}
+﻿

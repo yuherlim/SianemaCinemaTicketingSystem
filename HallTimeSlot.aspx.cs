@@ -44,25 +44,41 @@ namespace SianemaCinemaTicketingSystem
 
                 SqlCommand cmdRetrieve;
                 cmdRetrieve = new SqlCommand(strRetrieve, conn);
-
-
-
-                // Retrieve the venue data item
-
                 SqlDataReader reader = cmdRetrieve.ExecuteReader();
-                // Bind the schedule data for this venue to the inner ScheduleRepeater
 
                 TimeSlotRepeater.DataSource = reader;
                 TimeSlotRepeater.DataBind();
+                conn.Close();
             }
         }
 
 
         protected void btnAddTimeSlot_Click(object sender, EventArgs e)
         {
-            txtName.Text = "Hello";
+    
+            SqlConnection conn;
+            String stringCon = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+            conn = new SqlConnection(stringCon);
+            conn.Open();
+            string hallID = "Hall-01";
+
+            string strRetrieve = "Select * from HallTimeSlot " +
+                "inner join Movie on HallTimeSlot.movieId = Movie.movieId " +
+                "inner join Maintenance on HallTimeSlot.maintenanceID = Maintenance.maintenanceID " +
+                "where hallid ='" + hallID + "'";
+        
+            SqlCommand cmdRetrieve;
+            cmdRetrieve = new SqlCommand(strRetrieve, conn);
+            SqlDataReader reader = cmdRetrieve.ExecuteReader();
+
+            rptAddTSMovie.DataSource = reader;
+            rptAddTSMovie.DataBind();
+            conn.Close();
+            lblHallName.Text = "Hall-01";
+            lblHallType.Text = "Large";
+
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$(document).ready(function () {openTimeSlotModal();});", true);
-            ClientScript.RegisterStartupScript(this.GetType(), "Test", "console.log('Script D loaded');", true);
+
 
 
 

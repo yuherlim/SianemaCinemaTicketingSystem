@@ -57,8 +57,8 @@
                             <asp:BoundField DataField="movieGenre" HeaderText="Genre" ShowHeader="False" />
                             <asp:BoundField DataField="movieDuration" HeaderText="Duration" ShowHeader="False" />
                             <asp:BoundField DataField="movieDistributor" HeaderText="Distributor" ShowHeader="False" />
-                            <asp:BoundField DataField="screenFromDate" HeaderText="Screen From" ShowHeader="False" />
-                            <asp:BoundField DataField="screeningDuration" HeaderText="Screen Until" ShowHeader="False" />
+                            <asp:BoundField DataField="screenFromDate" HeaderText="Screen From" ShowHeader="False" DataFormatString="{0:d}" />
+                            <asp:BoundField DataField="screenUntilDate" HeaderText="Screen Until" ShowHeader="False" DataFormatString="{0:d}" />
                             <asp:TemplateField ShowHeader="False">
                                 <ItemTemplate>
                                     <button type="button" id="btnView" class="btn btn-primary btn-sm btnViewMovie">
@@ -82,7 +82,7 @@
                         </EmptyDataTemplate>
                     </asp:GridView>
                  
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [moviePoster], [movieName], [movieSynopsis], [screenFromDate], [movieDuration], [screeningDuration], [movieDistributor], [movieGenre] FROM [Movie]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [moviePoster], [movieName], [movieSynopsis], [screenFromDate], [movieDuration], [screenUntilDate], [movieDistributor], [movieGenre] FROM [Movie] WHERE movieID <> 'NA'"></asp:SqlDataSource>
                  
                 </div>
             </div>

@@ -121,12 +121,23 @@ div.row {
     transition: all 0.3s ease;
 }
 
+.hallTimeSlot {
+    grid-column: 2 / span 30;
+    grid-row: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #00bfff; /* Deep Sky Blue */
+    border: 2px solid #1e90ff; /* Dodger Blue */
+    color: #000000; /* Black */
+    transition: all 0.3s ease;
+}
+
 
 .timeSlot:hover {
-        color: #ffffff; /* White */
-        background-color: #1e90ff; /* Dodger Blue */
-        border-color: #00bfff; /* Deep Sky Blue */
-    }
+    color: #ffffff; /* White */
+    background-color: #1e90ff; /* Dodger Blue */
+    border-color: #00bfff; /* Deep Sky Blue */
+}
 
 .timeSlot:focus {
         box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.5); /* Dodger Blue with 50% opacity */
@@ -140,9 +151,6 @@ div.row {
     }
 
 
-
-
-
 .timeSlotMovieName {
     display: flex;
     justify-content: center;
@@ -151,12 +159,6 @@ div.row {
     text-align: center;
     font-size: 12px;
 }
-
-
-
-
-
-
 
 
 #row1 > * {
@@ -203,12 +205,11 @@ td {
     font-size: 12px;
 }
 
-
-
-.btnView, .btnEdit {
+.btnAdd {
     background-color: var(--green);
-    width: 100%;
+    color: black;
 }
+
 
 .btn-primary:hover {
     color: #fff;
@@ -386,4 +387,37 @@ a:hover {
     height: 250px;
     width: 200px;
     background-color: aqua;
+}
+
+.hallTimeSlotRow {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right:10px;
+}
+
+.hallDetailContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.modalTSTitle {
+    margin-bottom: 10px;
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 99 !important;
+}
+
+.modalRow1Maintenance {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
 }
