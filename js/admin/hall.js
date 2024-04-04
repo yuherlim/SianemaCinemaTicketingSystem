@@ -1,6 +1,7 @@
 ﻿
 $(document).ready(function () {
 
+    //Function to swap photo based on selected radio btn 
     function displayHallImage() {
         var hallType = document.querySelector('input[name="hallType"]:checked').value;
         var imgElement = document.getElementById("hallImage");
@@ -10,21 +11,23 @@ $(document).ready(function () {
             imgElement.src = "smallhall.png";
         }
     }
-
-    displayHallImage();
+    //Initial the image display for the modal
+     displayHallImage();
 
 });
 
+//Search html element 
 const inputField = $('.modalInputField');
 const modalHeader = $('#modalTitle');
 const viewButton = $('.btnViewHall');
 const confirmButton = $('#btnConfirm');
 
-
+//Function for open modal
 function openModal() {
     $('#modalHall').modal('toggle');
 }
 
+//Function for reuse modal for view hall by disable the input field, hide confirm btn, rename the modal header to view hall 
 function viewHall() {
     modalHeader.text('View Hall');
     confirmButton.prop('hidden', true);
@@ -32,6 +35,7 @@ function viewHall() {
     openModal();
 }
 
+//Set onClick listener for view button 
 viewButton.click(viewHall);
 
 

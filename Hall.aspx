@@ -1,21 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MPA.Master" AutoEventWireup="true" CodeBehind="Hall.aspx.cs" Inherits="SianemaCinemaTicketingSystem.Hall" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script>
-        function displayHallImage() {
-            var hallType = document.querySelector('input[name="hallType"]:checked').value;
-            var imgElement = document.getElementById("hallImage");
-            if (hallType === "Large") {
-                imgElement.src = "largehall.png";
-            } else if (hallType === "Small") {
-                imgElement.src = "smallhall.png";
-            }
-        }
-    </script>
-
     <link rel="stylesheet" href="css/admin/hall.css" />
     <script defer src="js/admin/hall.js"></script>
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -24,6 +11,7 @@
             <div class="card card-fluid">
                 <div id="row1" class="card-header row">
                     <span class="row1Space">Manage Hall</span>
+                    <%-- Can set onChange event, based on different value selected run different query and bind data to repeater --%>
                     <asp:DropDownList ID="ddlFilter" class="ddlFilter" runat="server">
                         <asp:ListItem Value="All Hall"></asp:ListItem>
                         <asp:ListItem Value="Large Hall"></asp:ListItem>
@@ -40,6 +28,8 @@
                     <asp:GridView ID="gvHall" CssClass="table" BorderWidth="0px" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowSorting="True" ClientIDMode="Static">
                         <Columns>
                             <asp:TemplateField ShowHeader="False">
+                                <%--Table Header--%>
+                                <%-- Create own table header instead of using the preset header to make the border bottom wont disappear when scolling the content --%>
                                 <HeaderTemplate>
                                     <thead class="header">
                                         <tr>
@@ -57,13 +47,14 @@
                                     </thead>
                                 </HeaderTemplate>
 
+                            <%-- Table column --%>
+                            <%-- Template for each record row--%>
                             </asp:TemplateField>
-
-
                             <asp:BoundField ItemStyle-CssClass="hallName" DataField="hallName" HeaderText="Genre" ShowHeader="False" />
                             <asp:BoundField ItemStyle-CssClass="hallType" DataField="hallType" HeaderText="Duration" ShowHeader="False" />
                             <asp:BoundField ItemStyle-CssClass="numberOfSeats" DataField="numberOfSeats" HeaderText="Duration" ShowHeader="False" />
-                            <asp:TemplateField ShowHeader="False">
+                            <%-- View Button --%>
+                            <asp:TemplateField ShowHeader="False">                                
                                 <ItemTemplate>
                                     <button type="button" id="btnView" class="btn btn-primary btn-sm btnViewHall">
                                         View
@@ -71,7 +62,7 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-
+                            <%-- Remove Button --%>
                             <asp:TemplateField ShowHeader="False">
                                 <ItemTemplate>
                                     <button type="button" id="btnEdit" class="btn btn-primary btn-sm btnRemoveHall">
@@ -81,12 +72,13 @@
                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
                         </Columns>
+                        <%-- It will be displayed when there is no record found in the database --%>
                         <EmptyDataTemplate>
                             <div align="center">No records found.</div>
                         </EmptyDataTemplate>
                     </asp:GridView>
 
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Hall]" OnSelecting="SqlDataSource1_Selecting"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Hall]"></asp:SqlDataSource>
 
                 </div>
 
@@ -94,11 +86,18 @@
                 <div class="modal fade" id="modalHall" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
+                            <%-- Modal Header --%>
+                            <%-- Consist of header and close btn --%>
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="modalTitle">Add Hall</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+                            <%-- Modal Body --%>
+                            <%-- Consists of Input fields --%>
                             <div class="modal-body">
+                                <%-- Display hall ID --%>
+                                <%-- Should be replaced to server control label to retrieve data from server --%>
+                                <%-- ID are autogenerated when clicked the add hall btn --%>
                                 <div id="modalRowID" class="modalRow1 modalRow">
                                     <div class="modalText">Hall ID</div>
                                     <div class="modalColon">: </div>
@@ -106,7 +105,8 @@
                                         Hall-01
                                     </div>
                                 </div>
-
+                                <%-- 1st row of input field --%>
+                                <%-- Consists of two section that organized side by side left to right--%>
                                 <div class="modalRow2 modalRow">
                                     <section class="row2Section1">
                                         <div class="mb-3 hallName">
@@ -118,7 +118,9 @@
                                             <asp:TextBox ID="numberOfSeats" CssClass="form-control modalInputField numberOfSeatsInput" runat="server" ClientIDMode="Static" disabled="true" Text="190"></asp:TextBox>
                                         </div>
                                     </section>
-
+                                    <%-- Hall type radio button--%>
+                                    <%-- May need hidden server control label to store the selection --%>
+                                    <%-- The label can be used for save selection from user or retrieve the halltype selected from server for display when in view hall. The radio btn selection can be modified by using javascript to add "checked" attribute to the radio btn input  --%>
                                     <section class="row2Section2">
                                         <div class="mb-3 hallType">
                                             <label for="hallType" class="form-label">Hall Type</label>
@@ -132,7 +134,7 @@
                                     </section>
 
                                 </div>
-
+                                <%-- Hall Image --%>
                                 <div class="modalRow3 modalRow">
                                     <div class="hallImage">
                                         <asp:Image ID="hallImage" runat="server" ClientIDMode="Static" />
@@ -141,19 +143,19 @@
                                 </div>
 
 
-
+                                <%-- Close button can add some function to clear the data of each input field--%>
+                                <%-- Be aware of the nature of js injecting, the open modal trigger function will remain in the page until another postback is made, means after click add hall btn, the modal will be triggered whenever the page is refreshed--%>
+                                 <%-- Confirm button as server control to send back the value of input fields back to server for adding record--%>
                                 <div class="modal-footer">
                                     <button type="button" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
                                     <asp:Button ID="btnConfirm" runat="server" ClientIDMode="static" CssClass="btn btn-secondary"
                                         Text="Confirm" />
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
