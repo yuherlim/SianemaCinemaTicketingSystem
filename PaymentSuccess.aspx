@@ -46,26 +46,14 @@
 
         .view-ticket-div {
             margin-top: 30px;
+            display: flex;
+            justify-content: center;
         }
 
         .view-ticker {
-            background-color: var(--white);
-            color: var(--black);
-            border: none;
             padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            font-size: 16px;
-            transition: background-color 0.3s, color 0.3s;
-            margin: 30px auto;
-            border-radius: 3px;
         }
 
-            .view-ticker:hover {
-                background-color: var(--green);
-                color: var(--white);
-            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -114,7 +102,7 @@
             </div>
 
             <div class="view-ticket-div">
-                <asp:Button ID="viewTicketButton" runat="server" Text="View Ticket Details" CssClass="view-ticker" OnClick="viewTicketButton_Click" />
+                <asp:Button ID="viewTicketButton" runat="server" Text="View Ticket Details" CssClass="btn btn-outline-primary view-ticker" OnClick="viewTicketButton_Click" />
             </div>
 
         </section>

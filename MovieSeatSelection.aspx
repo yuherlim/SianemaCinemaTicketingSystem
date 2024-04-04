@@ -19,10 +19,10 @@
             position: relative;
         }
 
-            .top-nav-logo {
-                position: absolute;
-                left: 10%;
-            }
+        .top-nav-logo {
+            position: absolute;
+            left: 10%;
+        }
 
         .movie-seat-selection-container {
             width: 70%;
@@ -35,20 +35,21 @@
             justify-content: center;
         }
 
-            .movie-seat-selection-header h3 {
-                text-align: center;
-                font-weight: 1000;
-            }
+        .movie-seat-selection-header h3 {
+            text-align: center;
+            font-weight: 1000;
+        }
 
         .movie-seat-hall-time {
-            display:flex;
-            flex-direction:row;
+            display: flex;
+            flex-direction: row;
             justify-content: center;
         }
 
         .icon-image {
-            margin:0 5px;
+            margin: 0 5px;
         }
+
         .selected-seat-display {
             text-align: center;
         }
@@ -73,9 +74,9 @@
             flex-wrap: wrap;
         }
 
-            .seat-description p {
-                padding: 0px 10px 0px 3px;
-            }
+        .seat-description p {
+            padding: 0px 10px 0px 3px;
+        }
 
         .screen-direction {
             max-width: 70%;
@@ -85,9 +86,9 @@
             padding-top: 30px;
         }
 
-            .screen-direction img, .screen-direction p {
-                margin: 5px auto;
-            }
+        .screen-direction img, .screen-direction p {
+            margin: 5px auto;
+        }
 
         .seat-container {
             max-width: 40%;
@@ -113,7 +114,7 @@
             color: white;
         }
 
-        .continueButton {
+        /*.continueButton {
             background-color: var(--white);
             color: var(--black);
             border: none;
@@ -125,12 +126,22 @@
             transition: background-color 0.3s, color 0.3s;
             margin: 30px auto;
             border-radius: 3px;
+        }*/
+
+        div.continueButton-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
         }
 
-        .continueButton:hover {
+        .continueButton {
+            padding: 10px 20px;
+        }
+
+        /*.continueButton:hover {
             background-color: var(--green);
             color: var(--white);
-        }
+        }*/
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -141,11 +152,11 @@
                 <div class="movie-seat-selection-header">
                     <h3 id="movieName" runat="server">YOLO</h3>
                     <div class="movie-seat-hall-time">
-                        <img src="./images/cinemaIcon/hall.png" width="20" height="20" class="icon-image"/>
+                        <img src="./images/cinemaIcon/hall.png" width="20" height="20" class="icon-image" />
                         <p id="hallNum" runat="server">Hall 1</p>
-                        <img src="./images/cinemaIcon/date.png" width="20" height="20" class="icon-image"/>
+                        <img src="./images/cinemaIcon/date.png" width="20" height="20" class="icon-image" />
                         <p id="movieDate" runat="server">27 Mar 2024</p>
-                        <img src="./images/cinemaIcon/time.png" width="20" height="20" class="icon-image"/>
+                        <img src="./images/cinemaIcon/time.png" width="20" height="20" class="icon-image" />
                         <p id="movieTime" runat="server">10:00 PM</p>
                     </div>
                 </div>
@@ -188,7 +199,7 @@
                 <asp:Repeater ID="SeatRepeater" runat="server">
                     <ItemTemplate>
                         <div class="seat-wrapper">
-                            <img class="seat" src="./images/seatIcon/singleseat.png" alt="<%# Eval("SeatNumber") %>"/>
+                            <img class="seat" src="./images/seatIcon/singleseat.png" alt="<%# Eval("SeatNumber") %>" />
                             <span class="seat-number"><%# Eval("SeatNumber") %></span>
                         </div>
                     </ItemTemplate>
@@ -196,8 +207,11 @@
             </div>
 
 
+            <div class="continueButton-container">
 
-            <asp:Button ID="continueButton" runat="server" Text="Continue" CssClass="continueButton" OnClick="continueButton_Click"/>
+                <asp:Button ID="continueButton" runat="server" Text="Continue" CssClass="btn btn-outline-primary continueButton" OnClick="continueButton_Click" />
+            </div>
+
 
 
 

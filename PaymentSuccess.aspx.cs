@@ -16,7 +16,7 @@ namespace SianemaCinemaTicketingSystem
 
         protected void viewTicketButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("TransactionHistory.aspx");
+            Response.Redirect("TransactionHistoryDetails.aspx");
         }
     }
 }

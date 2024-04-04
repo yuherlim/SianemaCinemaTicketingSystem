@@ -46,11 +46,13 @@
                                             <th class="emptySlot" colspan="1"></th>
                                             <th colspan="1">Hall Name</th>
                                             <th colspan="1">Hall Type</th>
+                                            <th colspan="1">Number of Seats</th>
                                             <th colspan="1"></th>
                                             <th colspan="1"></th>
                                         </tr>
+
                                         <tr class="headerBorder">
-                                            <th class="border" colspan="5"></th>
+                                            <th class="border" colspan="6"></th>
                                         </tr>
                                     </thead>
                                 </HeaderTemplate>
@@ -60,6 +62,7 @@
 
                             <asp:BoundField ItemStyle-CssClass="hallName" DataField="hallName" HeaderText="Genre" ShowHeader="False" />
                             <asp:BoundField ItemStyle-CssClass="hallType" DataField="hallType" HeaderText="Duration" ShowHeader="False" />
+                            <asp:BoundField ItemStyle-CssClass="numberOfSeats" DataField="numberOfSeats" HeaderText="Duration" ShowHeader="False" />
                             <asp:TemplateField ShowHeader="False">
                                 <ItemTemplate>
                                     <button type="button" id="btnView" class="btn btn-primary btn-sm btnViewHall">
@@ -83,7 +86,7 @@
                         </EmptyDataTemplate>
                     </asp:GridView>
 
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Hall]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Hall]" OnSelecting="SqlDataSource1_Selecting"></asp:SqlDataSource>
 
                 </div>
 
@@ -108,7 +111,11 @@
                                     <section class="row2Section1">
                                         <div class="mb-3 hallName">
                                             <label for="hallName" class="form-label">Hall Name</label>
-                                            <asp:TextBox ID="hallName" CssClass="form-control modalInputField hallNameInput" runat="server" ClientIDMode="Static" disabled="true"></asp:TextBox>
+                                            <asp:TextBox ID="hallName" CssClass="form-control modalInputField hallNameInput" runat="server" ClientIDMode="Static" disabled="true" Text="Hall 01"></asp:TextBox>
+                                        </div>
+                                        <div class="mb-3 hallName">
+                                            <label for="numberOfSeats" class="form-label">Number of Seats</label>
+                                            <asp:TextBox ID="numberOfSeats" CssClass="form-control modalInputField numberOfSeatsInput" runat="server" ClientIDMode="Static" disabled="true" Text="190"></asp:TextBox>
                                         </div>
                                     </section>
 

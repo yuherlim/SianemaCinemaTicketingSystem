@@ -23,6 +23,11 @@
         .custom-file-label::after {
             color: var(--gray); /* Set color of "Choose file" text */
         }
+
+        textarea {
+            margin-bottom: 10px;
+        }
+
     </style>
 
 </asp:Content>
@@ -73,9 +78,11 @@
                         <%--<input type="tel" id="typePhone" class="form-control" />--%>
                         <asp:TextBox ID="ContactNumber" runat="server" CssClass="form-control" type="tel"></asp:TextBox>
 
+
                         <label for="comment" class="cu-label">Description :</label>
                         <%--<textarea class="form-control" id="comment" rows="3"></textarea>--%>
                         <asp:TextBox ID="Comment" runat="server" CssClass="form-control" type="text" TextMode="MultiLine" rows="3"></asp:TextBox>
+
 
                         <div class="custom-file">
                             <label class="custom-file-label" for="customFile">Choose file</label>

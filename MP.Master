@@ -119,6 +119,7 @@
         }
 
         .btn-primary {
+            font-weight: 700;
             background-color: var(--green);
             border-color: var(--green);
         }
@@ -146,6 +147,7 @@
         }
 
         .btn-outline-primary {
+            font-weight: 700;
             color: var(--green);
             border-color: rgba(238, 238, 238, 0.33);
         }

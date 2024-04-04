@@ -35,10 +35,10 @@
             justify-content: center;
         }
 
-            .movie-seat-selection-header h3 {
-                text-align: center;
-                font-weight: 1000;
-            }
+        .movie-seat-selection-header h3 {
+            text-align: center;
+            font-weight: 1000;
+        }
 
         .movie-seat-hall-time {
             display: flex;
@@ -87,30 +87,20 @@
             margin-top: 50px;
             padding: 40px 0;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .total-amount {
             text-align: center;
+            margin-bottom: 20px;
         }
+
 
         .pay-button {
-            background-color: var(--white);
-            color: var(--black);
-            border: none;
             padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            font-size: 16px;
-            transition: background-color 0.3s, color 0.3s;
-            margin: 30px auto;
-            border-radius: 3px;
         }
-
-            .pay-button:hover {
-                background-color: var(--green);
-                color: var(--white);
-            }
 
         .card-details-fill-container {
             width: 50%;
@@ -133,12 +123,10 @@
             border-radius: 5px;
         }
 
-            .form-control:focus {
-                border-color: var(--green);
-                box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
-            }
-
-
+        .form-control:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
+        }
     </style>
 </asp:Content>
 
@@ -214,6 +202,10 @@
 
             <div class="card-details-fill-container">
                 <div class="form-group">
+                    <asp:Label ID="Label1" runat="server">Name On Card</asp:Label>
+                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group">
                     <asp:Label ID="lblCardNumber" runat="server">Card Number</asp:Label>
                     <asp:TextBox ID="txtCardNumber" runat="server" CssClass="form-control" MaxLength="16" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </div>
@@ -256,7 +248,7 @@
 
             <div class="total-payment-botnav">
                 <h2 class="total-amount" id="TotalAmount" runat="server">RM 39.00</h2>
-                <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="pay-button" OnClick="PayButton_Click" />
+                <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="btn btn-outline-primary pay-button" OnClick="PayButton_Click" />
             </div>
         </section>
     </form>

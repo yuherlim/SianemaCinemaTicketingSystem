@@ -70,8 +70,8 @@ tbody tr:first-child {
     font-size: 14px
 }
 
-.hallName,.hallType {
-    width:38%;
+.hallName,.hallType, .numberOfSeats {
+    width:25%;
 }
 
 .border {
@@ -215,10 +215,6 @@ td {
     color: black;
 }
 
-#hallName{
-    disabled:true;
-}
-
 #hallImage{
     height:300px;
     width:400px;
@@ -228,3 +224,8 @@ td {
     justify-content:center;
     margin-bottom:15px;
 }
+
+/*input#hallType1[disabled] {
+  background-color: var(--green);
+  accent-color: var(--green);
+}*/
