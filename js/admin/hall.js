@@ -1,20 +1,22 @@
 ﻿
 $(document).ready(function () {
 
-    //Function to swap photo based on selected radio btn 
-    function displayHallImage() {
-        var hallType = document.querySelector('input[name="hallType"]:checked').value;
-        var imgElement = document.getElementById("hallImage");
-        if (hallType === "Large") {
-            imgElement.src = "largehall.png";
-        } else if (hallType === "Small") {
-            imgElement.src = "smallhall.png";
-        }
-    }
-    //Initial the image display for the modal
-     displayHallImage();
-
+ 
 });
+
+//Function to swap photo based on selected radio btn 
+function displayHallImage() {
+    var hallType = document.querySelector('input[name="hallType"]:checked').value;
+    var imgElement = document.getElementById("hallImage");
+    if (hallType === "Large") {
+        imgElement.src = "largehall.png";
+    } else if (hallType === "Small") {
+        imgElement.src = "smallhall.png";
+    }
+}
+//Initial the image display for the modal
+displayHallImage();
+
 
 //Search html element 
 const inputField = $('.modalInputField');
