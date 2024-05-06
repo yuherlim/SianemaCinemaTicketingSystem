@@ -1,13 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MP.Master" AutoEventWireup="true" CodeBehind="ContactUs.aspx.cs" Inherits="SianemaCinemaTicketingSystem.ContactUs" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script>
-     $(document).ready(function () {
-         $('#datepicker').datepicker({
-             format: 'yyyy-mm-dd'
-         });
-     });
-    </script>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
     <style>
         .cu-label {
             margin: auto;
@@ -27,7 +21,6 @@
         textarea {
             margin-bottom: 10px;
         }
-
     </style>
 
 </asp:Content>
@@ -81,7 +74,7 @@
 
                         <label for="comment" class="cu-label">Description :</label>
                         <%--<textarea class="form-control" id="comment" rows="3"></textarea>--%>
-                        <asp:TextBox ID="Comment" runat="server" CssClass="form-control" type="text" TextMode="MultiLine" rows="3"></asp:TextBox>
+                        <asp:TextBox ID="Comment" runat="server" CssClass="form-control" type="text" TextMode="MultiLine" Rows="3"></asp:TextBox>
 
 
                         <div class="custom-file">
@@ -91,11 +84,21 @@
                         </div>
                     </div>
                     <%--<button type="submit" class="btn btn-primary mt-3">Submit</button>--%>
-                    <asp:Button ID="Submit" runat="server" Text="Submit" CssClass="btn btn-primary mt-3"/>
+                    <asp:Button ID="Submit" runat="server" Text="Submit" CssClass="btn btn-primary mt-3" />
                 </form>
             </div>
         </div>
     </div>
     <br />
     <br />
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="js" runat="server">
+    <script>
+        $(document).ready(function () {
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
 </asp:Content>
