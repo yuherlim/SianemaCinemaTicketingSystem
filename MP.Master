@@ -14,7 +14,7 @@
     <style>
         :root {
             --green: #6ae500;
-            --dark-green: #28a745;
+            --button-green: #214700;
             --white: #ffffff;
             --black: #000000;
             --gray: #6b6b6b;
@@ -120,12 +120,12 @@
 
         .btn-primary {
             font-weight: 700;
-            background-color: var(--green);
-            border-color: var(--green);
+            background-color: var(--button-green);
+            border-color: var(--button-green);
         }
 
         .btn-primary:hover {
-            color: var(--green);
+            color: var(--button-green);
             background-color: var(--white);
             border-color: var(--white);
         }
@@ -133,17 +133,17 @@
         .btn-primary:not(:disabled):not(.disabled).active,
         .btn-primary:not(:disabled):not(.disabled):active,
         .show > .btn-primary.dropdown-toggle {
-            background-color: var(--green);
-            border-color: var(--green);
+            background-color: var(--button-green);
+            border-color: var(--button-green);
             box-shadow: none;
             outline: none;
         }
 
         .btn-primary:focus {
-            color: var(--green);
+            color: var(--button-green);
             background-color: var(--white);
-            border-color: var(--dark-green);
-            box-shadow: 0 0 0 0.2rem var(--dark-green);
+            border-color: var(--button-green);
+            box-shadow: 0 0 0 0.2rem var(--button-green);
         }
 
         .btn-outline-primary {
@@ -156,8 +156,8 @@
         .btn-outline-primary:not(:disabled):not(.disabled):active,
         .show > .btn-outline-primary.dropdown-toggle,
         .btn-outline-primary:hover {
-            border-color: var(--green);
-            background-color: var(--green);
+            border-color: var(--button-green);
+            background-color: var(--button-green);
         }
 
         .content-wrapper {
@@ -178,7 +178,7 @@
         }
 
         .dropdown-item.active, .dropdown-item:active {
-            background-color: var(--green);
+            background-color: var(--button-green);
         }
     </style>
 
