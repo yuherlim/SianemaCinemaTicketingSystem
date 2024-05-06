@@ -209,11 +209,11 @@
 
                     </div>
                     <div class="movie-time">
-                        <asp:Button ID="Button1" runat="server" CssClass="time-button" Text="08:00 AM" OnClick="Button1_Click" />
-                        <asp:Button ID="Button2" runat="server" CssClass="time-button" Text="11:00 AM" />
-                        <asp:Button ID="Button3" runat="server" CssClass="time-button" Text="04:00 PM" />
-                        <asp:Button ID="Button4" runat="server" CssClass="time-button" Text="08:00 PM" />
-
+                        <asp:Repeater ID="movieTimeRepeater" runat="server" DataSourceID="SqlDataSource1">
+                            <ItemTemplate>
+                                <asp:Button ID="TimeButton" runat="server" CssClass="time-button" Text='<%# Eval("hallTimeSlotDateTime", "{0:hh:mm tt}") %>' OnClick="Button_Click" />
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </div>
                 </div>
             </div>
