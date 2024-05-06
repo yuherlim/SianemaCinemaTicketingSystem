@@ -84,6 +84,9 @@
     <Content Include="css\admin\manageMovie.css" />
     <Content Include="css\admin\mpAdmin.css" />
     <Content Include="css\admin\select2.min.css" />
+    <Content Include="css\bootstrap-datepicker1.9.0.min.css" />
+    <Content Include="css\bootstrap4.5.2.min.css" />
+    <Content Include="css\font-awesome4.7.0.min.css" />
     <Content Include="css\login.css" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
@@ -127,8 +130,12 @@
     <Content Include="images\seatIcon\unavailableseat.png" />
     <Content Include="js\admin\popper.min.js" />
     <Content Include="js\admin\select2.min.js" />
+    <Content Include="js\bootstrap-datepicker1.9.0.min.js" />
+    <Content Include="js\bootstrap4.5.2.min.js" />
+    <Content Include="js\jquery3.7.1.min.js" />
     <Content Include="js\login.js" />
     <Content Include="js\myProfile.js" />
+    <Content Include="js\popper2.5.4.min.js" />
     <Content Include="js\register.js" />
     <Content Include="js\userAccount.js" />
     <Content Include="MovieDetails.aspx" />
@@ -310,6 +317,7 @@
     <Content Include="MP.Master" />
     <Content Include="MPA.Master" />
     <Content Include="css\admin\boostrap5.3.3.css" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="packages.config" />
     <Content Include="UserAccount.master" />
     <None Include="Web.Debug.config">

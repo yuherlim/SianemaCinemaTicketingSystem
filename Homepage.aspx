@@ -281,11 +281,16 @@
             </div>
         </div>
     </section>
+</asp:Content>
 
+<asp:Content ID="Content3" ContentPlaceHolderID="js" runat="server">
     <script>
-        $('.carousel').carousel({
-            interval: 3000
+        $(document).ready(function () {
+
+            $('.carousel').carousel({
+                interval: 3000
+            });
+
         });
     </script>
-
 </asp:Content>
