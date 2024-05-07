@@ -18,6 +18,7 @@
             --white: #ffffff;
             --black: #000000;
             --gray: #6b6b6b;
+            --validation-red: #FF5B5B;
             --black-transparent: rgba(0, 0, 0, 0.7); /* Transparent black color */
             --ticket-grey: #303030;
         }
