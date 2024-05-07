@@ -119,11 +119,11 @@
         }
 
         .chair-image-container {
-            padding-left:50px;
+            padding-left: 50px;
         }
 
         .chair-image {
-            margin-right:20px
+            margin-right: 20px
         }
     </style>
 </asp:Content>
@@ -173,28 +173,16 @@
             <div class="cinema-date-selection-container">
                 <div class="cinema-date-selection">
                     <ul class="date-selection">
-                        <li>
-                            <asp:Button ID="date1" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date2" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date3" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date4" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date5" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date6" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date7" runat="server" CssClass="date-button" />
-                        </li>
+                        <asp:Repeater ID="dateRepeater" runat="server">
+                            <ItemTemplate>
+                                <li>
+                                    <asp:Button ID="dateButton" runat="server" CssClass="date-button" Text='<%# Eval("Date", "{0:ddd\ndd-MMM}").ToUpper() %>' CommandArgument='<%# Eval("Date", "{0:yyyy-MM-dd}") %>' OnClick="DateButton_Click" />
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </ul>
+
+
 
                 </div>
             </div>
@@ -209,9 +197,9 @@
 
                     </div>
                     <div class="movie-time">
-                        <asp:Repeater ID="movieTimeRepeater" runat="server" DataSourceID="SqlDataSource1">
+                        <asp:Repeater ID="movieTimeRepeater" runat="server">
                             <ItemTemplate>
-                                <asp:Button ID="TimeButton" runat="server" CssClass="time-button" Text='<%# Eval("hallTimeSlotDateTime", "{0:hh:mm tt}") %>' OnClick="Button_Click" />
+                                <asp:Button ID="TimeButton" runat="server" CssClass="time-button" Text='<%# Eval("hallTimeSlotTime") %>' CommandArgument='<%# Eval("hallTimeSlotID") %>' OnClick="Button_Click" />
                             </ItemTemplate>
                         </asp:Repeater>
                     </div>

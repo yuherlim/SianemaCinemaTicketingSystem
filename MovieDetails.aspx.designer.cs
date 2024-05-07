@@ -105,67 +105,13 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl movieSynopsis;
 
         /// <summary>
-        /// date1 control.
+        /// dateRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button date1;
-
-        /// <summary>
-        /// date2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button date2;
-
-        /// <summary>
-        /// date3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button date3;
-
-        /// <summary>
-        /// date4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button date4;
-
-        /// <summary>
-        /// date5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button date5;
-
-        /// <summary>
-        /// date6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button date6;
-
-        /// <summary>
-        /// date7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button date7;
+        protected global::System.Web.UI.WebControls.Repeater dateRepeater;
 
         /// <summary>
         /// movieTimeRepeater control.

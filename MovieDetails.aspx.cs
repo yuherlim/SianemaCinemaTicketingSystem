@@ -16,6 +16,20 @@ namespace SianemaCinemaTicketingSystem
 
             if (!IsPostBack)
             {
+                List<DateTime> dates = new List<DateTime>();
+
+                DateTime currentDate = DateTime.Today;
+
+                // Add current date and the next six days to the list
+                for (int i = 0; i < 7; i++)
+                {
+                    dates.Add(currentDate.AddDays(i));
+                }
+
+                // Bind the list of dates to the repeater
+                dateRepeater.DataSource = dates;
+                dateRepeater.DataBind();
+
                 if (Request.QueryString["movieID"] != null)
                 {
                     string movieID = Request.QueryString["movieID"];
@@ -26,7 +40,7 @@ namespace SianemaCinemaTicketingSystem
                     conn = new SqlConnection(strCon);
                     conn.Open();
 
-                    string strToRetrieve = "SELECT * FROM Movie WHERE MovieID = @MovieID";
+                    string strToRetrieve = "SELECT * FROM Movie WHERE movieID = @MovieID";
                     
                     SqlCommand cmdToRetrieve;
                     cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
@@ -49,16 +63,7 @@ namespace SianemaCinemaTicketingSystem
 
                     }
 
-                    DateTime currentDate = DateTime.Today;
-
-                    date1.Text = "Today\n" + currentDate.ToString("dd-MMM").ToUpper();
-                    date2.Text = currentDate.AddDays(1).ToString("ddd\ndd-MMM").ToUpper();
-                    date3.Text = currentDate.AddDays(2).ToString("ddd\ndd-MMM").ToUpper();
-                    date4.Text = currentDate.AddDays(3).ToString("ddd\ndd-MMM").ToUpper();
-                    date5.Text = currentDate.AddDays(4).ToString("ddd\ndd-MMM").ToUpper();
-                    date6.Text = currentDate.AddDays(5).ToString("ddd\ndd-MMM").ToUpper();
-                    date7.Text = currentDate.AddDays(6).ToString("ddd\ndd-MMM").ToUpper();
-
+                    movieDetailsReader.Close();
                     conn.Close();
 
                     // Check if the date query parameter exists
@@ -72,26 +77,29 @@ namespace SianemaCinemaTicketingSystem
                         conn2 = new SqlConnection(strCon2);
                         conn2.Open();
 
-                        string strToRetrieve2 = "SELECT * FROM HallTimeSlot WHERE MovieID = @MovieID AND CONVERT(date, hallTimeSlotDateTime) = CONVERT(date, @MovieTime)";
+                        string strToRetrieve2 = "SELECT * FROM HallTimeSlot WHERE movieID = @MovieID AND hallTimeSlotDate = @MovieDate AND hallTimeSlotPurpose = @hallPurpose";
 
                         SqlCommand cmdToRetrieve2;
                         cmdToRetrieve2 = new SqlCommand(strToRetrieve2, conn2);
                         cmdToRetrieve2.Parameters.AddWithValue("@MovieID", movieID);
-                        cmdToRetrieve2.Parameters.AddWithValue("@MovieTime", selectedDate); // Assuming selectedDate contains the time slot
+                        cmdToRetrieve2.Parameters.AddWithValue("@hallPurpose", "Movie");
+                        cmdToRetrieve2.Parameters.AddWithValue("@MovieDate", selectedDate); // Assuming selectedDate contains the time slot
 
                         SqlDataReader movieTimeReader = cmdToRetrieve2.ExecuteReader();
-                        movieTimeRepeater.DataSourceID = null;
-                        movieTimeRepeater.DataSource = movieTimeReader;
 
-                        //string movieDate = movieTimeReader["hallTimeSlotDateTime"].ToString(); // Replace "ColumnName" with the actual column name
-                        //Console.WriteLine($"Movie Date: {movieDate}");
-
-                        movieTimeRepeater.DataBind();
+                        // Check if the reader has rows
+                        if (movieTimeReader.HasRows)
+                        {
+                            movieTimeRepeater.DataSourceID = null;
+                            movieTimeRepeater.DataSource = movieTimeReader;
+                            movieTimeRepeater.DataBind();
+                            movieTimeReader.Close();
+                        }
                     }
                     else
                     {
                         // If date query parameter is not present, set the default date to the current date
-                        string defaultDate = currentDate.ToString("dd/MM/yyyy");
+                        string defaultDate = currentDate.ToString("yyyy/MM/dd");
                         string redirectUrl = $"MovieDetails.aspx?movieID={movieID}&date={defaultDate}";
                         Response.Redirect(redirectUrl);
                     }
@@ -104,7 +112,29 @@ namespace SianemaCinemaTicketingSystem
 
         protected void Button_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MovieSeatSelection.aspx");
+            // Get the button that triggered the event
+            Button button = (Button)sender;
+
+            // Get the hallTimeSlotID from the CommandArgument property of the button
+            string hallTimeSlotID = button.CommandArgument;
+
+            // Redirect to MovieSeatSelection.aspx with hallTimeSlotID as a query parameter
+            Response.Redirect("MovieSeatSelection.aspx?hallTimeSlotID=" + hallTimeSlotID);
+        }
+
+
+
+        protected void DateButton_Click(object sender, EventArgs e)
+        {
+            // Handle button click event
+            Button button = (Button)sender;
+            string date = button.CommandArgument;
+
+            // Get the movieID from the query string
+            string movieID = Request.QueryString["movieID"];
+
+            // Redirect to MovieDetails.aspx with both movieID and date as query parameters
+            Response.Redirect($"MovieDetails.aspx?movieID={movieID}&date={date}");
         }
     }
 }
