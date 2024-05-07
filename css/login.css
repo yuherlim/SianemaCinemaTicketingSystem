@@ -73,8 +73,16 @@ main.login section.login-block div.login-fields {
   flex-direction: column;
 }
 
+main.login section.login-block div.login-fields table {
+  width: 100%;
+}
+
+main.login section.login-block div.login-fields div.login-validation-msg ul li {
+  color: var(--validation-red);
+}
+
 main.login section.login-block div.login-fields div.username-field label span {
-  color: red;
+  color: var(--validation-red);
 }
 
 main.login section.login-block div.login-fields div.password-field a {
@@ -87,7 +95,7 @@ main.login section.login-block div.login-fields div.password-field a:hover {
 
 
 main.login section.login-block div.login-fields div.password-field label span {
-  color: red;
+  color: var(--validation-red);
 }
 
 main.login section.login-block div.login-fields input[type="checkbox"] {
