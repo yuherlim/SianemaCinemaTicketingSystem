@@ -11,7 +11,7 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class Hall
+    public partial class CustomerInquire
     {
 
         /// <summary>
@@ -24,22 +24,13 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.DropDownList ddlFilter;
 
         /// <summary>
-        /// btnAddHall control.
+        /// gvCustInq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddHall;
-
-        /// <summary>
-        /// gvHall control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvHall;
+        protected global::System.Web.UI.WebControls.GridView gvCustInq;
 
         /// <summary>
         /// SqlDataSource1 control.
@@ -60,40 +51,76 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
 
         /// <summary>
-        /// modalId control.
+        /// custInqID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox modalId;
+        protected global::System.Web.UI.WebControls.TextBox custInqID;
 
         /// <summary>
-        /// hallName control.
+        /// contactName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox hallName;
+        protected global::System.Web.UI.WebControls.Label contactName;
 
         /// <summary>
-        /// numberOfSeats control.
+        /// contactNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox numberOfSeats;
+        protected global::System.Web.UI.WebControls.Label contactNum;
 
         /// <summary>
-        /// hallImage control.
+        /// email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image hallImage;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor email;
+
+        /// <summary>
+        /// category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label category;
+
+        /// <summary>
+        /// occurDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label occurDate;
+
+        /// <summary>
+        /// desc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label desc;
+
+        /// <summary>
+        /// upFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image upFile;
 
         /// <summary>
         /// btnConfirm control.
