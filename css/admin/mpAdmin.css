@@ -108,8 +108,7 @@ body {
 }
 
 
-#btnLogout {
+.btnLogout {
     background-color: var(--green);
-    width: 60px;
     color: black;
 }
