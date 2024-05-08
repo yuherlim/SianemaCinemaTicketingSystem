@@ -11,6 +11,23 @@ namespace SianemaCinemaTicketingSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if there is a logged-in user
+            if (User.Identity.IsAuthenticated)
+            {
+                // Check the user type stored in session variable
+                string userType = (string)Session["UserType"];
+
+                if (userType != "Customer")
+                {
+                    // Redirect the user to the login page if not a customer
+                    Response.Redirect("~/Login.aspx");
+                }
+                else
+                {
+                    
+                }
+            }
+
 
             // Generate last seen and upcoming movie data
             List<object> lastSeenMovies = GenerateLastSeen();
