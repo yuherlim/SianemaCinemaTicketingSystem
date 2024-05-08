@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Util;
 
 namespace SianemaCinemaTicketingSystem
 {
@@ -48,106 +49,140 @@ namespace SianemaCinemaTicketingSystem
                         movieTime.InnerText = hallTimeSlotDetailsReader["hallTimeSlotTime"].ToString();
 
                     }
-
                     hallTimeSlotDetailsReader.Close();
-                    conn.Close();
 
-                    if (Request.QueryString["transactionID"] != null)
+                    // get the selected seat details
+                    if (Request.QueryString["selectedSeats"] != null)
                     {
-                        string transactionID = Request.QueryString["transactionID"];
+                        // Get the value of the selectedSeats query parameter
+                        string selectedSeatsParam = Request.QueryString["selectedSeats"];
 
-                        // get the selected seat details
-                        if (Request.QueryString["selectedSeats"] != null)
+                        // Split the string into an array of selected seat IDs
+                        string[] selectedSeatIDs = selectedSeatsParam.Split(',');
+
+                        int numberOfTicket = selectedSeatIDs.Length;
+                        SingleSeatNumber.InnerText = numberOfTicket.ToString();
+                        double totalAmount = numberOfTicket * 15.00;
+                        SingleSeatAmount.InnerText = totalAmount.ToString();
+                        Total.InnerText = (totalAmount + 1).ToString();
+
+                        List<string> seatRows = new List<string>();
+                        // Loop through each seatsID
+                        for (int i = 0; i < selectedSeatIDs.Length; i++)
                         {
-                            // Get the value of the selectedSeats query parameter
-                            string selectedSeatsParam = Request.QueryString["selectedSeats"];
-
-                            // Split the string into an array of selected seat IDs
-                            string[] selectedSeatIDs = selectedSeatsParam.Split(',');
-
-                            int numOfSelectedSeats = selectedSeatIDs.Length;
-                            int totalAmountOfTicket = numOfSelectedSeats * 15;
-                            SingleSeatNumber.InnerText = numOfSelectedSeats.ToString();
-                            SingleSeatAmount.InnerText = totalAmountOfTicket.ToString();
-                            Total.InnerText = totalAmountOfTicket + 1.ToString();
-
-                            // Loop through each query
-                            for (int i = 0; i < selectedSeatIDs.Length; i++)
+                            string strToRetrieve2 = "SELECT Seat.row, Seat.seatNo FROM MovieSeat " +
+                                "INNER JOIN Seat ON MovieSeat.seatID = Seat.seatID " +
+                                "WHERE movieSeatID = @movieSeatID";
+                            SqlCommand cmdToRetrieve2 = new SqlCommand(strToRetrieve2, conn);
+                            cmdToRetrieve2.Parameters.AddWithValue("@movieSeatID", selectedSeatIDs[i]);
+                            SqlDataReader seatsReader = cmdToRetrieve2.ExecuteReader();
+                            while (seatsReader.Read())
                             {
-                                string ticketID = $"TST-{selectedSeatIDs[i]}";
-
-                                SqlConnection conn2;
-                                string strCon2 = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
-                                conn2 = new SqlConnection(strCon2);
-                                conn2.Open();
-
-                                string strToInsert = "INSERT INTO [Ticket] (ticketID, movieSeatID, transactionID, ticketPrice) VALUES (@ticketID, @movieSeatID, @transactionID, @ticketPrice)";
-
-                                SqlCommand cmdToInsert;
-                                cmdToInsert = new SqlCommand(strToInsert, conn2);
-                                cmdToInsert.Parameters.AddWithValue("@ticketID", ticketID);
-                                cmdToInsert.Parameters.AddWithValue("@movieSeatID", selectedSeatIDs[i]);
-                                cmdToInsert.Parameters.AddWithValue("@transactionID", transactionID);
-                                cmdToInsert.Parameters.AddWithValue("@ticketPrice", 15.00);
-
-                                // Execute the command to insert the new transaction
-                                cmdToInsert.ExecuteNonQuery();
-
+                                seatRows.Add(string.Format("{0}{1}", seatsReader["row"], seatsReader["seatNo"]));
                             }
+                            seatsReader.Close();
                         }
+                        seatsId.InnerText = String.Join(", ", seatRows);
+                        conn.Close();
                     }
                 }
             }
         }
+
+
         protected void PayButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("PaymentSuccess.aspx");
-        }
-
-
-        protected void Timer1_Tick(object sender, EventArgs e)
         {
             if (Request.QueryString["transactionID"] != null)
             {
                 string transactionID = Request.QueryString["transactionID"];
-                DateTime transactionExpirationTime;
-
-                SqlConnection conn3;
-                string strCon3 = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
-                conn3 = new SqlConnection(strCon3);
-                conn3.Open();
-
-                string strToRetrieve3 = "SELECT transactionExpirationTime FROM Transaction WHERE transactionID = @transactionID";
-
-                SqlCommand cmdToRetrieve3 = new SqlCommand(strToRetrieve3, conn3);
-
-                cmdToRetrieve3.Parameters.AddWithValue("@transactionID", transactionID);
-
-                SqlDataReader transactionDetailsReader = cmdToRetrieve3.ExecuteReader();
-
-                if (transactionDetailsReader.Read())
+                // get the selected seat details
+                if (Request.QueryString["selectedSeats"] != null)
                 {
-                    transactionExpirationTime = Convert.ToDateTime(transactionDetailsReader["transactionExpirationTime"]);
+                    // Get the value of the selectedSeats query parameter
+                    string selectedSeatsParam = Request.QueryString["selectedSeats"];
 
-                    // Calculate the elapsed time in milliseconds
-                    DateTime now = DateTime.Now;
-                    TimeSpan elapsedTime = now - transactionExpirationTime;
-                    long elapsedTimeInMilliseconds = (long)elapsedTime.TotalMilliseconds;
+                    // Split the string into an array of selected seat IDs
+                    string[] selectedSeatIDs = selectedSeatsParam.Split(',');
 
-                    // If the elapsed time exceeds 5 minutes, cancel the reservation in the database
-                    if (elapsedTimeInMilliseconds > 5 * 60 * 1000)
+                    // Loop through each query
+                    for (int i = 0; i < selectedSeatIDs.Length; i++)
                     {
-                        string strToCancel = "UPDATE [Transaction] SET transactionStatus = 'Cancelled' WHERE transactionID = @transactionID";
-                        SqlCommand cmdToCancel = new SqlCommand(strToCancel, conn3);
-                        cmdToCancel.Parameters.AddWithValue("@transactionID", transactionID);
-                        cmdToCancel.ExecuteNonQuery();
-                    }
-                }
+                        string ticketID = $"TIC-{selectedSeatIDs[i]}";
 
-                transactionDetailsReader.Close();
-                conn3.Close();
+                        SqlConnection conn2;
+                        string strCon2 = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                        conn2 = new SqlConnection(strCon2);
+                        conn2.Open();
+
+                        string strToInsert = "INSERT INTO [Ticket] (ticketID, movieSeatID, transactionID, ticketPrice) VALUES (@ticketID, @movieSeatID, @transactionID, @ticketPrice)";
+
+                        SqlCommand cmdToInsert;
+                        cmdToInsert = new SqlCommand(strToInsert, conn2);
+                        cmdToInsert.Parameters.AddWithValue("@ticketID", ticketID);
+                        cmdToInsert.Parameters.AddWithValue("@movieSeatID", selectedSeatIDs[i]);
+                        cmdToInsert.Parameters.AddWithValue("@transactionID", transactionID);
+                        cmdToInsert.Parameters.AddWithValue("@ticketPrice", 15.00);
+                        cmdToInsert.ExecuteNonQuery();
+
+                        string strToUpdate = "UPDATE [MovieSeat] SET movieSeatStatus = 'Sold' WHERE movieSeatID = @movieSeatID";
+                        SqlCommand cmdToUpdate = new SqlCommand(strToUpdate, conn2);
+                        cmdToUpdate.Parameters.AddWithValue("@movieSeatID", selectedSeatIDs[i]);
+                        cmdToUpdate.ExecuteNonQuery();
+
+                        conn2.Close();
+                    }
+
+                    SqlConnection conn3;
+                    string strCon3 = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                    conn3 = new SqlConnection(strCon3);
+                    conn3.Open();
+                    string strToUpdate2 = "UPDATE [TicketTransaction] SET transactionStatus = 'Completed', transactionAmount = @total WHERE transactionID = @transactionID";
+                    SqlCommand cmdToUpdate2 = new SqlCommand(strToUpdate2, conn3);
+                    cmdToUpdate2.Parameters.AddWithValue("@transactionID", transactionID);
+
+                    string totalStringValue = Total.ToString().Trim();
+                    decimal totalDecimalValue = decimal.Parse(totalStringValue);
+
+                    cmdToUpdate2.Parameters.AddWithValue("@total", totalDecimalValue);
+                    cmdToUpdate2.ExecuteNonQuery();
+
+                    string paymentID = $"PYM-{transactionID}";
+                    DateTime now = DateTime.Now;
+                    string paymentMethod = "Card";
+                    string strToInsert2 = "INSERT INTO [Payment] (paymentID , transactionID, paymentDateTime, paymentMethod) VALUES (@paymentID, @transactionID, @paymentDateTime, @paymentMethod)";
+                    SqlCommand cmdToInsert2;
+                    cmdToInsert2 = new SqlCommand(strToInsert2, conn3);
+                    cmdToInsert2.Parameters.AddWithValue("@paymentID", paymentID);
+                    cmdToInsert2.Parameters.AddWithValue("@transactionID", transactionID);
+                    cmdToInsert2.Parameters.AddWithValue("@paymentDateTime", now);
+                    cmdToInsert2.Parameters.AddWithValue("@paymentMethod", paymentMethod);
+                    cmdToInsert2.ExecuteNonQuery();
+
+                    conn3.Close();
+                }
+            }
+            Response.Redirect("PaymentSuccess.aspx");
+        }
+
+        protected void BackButton_Click(object sender, EventArgs e)
+        {
+            if (Request.QueryString["transactionID"] != null)
+            {
+                string transactionID = Request.QueryString["transactionID"];
+                SqlConnection conn;
+                string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                conn = new SqlConnection(strCon);
+                conn.Open();
+
+                string strToUpdate = "UPDATE [TicketTransaction] SET transactionStatus = 'Cancelled' WHERE transactionID = @transactionID";
+                SqlCommand cmdToUpdate = new SqlCommand(strToUpdate, conn);
+                cmdToUpdate.Parameters.AddWithValue("@transactionID", transactionID);
+                cmdToUpdate.ExecuteNonQuery();
+
+                Response.Redirect("Movies.aspx");
             }
         }
     }

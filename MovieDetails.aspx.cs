@@ -36,7 +36,7 @@ namespace SianemaCinemaTicketingSystem
                 if (Request.QueryString["movieID"] != null)
                 {
                     string movieID = Request.QueryString["movieID"];
-                    
+
                     SqlConnection conn;
                     string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
@@ -44,7 +44,7 @@ namespace SianemaCinemaTicketingSystem
                     conn.Open();
 
                     string strToRetrieve = "SELECT * FROM Movie WHERE movieID = @MovieID";
-                    
+
                     SqlCommand cmdToRetrieve;
                     cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
                     cmdToRetrieve.Parameters.AddWithValue("@MovieID", movieID);
@@ -60,8 +60,11 @@ namespace SianemaCinemaTicketingSystem
                         movieName.InnerText = movieDetailsReader["movieName"].ToString();
                         movieGenre.InnerText = movieDetailsReader["movieGenre"].ToString();
                         movieLanguage.InnerText = movieDetailsReader["movieLanguage"].ToString();
+                        movieDuration.InnerText = movieDetailsReader["movieDuration"].ToString();
+                        movieClassification.InnerText = movieDetailsReader["movieClassification"].ToString();
                         movieSubtitle.InnerText = movieDetailsReader["movieSubtitle"].ToString();
                         movieCast.InnerText = movieDetailsReader["movieCast"].ToString();
+                        releaseDate.InnerText = movieDetailsReader["releaseDate"].ToString();
                         movieDistributer.InnerText = movieDetailsReader["movieDistributor"].ToString();
                         movieSynopsis.InnerText = movieDetailsReader["movieSynopsis"].ToString();
 
@@ -107,10 +110,29 @@ namespace SianemaCinemaTicketingSystem
                         string redirectUrl = $"MovieDetails.aspx?movieID={movieID}&date={defaultDate}";
                         Response.Redirect(redirectUrl);
                     }
-
                 }
+            }
+            // Loop through the repeater items to find the selected or default date button
+            foreach (RepeaterItem item in dateRepeater.Items)
+            {
+                Button dateButton = item.FindControl("dateButton") as Button;
+                if (dateButton != null)
+                {
+                    // Get the date value from the button's CommandArgument
+                    string dateValue = dateButton.CommandArgument;
 
-
+                    // Check if it matches the selected date or the default date
+                    if (Request.QueryString["date"] != null && dateValue == Request.QueryString["date"])
+                    {
+                        // Add a CSS class to style the selected date button differently
+                        dateButton.CssClass += " selected-date-button";
+                    }
+                    else if (Request.QueryString["date"] == null && dateValue == DateTime.Today.ToString("yyyy-MM-dd"))
+                    {
+                        // Add a CSS class to style the default date button differently
+                        dateButton.CssClass += " selected-date-button";
+                    }
+                }
             }
         }
 

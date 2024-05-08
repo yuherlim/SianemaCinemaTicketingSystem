@@ -16,16 +16,19 @@ namespace SianemaCinemaTicketingSystem
 
             if (!IsPostBack)
             {
+
+                DateTime currentDate = DateTime.Today;
                 SqlConnection conn;
                 string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
                 conn = new SqlConnection(strCon);
                 conn.Open();
 
-                string strToRetrieve = "Select * From Movie";
+                string strToRetrieve = "Select * From Movie WHERE @currentDate>= screenFromDate AND @currentDate <=screenUntilDate";
 
                 SqlCommand cmdToRetrieve;
                 cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
+                cmdToRetrieve.Parameters.AddWithValue("@currentDate", currentDate);
 
                 SqlDataReader movieReader = cmdToRetrieve.ExecuteReader();
 

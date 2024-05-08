@@ -35,10 +35,10 @@
             justify-content: center;
         }
 
-        .movie-seat-selection-header h3 {
-            text-align: center;
-            font-weight: 1000;
-        }
+            .movie-seat-selection-header h3 {
+                text-align: center;
+                font-weight: 1000;
+            }
 
         .movie-seat-hall-time {
             display: flex;
@@ -123,22 +123,29 @@
             border-radius: 5px;
         }
 
-        .form-control:focus {
-            border-color: var(--green);
-            box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
+            .form-control:focus {
+                border-color: var(--green);
+                box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
+            }
+        .auto-style4 {
+            padding: 5px 10px;
+            width: 29%
+        }
+        .auto-style5 {
+            padding: 5px 10px;
+            width: 26%
         }
     </style>
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form class="form1" runat="server">
         <div class="movie-seat-selection-navbar">
             <div class="movie-seat-selection-container">
                 <img src="logoSianema.png" alt="Logo" width="160" height="60" class="top-nav-logo">
                 <div class="movie-seat-selection-header">
-                    
-                    <h3 id="movieName" runat="server" /> 
+
+                    <h3 id="movieName" runat="server" />
                     <div class="movie-seat-hall-time">
                         <img src="./images/cinemaIcon/hall.png" width="20" height="20" class="icon-image" />
 
@@ -157,8 +164,6 @@
             </div>
         </div>
 
-        <asp:Timer ID="Timer1" runat="server" Interval="300000" OnTick="Timer1_Tick"></asp:Timer>
-
         <section class="payment-container">
             <div class="payment-body">
                 <h1 id="Payment-Header">Payment Option</h1>
@@ -173,31 +178,26 @@
                         <tr>
                             <td class="auto-style1" runat="server">SINGLE</td>
                             <td class="auto-style2" id="SingleSeatNumber" runat="server" />
-                            <td class="auto-style3" id="SingleSeatPrice">RM 15</td> />
+                            <td class="auto-style5" id="SingleSeatPrice">RM 15</td>
                             <td class="auto-style4" id="SingleSeatAmount" runat="server" />
-                        </tr>
-                        <tr>
-                            <td class="auto-style1" runat="server">Sub Total</td>
-                            <td class="auto-style2" runat="server">&nbsp;</td>
-                            <td class="auto-style3" runat="server">&nbsp;</td>
-                            <td class="auto-style4" id="SubTotal" runat="server" />
                         </tr>
                         <tr>
                             <td class="auto-style1">Processing Fee</td>
                             <td class="auto-style2">&nbsp;</td>
-                            <td class="auto-style2">&nbsp;</td>
-                            <td class="auto-style3">RM 1.00</td>
+                            <td class="auto-style5">&nbsp;</td>
+                            <td class="auto-style4">RM 1.00</td>
                         </tr>
                         <tr>
                             <td class="auto-style1">&nbsp;</td>
                             <td class="auto-style2">&nbsp;</td>
-                            <td class="auto-style3">&nbsp;</td>
-                            <td class="auto-style3">&nbsp;</td>
+                            <td class="auto-style5">&nbsp;</td>
+                            <td class="auto-style4">&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="auto-style1">Total</td>
                             <td class="auto-style2">&nbsp;</td>
-                            <td class="auto-style3" id="Total" runat="server" />
+                            <td class="auto-style5">&nbsp;</td>
+                            <td class="auto-style4" id="Total" runat="server" />
                         </tr>
                     </table>
 
@@ -254,9 +254,9 @@
             <div class="total-payment-botnav">
                 <h2 class="total-amount" id="TotalAmount" runat="server">RM 39.00</h2>
                 <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="btn btn-outline-primary pay-button" OnClick="PayButton_Click" />
+                <asp:Button ID="BackButton" runat="server" Text="Back To Home Page" CssClass="btn btn-outline-primary pay-button" OnClick="BackButton_Click" />
             </div>
         </section>
-    </form>
 </asp:Content>
 
 

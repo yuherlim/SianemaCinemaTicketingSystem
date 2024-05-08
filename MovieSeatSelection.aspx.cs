@@ -99,6 +99,7 @@ namespace SianemaCinemaTicketingSystem
 
         protected void continueButton_Click(object sender, EventArgs e)
         {
+            string userID = Session["UserId"].ToString();
 
             string hallTimeSlotID = (string)((Button)sender).CommandArgument;
             string transactionID = GenerateTransactionID();
@@ -114,12 +115,12 @@ namespace SianemaCinemaTicketingSystem
             conn = new SqlConnection(strCon);
             conn.Open();
 
-            string strToCreate = "INSERT INTO [Transaction] (transactionID, custID, transactionDateTime, transactionAmount, transactionStatus, transactionExpirationTime) " +
+            string strToCreate = "INSERT INTO [TicketTransaction] (transactionID, custID, transactionDateTime, transactionAmount, transactionStatus, transactionExpirationTime) " +
                 "VALUES (@transactionID, @custID, @transactionDateTime, @transactionAmount, @transactionStatus, @transactionExpirationTime)";
 
             SqlCommand cmdToInsert = new SqlCommand(strToCreate, conn);
             cmdToInsert.Parameters.AddWithValue("@transactionID", transactionID);
-            cmdToInsert.Parameters.AddWithValue("@custID", "CUST-241024-00001");
+            cmdToInsert.Parameters.AddWithValue("@custID", userID);
             cmdToInsert.Parameters.AddWithValue("@transactionDateTime", transactionDateTime);
             cmdToInsert.Parameters.AddWithValue("@transactionAmount", transactionAmount);
             cmdToInsert.Parameters.AddWithValue("@transactionStatus", transactionStatus);
@@ -181,7 +182,7 @@ namespace SianemaCinemaTicketingSystem
             conn = new SqlConnection(strCon);
             conn.Open();
 
-            string strToRetrieve = "SELECT TOP 1 transactionID FROM [Transaction] ORDER BY transactionID DESC";
+            string strToRetrieve = "SELECT TOP 1 transactionID FROM [TicketTransaction] ORDER BY transactionID DESC";
 
             SqlCommand cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
             latestTransactionID = (string)cmdToRetrieve.ExecuteScalar();

@@ -51,7 +51,7 @@
 
         /* Hover effect for book now button */
         .btn-book-now:hover {
-            background-color: var(--green);
+            background-color: var(--button-green);
             color: var(--white);
         }
 
@@ -93,9 +93,8 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form class="form1" runat="server">
         <section class="movie-container">
-            <h2>Movies in SiaNema</h2>
+            <h2>Now Showing</h2>
 
             <div class="movie-row">
                 <asp:Repeater ID="movieRepeater" runat="server">
@@ -122,5 +121,4 @@
 
             </div>
         </section>
-    </form>
 </asp:Content>

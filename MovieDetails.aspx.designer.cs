@@ -69,6 +69,15 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl movieDuration;
 
         /// <summary>
+        /// movieClassification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl movieClassification;
+
+        /// <summary>
         /// movieSubtitle control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace SianemaCinemaTicketingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater dateRepeater;
+
+        /// <summary>
+        /// selectedDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl selectedDate;
 
         /// <summary>
         /// movieTimeRepeater control.
