@@ -11,7 +11,18 @@ namespace SianemaCinemaTicketingSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Check if a success message exists in session
+                if (Session["UserCreationSuccessMessage"] != null)
+                {
+                    // Display the success message
+                    lblSuccessMsg.Text = Session["UserCreationSuccessMessage"].ToString();
 
+                    // Clear the session variable to prevent displaying the message again
+                    Session.Remove("UserCreationSuccessMessage");
+                }
+            }
         }
     }
 }

@@ -21,6 +21,7 @@
                                 <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email">Email address<span>
                                     <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." Display="Dynamic" ValidationGroup="RegisterValidationGroup" SetFocusOnError="False">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="EmailRegularExpressionValidator" runat="server" ControlToValidate="Email" ErrorMessage="Invalid email format." ToolTip="Invalid email format." Display="Dynamic" ValidationGroup="RegisterValidationGroup" ValidationExpression="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">*</asp:RegularExpressionValidator>
+                                    <asp:CustomValidator ID="EmailDuplicateValidator" runat="server" OnServerValidate="EmailDuplicateValidator_ServerValidate" ErrorMessage="Error: Email already exists." Display="Dynamic" ValidationGroup="RegisterValidationGroup">*</asp:CustomValidator>
                                 </span></asp:Label>
                                 <%--<label for="email">Email address<span>*</span></label>--%>
                                 <%--<input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">--%>

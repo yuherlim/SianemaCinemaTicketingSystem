@@ -148,6 +148,11 @@ main.login section.image-block div.testing-image img {
 
 /* image-block section end */
 
+.success-label {
+  color: var(--green);
+  font-size: 1.5rem;
+}
+
 /* desktop styles start */
 
 /* login row start */

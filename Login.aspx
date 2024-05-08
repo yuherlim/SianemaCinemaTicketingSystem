@@ -12,6 +12,8 @@
                 <section class="login-block">
                     <span class="login-key"></span>
                     <div class="login-fields">
+                        <asp:Label ID="lblSuccessMsg" runat="server" Text="" CssClass="success-label"></asp:Label>
+
                         <h4>Welcome back!</h4>
 
                         <form runat="server">
