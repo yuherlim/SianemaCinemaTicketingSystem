@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     function openModal() {
         $('#modalCustInq').modal('show');
+        console.log(txtCustInqID.val());
     }
 
     // Bind the openModal function to the page load event
@@ -16,6 +17,7 @@ const inputField = $('.modalInputField');
 const modalHeader = $('#modalTitle');
 const viewButton = $('.btnViewCustInq');
 const confirmButton = $('#btnConfirm');
+const txtCustInqID = $('#custInqID');
 
 //Function for open modal
 function openModal() {
@@ -67,6 +69,7 @@ function onViewButtonClick(event) {
     console.log('CustInqID', custInqID);
     // Fetch data from the server based on the hallID
     fetchCustInqData(custInqID);
+  
 }
 
 function fetchCustInqData(custInqID) {
@@ -107,6 +110,7 @@ function updateModalBody(data) {
     if (data) {
         // DISPLAY DATA BASED ON WHICH ROW YOU CLICK
         const custInqIDElement = document.getElementById('custInqID');
+        const custInqIDFieldElement = document.getElementById('custInqIDField');
         const contactNameElement = document.getElementById('contactName');
         const contactNumElement = document.getElementById('contactNum');
         const emailElement = document.getElementById('email');
@@ -117,8 +121,10 @@ function updateModalBody(data) {
 
         // Update elements with data
         if (custInqIDElement && data.custInqID !== undefined) {
-            custInqIDElement.value = data.custInqID;
+            custInqIDElement.innerText = data.custInqID;
+            custInqIDFieldElement.value = data.custInqID;
         }
+    
         if (contactNameElement && data.contactName !== undefined) {
             contactNameElement.innerText = data.contactName;
         }

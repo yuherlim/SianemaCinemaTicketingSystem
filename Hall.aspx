@@ -108,8 +108,9 @@
                                 <div id="modalRowID" class="modalRow1 modalRow">
                                     <div class="modalText">Hall ID</div>
                                     <div class="modalColon"></div>
-                                    <asp:TextBox ID="modalId" CssClass="form-control modalInputField hallNameInput" runat="server" ClientIDMode="Static"></asp:TextBox>
-
+                                    <asp:Label ID="modalId" CssClass="form-control modalInputField hallNameInput" runat="server" ClientIDMode="Static"></asp:Label>
+                              
+                                   
                                 </div>
                                 <%-- 1st row of input field --%>
                                 <%-- Consists of two section that organized side by side left to right--%>

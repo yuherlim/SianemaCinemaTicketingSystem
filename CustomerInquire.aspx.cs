@@ -99,11 +99,11 @@ namespace SianemaCinemaTicketingSystem
         }
 
 
-        protected void btnConfirm_Click(object sender, EventArgs e)
+        protected void btnConfirm_Click(Object sender, EventArgs e)
         {
 
             // Get the values from the modal inputs
-            string custInqID = this.custInqID.Text;
+            string custInqID = custInqIDField.Value;
             string status = Request.Form["status"]; // Assuming the status radio buttons are part of the form submission
 
 

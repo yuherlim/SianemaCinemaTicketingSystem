@@ -65,7 +65,8 @@ const inputField = $('.modalInputField');
 const modalHeader = $('#modalTitle');
 const viewButton = $('.btnViewHall');
 const confirmButton = $('#btnConfirm');
-
+const txtmodalId = $('#modalId');
+txtmodalId.prop('disabled', true);
 //Function for open modal
 function openModal() {
     $('#modalHall').modal('toggle');
@@ -144,8 +145,12 @@ function updateModalBody(data) {
         const numberOfSeats = document.getElementById('numberOfSeats');
 
         if (modalId && data.hallID !== undefined) {
-            modalId.value = data.hallID;
+            modalId.innerText = data.hallID;
+       
         }
+
+        
+
         if (hallName && data.hallName !== undefined) {
             hallName.value = data.hallName;
         }
@@ -164,6 +169,7 @@ function updateModalBody(data) {
                 hallType2.checked = false;
 
             } else {
+                
                 imgElement.src = "small.png";
                 hallType1.checked = false;
                 hallType2.checked = true;

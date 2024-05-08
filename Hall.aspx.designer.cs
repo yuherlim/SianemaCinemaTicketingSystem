@@ -66,7 +66,7 @@ namespace SianemaCinemaTicketingSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox modalId;
+        protected global::System.Web.UI.WebControls.Label modalId;
 
         /// <summary>
         /// hallName control.

@@ -72,7 +72,8 @@
                                 <div id="modalRowID" class="modalRow1 modalRow">
                                     <div class="modalText">Customer Inquire ID</div>
                                     <div class="modalColon">
-                                        <asp:TextBox ID="custInqID" CssClass="form-control modalInputField custInqInput" runat="server" ClientIDMode="Static"></asp:TextBox>
+                                        <asp:Label ID="custInqID" CssClass="form-control modalInputField custInqInput" runat="server" ClientIDMode="Static"></asp:Label>
+                                        <asp:HiddenField ID="custInqIDField" runat="server" ClientIDMode="Static"></asp:HiddenField>
                                     </div>
                                 </div>
                                 <%-- 1st row of input field --%>
