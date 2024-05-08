@@ -16,6 +16,9 @@ namespace SianemaCinemaTicketingSystem
 
             if (!IsPostBack)
             {
+                // Find the movieCoverPhoto control
+                Image movieCoverPhoto = (Image)MovieDetailsContainer.FindControl("movieCoverPhoto");
+                byte[] imageData;
                 List<DateTime> dates = new List<DateTime>();
 
                 DateTime currentDate = DateTime.Today;
@@ -50,8 +53,9 @@ namespace SianemaCinemaTicketingSystem
 
                     if (movieDetailsReader.Read())
                     {
-                        string imageUrl = movieDetailsReader["movieCoverPhoto"].ToString();
-                        movieCoverPhoto.ImageUrl = imageUrl;
+                        imageData = (byte[])movieDetailsReader["movieCoverPhoto"];
+                        string base64String = Convert.ToBase64String(imageData);
+                        movieCoverPhoto.ImageUrl = $"data:image/jpeg;base64, {base64String}";
 
                         movieName.InnerText = movieDetailsReader["movieName"].ToString();
                         movieGenre.InnerText = movieDetailsReader["movieGenre"].ToString();

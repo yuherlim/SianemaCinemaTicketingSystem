@@ -101,7 +101,7 @@
                 <asp:Repeater ID="movieRepeater" runat="server">
                     <ItemTemplate>
                         <div class="card view">
-                            <asp:Image ID="moviePoster" runat="server" ImageUrl='<%# Eval("moviePoster") %>' Height="400" Width="300" />
+                            <asp:Image ID="moviePoster" runat="server" Height="400" Width="300" ImageUrl='<%# Eval("moviePoster") %>' />
                             <div class="mask">
                                 <div class="col">
                                     <ul class="deco">

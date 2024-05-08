@@ -130,8 +130,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form class="form1" runat="server">
         <section class="movie-details-page">
-            <div class="movie-details-container">
-                <asp:Image ID="movieCoverPhoto" runat="server" ImageUrl='<%# Eval("movieCoverPhoto") %>' />
+            <div class="movie-details-container" id="MovieDetailsContainer" runat="server">
+                <asp:Image ID="movieCoverPhoto" runat="server"/>
 
                 <div class="movie-details-information-container">
 
