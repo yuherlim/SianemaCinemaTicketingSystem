@@ -61,20 +61,27 @@ namespace SianemaCinemaTicketingSystem
             ClientScript.RegisterStartupScript(this.GetType(), "AddMovie", "$(document).ready(function () {addMovie();});", true);
         }
 
-        protected void gvMovie_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void gvMovie_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-
-
-        }
-
         protected void ddlFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // switch to different data source
+            DropDownList dropDownList = (DropDownList)sender;
+            string selectedValue = dropDownList.SelectedValue;
+
+            if (selectedValue == "Onscreen Movie")
+            {
+                gvMovie.DataSourceID = "onScreenDataSource";
+            }
+            else if (selectedValue == "Offscreen Movie")
+            {
+                gvMovie.DataSourceID = "offScreenDataSource";
+            }
+            else if (selectedValue == "All Movie")
+            {
+                gvMovie.DataSourceID = "allMovieDataSource";
+            }
+
+
+
+
 
         }
 
@@ -85,8 +92,8 @@ namespace SianemaCinemaTicketingSystem
             conn = new SqlConnection(stringCon);
             conn.Open();
 
-            byte[] moviePoster = fuPoster.FileBytes;
-            //movieCoverPhoto
+            byte[] moviePoster = Convert.FromBase64String(movPosterImageValue.Value);
+            byte[] movieCoverPhoto = Convert.FromBase64String(movCoverPhotoImageValue.Value);
             string movieID = movID.Text;
             string movieName = txtName.Text;
             string movieSynopsis = movSynopsisValue.Value;
@@ -126,7 +133,7 @@ namespace SianemaCinemaTicketingSystem
                     command.Parameters.AddWithValue("@screenFromDate", screenFromDate);
                     command.Parameters.AddWithValue("@movieClassification", movieClassification);
                     command.Parameters.AddWithValue("@moviePoster", SqlDbType.VarBinary).Value = new System.Data.SqlTypes.SqlBinary(moviePoster);
-                    command.Parameters.AddWithValue("@movieCoverPhoto", SqlDbType.VarBinary).Value = new System.Data.SqlTypes.SqlBinary(moviePoster);
+                    command.Parameters.AddWithValue("@movieCoverPhoto", SqlDbType.VarBinary).Value = new System.Data.SqlTypes.SqlBinary(movieCoverPhoto);
                     command.Parameters.AddWithValue("@screenUntilDate", screenUntilDate);
                     command.ExecuteNonQuery();
                 }
@@ -150,8 +157,8 @@ namespace SianemaCinemaTicketingSystem
                     command.Parameters.AddWithValue("@releaseDate", releaseDate);
                     command.Parameters.AddWithValue("@screenFromDate", screenFromDate);
                     command.Parameters.AddWithValue("@movieClassification", movieClassification);
-                    command.Parameters.AddWithValue("@moviePoster", "Testing");
-                    command.Parameters.AddWithValue("@movieCoverPhoto", "Testing");
+                    command.Parameters.AddWithValue("@moviePoster", SqlDbType.VarBinary).Value = new System.Data.SqlTypes.SqlBinary(moviePoster);
+                    command.Parameters.AddWithValue("@movieCoverPhoto", SqlDbType.VarBinary).Value = new System.Data.SqlTypes.SqlBinary(movieCoverPhoto);
                     command.Parameters.AddWithValue("@screenUntilDate", screenUntilDate);
                     command.ExecuteNonQuery();
                 }
@@ -181,9 +188,7 @@ namespace SianemaCinemaTicketingSystem
 
 
             }
-
-
-            // Transform photo 
+         
         }
 
         protected void btnView_Click(object sender, EventArgs e)
@@ -235,8 +240,10 @@ namespace SianemaCinemaTicketingSystem
                 movDurationValue.Value = reader["movieDuration"].ToString();
                 txtDistributor.Text = reader["movieDistributor"].ToString();
                 movReleaseDateValue.Value = reader["releaseDate"].ToString();
-                //movPosterImage.Text = reader["movieID"].ToString();
-                //movCoverPhotoImage.Text = reader["movieID"].ToString();
+                byte[] moviePoster = (byte[])reader["moviePoster"];
+                movPosterImageValue.Value = Convert.ToBase64String(moviePoster);
+                byte[] movieCoverPhoto = (byte[])reader["movieCoverPhoto"];
+                movCoverPhotoImageValue.Value = Convert.ToBase64String(movieCoverPhoto);
                 movCastValue.Value = reader["movieCast"].ToString();
                 movSynopsisValue.Value = reader["movieSynopsis"].ToString();
                 movScreenFromValue.Value = reader["screenFromDate"].ToString();

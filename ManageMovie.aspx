@@ -12,10 +12,10 @@
             <div class="card card-fluid">
                 <div id="row1" class="card-header row">
                     <span class="row1Space">Manage Movie</span>
-                    <asp:DropDownList ID="ddlFilter" class="ddlFilter" runat="server" OnSelectedIndexChanged="ddlFilter_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlFilter" class="ddlFilter" runat="server" OnSelectedIndexChanged="ddlFilter_SelectedIndexChanged" AutoPostBack="true">
                         <asp:ListItem Value="All Movie"></asp:ListItem>
                         <asp:ListItem Value="Onscreen Movie"></asp:ListItem>
-                        <asp:ListItem Value="Offscreen movie"></asp:ListItem>
+                        <asp:ListItem Value="Offscreen Movie"></asp:ListItem>
                     </asp:DropDownList>
                     <%--Add Movie Button--%>
                     <asp:Button ID="btnAddMovie" runat="server" ClientIDMode="static" CssClass="btn btn-primary btn-sm btnAdd" OnClick="btnAddMovie_Click"
@@ -25,7 +25,7 @@
 
                 <div id="row2" class="row">
                     <%--Movies List table--%>
-                    <asp:GridView ID="gvMovie" CssClass="table" OnRowDataBound="gvMovie_RowDataBound" BorderWidth="0px" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowSorting="True" ClientIDMode="Static" OnSelectedIndexChanged="gvMovie_SelectedIndexChanged1">
+                    <asp:GridView ID="gvMovie" CssClass="table" OnRowDataBound="gvMovie_RowDataBound" BorderWidth="0px" runat="server" AutoGenerateColumns="False" DataSourceID="allMovieDataSource" AllowSorting="True" ClientIDMode="Static" >
                         <Columns>
                             <asp:TemplateField ShowHeader="False">
                                 <HeaderTemplate>
@@ -82,8 +82,9 @@
                             <div align="center">No records found.</div>
                         </EmptyDataTemplate>
                     </asp:GridView>
-
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [moviePoster], [movieName], [movieSynopsis], [screenFromDate], [movieDuration], [screenUntilDate], [movieDistributor], [movieGenre], [movieID] FROM [Movie] WHERE movieID <> 'NA'"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="allMovieDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [moviePoster], [movieName], [movieSynopsis], [screenFromDate], [movieDuration], [screenUntilDate], [movieDistributor], [movieGenre], [movieID] FROM [Movie] WHERE movieID <> 'NA'"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="offScreenDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [moviePoster], [movieName], [movieSynopsis], [screenFromDate], [movieDuration], [screenUntilDate], [movieDistributor], [movieGenre], [movieID] FROM [Movie] WHERE movieID <> 'NA' AND  screenUntilDate < CAST(GETDATE() AS DATE); "></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="onScreenDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [moviePoster], [movieName], [movieSynopsis], [screenFromDate], [movieDuration], [screenUntilDate], [movieDistributor], [movieGenre], [movieID] FROM [Movie] WHERE movieID <> 'NA' AND screenUntilDate >= CAST(GETDATE() AS DATE); "></asp:SqlDataSource>
 
                 </div>
             </div>
@@ -186,17 +187,19 @@
 
                                         <div class="movImage">
                                             <asp:Image ID="movPosterImage" runat="server" ClientIDMode="Static" />
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movPosterImageValue"></asp:HiddenField>
                                         </div>
                                     </section>
 
                                     <section class="row2Section2-2">
                                         <div class="mb-3 movCoverPhoto">
                                             <label for="fuCoverPhoto" class="form-label">Movie CoverPhoto</label>
-                                            <asp:FileUpload ID="fuCoverPhoto" class="form-control modalInputField" runat="server" ClientIDMode="static" />
+                                            <asp:FileUpload ID="fuCoverPhoto" class="form-control modalInputField" Accept="image/*" Filter="JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png"  runat="server" ClientIDMode="static" />
                                         </div>
 
                                         <div class="movImage">
                                             <asp:Image ID="movCoverPhotoImage" runat="server" ClientIDMode="Static" />
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movCoverPhotoImageValue"></asp:HiddenField>
                                         </div>
                                     </section>
                                 </section>

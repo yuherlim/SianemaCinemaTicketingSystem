@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MPA.Master" AutoEventWireup="true" CodeBehind="HallTimeSlot.aspx.cs" Inherits="SianemaCinemaTicketingSystem.WebForm3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MPA.Master" AutoEventWireup="true" CodeBehind="HallTimeSlot.aspx.cs" Inherits="SianemaCinemaTicketingSystem.WebForm3"  EnableEventValidation = "false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="css/admin/hallTimeSlot.css" />
@@ -18,6 +18,9 @@
                         <div class="input-group selectDate-input">
                             <input id="tpSelectDate" type="text" class="form-control" placeholder="23-03-2024" />
                             <span class="input-group-text"><i class="ri-time-line"></i></span>
+                            <asp:HiddenField runat="server" ID="TimeSlotDateValue" ClientIDMode="Static"></asp:HiddenField>
+                            <asp:Button runat="server" ClientIDMode="Static" ID="btnSearchDate" CssClass="btn btn-primary btn-sm btnAdd" OnClick="btnSearchDate_Click"
+                                Text="Search" />
                         </div>
                     </div>
                 </div>
@@ -31,7 +34,7 @@
                                     <%# Eval("HallName") %>
                                 </div>
                                 <div class="hallType">
-                                    <%# Eval("HallType") %>
+                                   <%# Eval("HallType") %>
                                 </div>
                                 <div class="addTimeSlot">
                                     <asp:Button ID="btnAddTimeSlot" runat="server" ClientIDMode="static" CssClass="btn btn-primary btn-sm btnAdd" Text="Add TimeSlot" OnClick="btnAddTimeSlot_Click" />
@@ -58,10 +61,12 @@
                                     <div class="timeSlotHeader">02:00am</div>
                                 </div>
                                 <div class="childRptBody">
-                                    <asp:Repeater ID="TimeSlotRepeater" runat="server">
+                                    <asp:Repeater ID="TimeSlotRepeater" OnItemDataBound="TimeSlotRepeater_ItemDataBound" runat="server">
                                         <ItemTemplate>
                                             <div class="timeSlot">
-                                                <span class="timeSlotMovieName"><%# Eval("movieName") %></span>
+                                                <span class="timeSlotMovieName">
+                                                    <asp:Button ID="timeSlotButtonID" CssClass="timeSlotButton" ClientIDMode="Static" runat="server" OnClick="timeSlotButtonID_Click" /><asp:HiddenField runat="server" ID="timeSlotButtonFieldValue" ClientIDMode="Static" />
+                                                </span>
                                             </div>
                                         </ItemTemplate>
                                     </asp:Repeater>
@@ -87,7 +92,7 @@
                                     <div class="modalText">Movie ID</div>
                                     <div class="modalColon">: </div>
                                     <div id="modalID">
-                                        MOV-310324-0001
+                                        <asp:Label runat="server" ClientIDMode="Static" ID="movID"></asp:Label>
                                     </div>
                                 </div>
 
@@ -110,6 +115,7 @@
                                                     <option value="Romance">Romance</option>
                                                 </optgroup>
                                             </select>
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movGenreValue"></asp:HiddenField>
                                         </div>
 
                                         <div class="mb-3 movClassification">
@@ -120,8 +126,8 @@
                                                 <option value="13">13</option>
                                                 <option value="16">16</option>
                                                 <option value="18">18</option>
-
                                             </select>
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movClassificationValue"></asp:HiddenField>
                                         </div>
 
                                         <div class="mb-3 movLanguage">
@@ -135,6 +141,7 @@
                                                     <option value="Malay">Malay</option>
                                                 </optgroup>
                                             </select>
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movLanguageValue"></asp:HiddenField>
                                         </div>
 
                                         <div class="mb-3 movSubtitle">
@@ -148,6 +155,7 @@
                                                     <option value="Malay">Malay</option>
                                                 </optgroup>
                                             </select>
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movSubtitleValue"></asp:HiddenField>
                                         </div>
 
                                         <div class="mb-3 movDuration">
@@ -155,6 +163,7 @@
                                             <div class="input-group">
                                                 <input id="tpDuration" type="text" class="form-control modalInputField" placeholder="01:30">
                                                 <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                                <asp:HiddenField runat="server" ClientIDMode="Static" ID="movDurationValue"></asp:HiddenField>
                                             </div>
                                         </div>
                                     </section>
@@ -169,6 +178,7 @@
 
                                             <div class="movImage">
                                                 <asp:Image ID="movPosterImage" runat="server" ClientIDMode="Static" />
+                                                <asp:HiddenField runat="server" ClientIDMode="Static" ID="movPosterImageValue"></asp:HiddenField>
                                             </div>
                                         </section>
 
@@ -180,6 +190,7 @@
 
                                             <div class="movImage">
                                                 <asp:Image ID="movCoverPhotoImage" runat="server" ClientIDMode="Static" />
+                                                <asp:HiddenField runat="server" ClientIDMode="Static" ID="movCoverPhotoImageValue"></asp:HiddenField>
                                             </div>
                                         </section>
                                     </section>
@@ -199,6 +210,7 @@
                                         <div class="input-group">
                                             <input id="tpReleaseDate" type="text" class="form-control modalInputField" placeholder="23-03-2024" />
                                             <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movReleaseDateValue"></asp:HiddenField>
                                         </div>
                                     </div>
 
@@ -216,11 +228,13 @@
                                                 <option value="Dwayne Johnson">Dwayne Johnson</option>
                                             </optgroup>
                                         </select>
+                                        <asp:HiddenField runat="server" ClientIDMode="Static" ID="movCastValue"></asp:HiddenField>
                                     </div>
 
                                     <div class="mb-3 movSypnosis">
                                         <label for="txtSypnosis" class="form-label">Movie Sypnosis</label>
                                         <textarea class="form-control modalInputField" id="txtSypnosis" rows="5" runat="server" clientidmode="static"></textarea>
+                                        <asp:HiddenField runat="server" ClientIDMode="Static" ID="movSynopsisValue"></asp:HiddenField>
                                     </div>
 
                                 </div>
@@ -232,6 +246,7 @@
                                         <div class="input-group">
                                             <input id="tpScreenFrom" type="text" class="form-control modalInputField" placeholder="23-03-2024" />
                                             <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movScreenFromValue"></asp:HiddenField>
                                         </div>
                                     </div>
 
@@ -240,6 +255,7 @@
                                         <div class="input-group">
                                             <input id="tpScreenUntil" type="text" class="form-control modalInputField" placeholder="23-03-2024" />
                                             <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movScreenUntilValue"></asp:HiddenField>
                                         </div>
                                     </div>
 
@@ -302,13 +318,14 @@
                                             <div class="timeSlotHeader">02:00am</div>
                                         </div>
                                         <div class="childRptBody">
-                                            <asp:Repeater ID="rptAddTSMovie" runat="server">
+                                            <asp:Repeater ID="rptAddTSMovie" runat="server" OnItemDataBound="rptAddTSMovie_ItemDataBound">
                                                 <ItemTemplate>
                                                     <div class="hallTimeSlot">
-                                                        <span class="timeSlotMovieName"><%# Eval("movieName") %></span>
+                                                        <span class="timeSlotMovieName"><asp:Button ID="AddTimeSlotButtonID" CssClass="timeSlotButton disabled-darker" ClientIDMode="Static" runat="server" disabled="true" /><asp:HiddenField runat="server" ID="AddTimeSlotButtonFieldValue" ClientIDMode="Static" /></span>
                                                     </div>
                                                 </ItemTemplate>
                                             </asp:Repeater>
+                                            <asp:HiddenField runat="server" ID="onScreenMovieListValue" ClientIDMode="Static"></asp:HiddenField>
                                         </div>
                                     </div>
                                 </div>

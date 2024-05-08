@@ -51,13 +51,31 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.GridView gvMovie;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// allMovieDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.SqlDataSource allMovieDataSource;
+
+        /// <summary>
+        /// offScreenDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource offScreenDataSource;
+
+        /// <summary>
+        /// onScreenDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource onScreenDataSource;
 
         /// <summary>
         /// movID control.
@@ -141,6 +159,15 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.Image movPosterImage;
 
         /// <summary>
+        /// movPosterImageValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movPosterImageValue;
+
+        /// <summary>
         /// fuCoverPhoto control.
         /// </summary>
         /// <remarks>
@@ -157,6 +184,15 @@ namespace SianemaCinemaTicketingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image movCoverPhotoImage;
+
+        /// <summary>
+        /// movCoverPhotoImageValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movCoverPhotoImageValue;
 
         /// <summary>
         /// txtDistributor control.

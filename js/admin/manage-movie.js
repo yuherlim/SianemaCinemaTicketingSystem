@@ -20,9 +20,39 @@ const lblmovieReleaseDate = $('#movReleaseDateValue');
 const lblmovieScreenFrom = $('#movScreenFromValue');
 const lblmovieScreenUntil = $('#movScreenUntilValue');
 const lblmovieSynopsis = $('#movSynopsisValue');
+const lblmovPosterImage = $('#movPosterImageValue');
+const lblmovCoverPhotoImage = $('#movCoverPhotoImageValue');
 const lblbtnConfirmMode = $('#btnConfirmMode');
 const txtAreaSypnosis = $('#txtSynopsis');
 const txtName = $('#txtName');
+const movPosterImage = $('#movPosterImage');
+const movCoverPhotoImage = $('#movCoverPhotoImage');
+const fuPoster = $('#fuPoster');
+const fuCoverPhoto = $('#fuCoverPhoto');
+
+fuPoster.change(function () {
+    let file = fuPoster[0].files[0];
+    let fileReader = new FileReader();
+    fileReader.onload = function (event) {
+        let base64String = event.target.result.split(',')[1];    
+        lblmovPosterImage.val(base64String);
+        let movPosterDataUrl = 'data:image/jpeg;base64,' + base64String;
+        movPosterImage.attr("src", movPosterDataUrl);
+    };
+    fileReader.readAsDataURL(file);
+});
+
+fuCoverPhoto.change(function () {
+    let file = fuCoverPhoto[0].files[0];
+    let fileReader = new FileReader();
+    fileReader.onload = function (event) {
+        let base64String = event.target.result.split(',')[1];
+        lblmovCoverPhotoImage.val(base64String);
+        let movCoverPhotoImageDataUrl = 'data:image/jpeg;base64,' + base64String;
+        movCoverPhotoImage.attr("src", movCoverPhotoImageDataUrl);
+    };
+    fileReader.readAsDataURL(file);
+});
 
 txtAreaSypnosis.on("change", function () {
     lblmovieSynopsis.val(txtAreaSypnosis.val());
@@ -39,7 +69,6 @@ $('#sltGenre').select2({
 
     lblmovieGenre.val(data);
 });
-
 
 
 $('#sltClass').select2({
@@ -156,7 +185,16 @@ function openModal(caller) {
         flatpickrScreenUntil.setDate(lblmovieScreenUntil.val());
 
         txtAreaSypnosis.val(lblmovieSynopsis.val());
+
+        let movPosterBase64String = lblmovPosterImage.val();
+        let movPosterDataUrl = 'data:image/jpeg;base64,' + movPosterBase64String;
+        movPosterImage.attr("src", movPosterDataUrl);
+
+        let movCoverPhotoImageBase64String = lblmovCoverPhotoImage.val();
+        let movCoverPhotoImagerDataUrl = 'data:image/jpeg;base64,' + movCoverPhotoImageBase64String;
+        movCoverPhotoImage.attr("src", movCoverPhotoImagerDataUrl);       
     }
+
 }
 
 function editMovie() {
@@ -247,8 +285,10 @@ function convertStringToTimeFormat(string) {
 }
 
 function clearlabel() {
-    txtName.val('')
-    $('.label').text('')
+    txtName.val('');
+    $('.label').text('');
+    lblmovCoverPhotoImage.val("");
+    lblmovPosterImage.val("");
 
 }
 
