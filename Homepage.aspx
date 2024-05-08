@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="css/homepage.css" />
-    <script src="js/homepage.js"></script>
     <style>
         .cardImg {
             height: 500px;
@@ -93,4 +92,8 @@
     <asp:SqlDataSource ID="sdsMovies" runat="server"
         ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
         SelectCommand="SELECT movieName, moviePoster FROM Movie ORDER BY releaseDate DESC"></asp:SqlDataSource>
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="js" runat="server">
+    <<script src="js/homepage.js"></script>
 </asp:Content>
