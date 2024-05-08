@@ -80,9 +80,9 @@
             color: var(--white);
         }
 
-            .footer-link:hover {
-                color: var(--green);
-            }
+        .footer-link:hover {
+            color: var(--green);
+        }
 
         .heading4 {
             font-size: 18px;
@@ -125,27 +125,27 @@
             border-color: var(--button-green);
         }
 
-            .btn-primary:hover {
-                color: var(--button-green);
-                background-color: var(--white);
-                border-color: var(--white);
-            }
+        .btn-primary:hover {
+            color: var(--button-green);
+            background-color: var(--white);
+            border-color: var(--white);
+        }
 
-            .btn-primary:not(:disabled):not(.disabled).active,
-            .btn-primary:not(:disabled):not(.disabled):active,
-            .show > .btn-primary.dropdown-toggle {
-                background-color: var(--button-green);
-                border-color: var(--button-green);
-                box-shadow: none;
-                outline: none;
-            }
+        .btn-primary:not(:disabled):not(.disabled).active,
+        .btn-primary:not(:disabled):not(.disabled):active,
+        .show > .btn-primary.dropdown-toggle {
+            background-color: var(--button-green);
+            border-color: var(--button-green);
+            box-shadow: none;
+            outline: none;
+        }
 
-            .btn-primary:focus {
-                color: var(--button-green);
-                background-color: var(--white);
-                border-color: var(--button-green);
-                box-shadow: 0 0 0 0.2rem var(--button-green);
-            }
+        .btn-primary:focus {
+            color: var(--button-green);
+            background-color: var(--white);
+            border-color: var(--button-green);
+            box-shadow: 0 0 0 0.2rem var(--button-green);
+        }
 
         .btn-outline-primary {
             font-weight: 700;
@@ -153,13 +153,13 @@
             border-color: rgba(238, 238, 238, 0.33);
         }
 
-            .btn-outline-primary:not(:disabled):not(.disabled).active,
-            .btn-outline-primary:not(:disabled):not(.disabled):active,
-            .show > .btn-outline-primary.dropdown-toggle,
-            .btn-outline-primary:hover {
-                border-color: var(--button-green);
-                background-color: var(--button-green);
-            }
+        .btn-outline-primary:not(:disabled):not(.disabled).active,
+        .btn-outline-primary:not(:disabled):not(.disabled):active,
+        .show > .btn-outline-primary.dropdown-toggle,
+        .btn-outline-primary:hover {
+            border-color: var(--button-green);
+            background-color: var(--button-green);
+        }
 
         .content-wrapper {
             width: 100%;
@@ -189,8 +189,6 @@
 </head>
 <body>
     <form runat="server">
-<<<<<<< HEAD
-=======
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div class="container-fluid">
@@ -218,36 +216,9 @@
                     <asp:Button ID="RegisterButton" runat="server" Text="JOIN NOW" CssClass="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" title="JOIN NOW" OnClick="RegisterButton_Click" />
                     <%--<a class="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" href="Register.aspx" title="JOIN NOW" role="button">JOIN NOW</a>--%>
                     <asp:Button ID="LogoutButton" runat="server" Text="LOGOUT" CssClass="btn btn-primary logout-btn my-2 my-sm-0 mr-sm-2" title="LOGOUT" OnClick="LogoutButton_Click" />
->>>>>>> 9cc789b82216f04e5887c0c4aa995ca0e432c2be
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="Homepage.aspx">
-                    <img src="logoSianema.png" alt="Logo" width="160" height="60">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-<<<<<<< HEAD
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="Movies.aspx">Movies<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="AboutUs.aspx">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="ContactUs.aspx">Contact Us</a>
-                        </li>
-                    </ul>
-                    <a class="btn btn-primary login-btn my-2 my-sm-0 mr-sm-2" href="Login.aspx" title="LOGIN" role="button">LOGIN</a>
-                    <a class="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" href="Register.aspx" title="JOIN NOW" role="button">JOIN NOW</a>
-                    <div class="dropdown show">
-=======
                     <div id="DropDownListForAuthenticatedUsers" class="dropdown show" runat="server">
->>>>>>> 9cc789b82216f04e5887c0c4aa995ca0e432c2be
                         <a class="btn btn-secondary dropdown-toggle mr-sm-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User 1
                         </a>
 

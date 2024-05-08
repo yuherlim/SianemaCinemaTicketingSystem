@@ -63,8 +63,11 @@ namespace SianemaCinemaTicketingSystem
                         int numberOfTicket = selectedSeatIDs.Length;
                         SingleSeatNumber.InnerText = numberOfTicket.ToString();
                         double totalAmount = numberOfTicket * 15.00;
-                        SingleSeatAmount.InnerText = totalAmount.ToString();
-                        Total.InnerText = (totalAmount + 1).ToString();
+                        SingleSeatAmount.InnerText = "RM" + totalAmount.ToString();
+                        double total = totalAmount + 1;
+                        Total.InnerText = "RM" + total.ToString();
+
+                        TotalAmountHiddenField.Value = total.ToString();
 
                         List<string> seatRows = new List<string>();
                         // Loop through each seatsID
@@ -136,16 +139,15 @@ namespace SianemaCinemaTicketingSystem
                     SqlConnection conn3;
                     string strCon3 = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
+                    // Retrieve the total amount from the hidden field
+                    decimal total = Convert.ToDecimal(TotalAmountHiddenField.Value);
+
                     conn3 = new SqlConnection(strCon3);
                     conn3.Open();
                     string strToUpdate2 = "UPDATE [TicketTransaction] SET transactionStatus = 'Completed', transactionAmount = @total WHERE transactionID = @transactionID";
                     SqlCommand cmdToUpdate2 = new SqlCommand(strToUpdate2, conn3);
                     cmdToUpdate2.Parameters.AddWithValue("@transactionID", transactionID);
-
-                    string totalStringValue = Total.ToString().Trim();
-                    decimal totalDecimalValue = decimal.Parse(totalStringValue);
-
-                    cmdToUpdate2.Parameters.AddWithValue("@total", totalDecimalValue);
+                    cmdToUpdate2.Parameters.AddWithValue("@total", total);
                     cmdToUpdate2.ExecuteNonQuery();
 
                     string paymentID = $"PYM-{transactionID}";

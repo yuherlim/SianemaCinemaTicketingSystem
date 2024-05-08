@@ -87,6 +87,15 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlTableCell Total;
 
         /// <summary>
+        /// TotalAmountHiddenField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField TotalAmountHiddenField;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>

@@ -204,7 +204,7 @@
                 </div>
 
             </div>
-
+            <asp:HiddenField ID="TotalAmountHiddenField" runat="server" />
             <div class="card-details-fill-container">
                 <div class="form-group">
                     <asp:Label ID="Label1" runat="server">Name On Card</asp:Label>
