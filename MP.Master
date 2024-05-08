@@ -188,7 +188,7 @@
     <title></title>
 </head>
 <body>
-    <%--<form runat="server">--%>
+    <form runat="server">
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div class="container-fluid">
@@ -213,7 +213,7 @@
                     </ul>
                     <a class="btn btn-primary login-btn my-2 my-sm-0 mr-sm-2" href="Login.aspx" title="LOGIN" role="button">LOGIN</a>
                     <a class="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" href="Register.aspx" title="JOIN NOW" role="button">JOIN NOW</a>
-                    <%--<asp:Button ID="LogoutButton" runat="server" Text="LOGOUT" CssClass="btn btn-primary logout-btn" title="LOGOUT" OnClick="LogoutButton_Click" />--%>
+                    <asp:Button ID="LogoutButton" runat="server" Text="LOGOUT" CssClass="btn btn-primary logout-btn" title="LOGOUT" OnClick="LogoutButton_Click" />
 
 
                     <div class="dropdown show">
@@ -232,7 +232,7 @@
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
 
-    <%--</form>--%>
+    </form>
     <!-- footer -->
     <footer
         class="text-center text-lg-start text-white">

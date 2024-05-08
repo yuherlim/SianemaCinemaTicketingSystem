@@ -15,11 +15,11 @@ namespace SianemaCinemaTicketingSystem
 
         }
 
-        //protected void LogoutButton_Click(object sender, EventArgs e)
-        //{
-        //    // Call the logout method
-        //    LogoutUser();
-        //}
+        protected void LogoutButton_Click(object sender, EventArgs e)
+        {
+            // Call the logout method
+            LogoutUser();
+        }
 
         protected void LogoutUser()
         {
