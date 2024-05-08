@@ -99,12 +99,19 @@
             padding-top: 30px;
         }
 
-        .seat-wrapper {
+        .seat-wrapper-small {
             width: calc((100% - 13 * 10px) / 14); /* Calculate the width of each seat */
             display: flex;
             flex-direction: column;
             margin-bottom: 10px;
-        } 
+        }
+
+        .seat-wrapper-large {
+            width: calc((100% - 16 * 10px) / 17); /* Calculate the width of each seat */
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
 
         .seat-number {
             bottom: -20px;
@@ -126,7 +133,6 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form class="form1" runat="server">
         <div class="movie-seat-selection-navbar">
             <div class="movie-seat-selection-container">
                 <img src="logoSianema.png" alt="Logo" width="160" height="60" class="top-nav-logo">
@@ -136,10 +142,10 @@
                         <img src="./images/cinemaIcon/hall.png" width="20" height="20" class="icon-image" />
                         <p id="hallNum" runat="server" />
                         <img src="./images/cinemaIcon/date.png" width="20" height="20" class="icon-image" />
-                        /      
+                             
                         <p id="movieDate" runat="server" />
                         <img src="./images/cinemaIcon/time.png" width="20" height="20" class="icon-image" />
-                        /       
+                              
                         <p id="movieTime" runat="server" />
                     </div>
                 </div>
@@ -151,6 +157,7 @@
 
             <div class="selected-seat-display">
                 <h4 id="selectedSeat"></h4>
+                <asp:HiddenField ID="selectedSeatIDs" runat="server" ClientIDMode="Static"/>
             </div>
 
 
@@ -160,12 +167,8 @@
                     <p>Selected Seats</p>
                     <img src="./images/seatIcon/soldseat.png" alt="soldseat" width="20" height="20" />
                     <p>Sold</p>
-                    <img src="./images/seatIcon/unavailableseat.png" alt="unavailableseat" width="20" height="20" />
-                    <p>Unavailable</p>
                     <img src="./images/seatIcon/singleseat.png" alt="singleseat" width="20" height="20" />
                     <p>Single seat</p>
-                    <img src="./images/seatIcon/coupleseat.png" alt="coupleseat" width="20" height="20" />
-                    <p>Couple seat</p>
                 </div>
 
 
@@ -179,21 +182,20 @@
 
 
             <div class="seat-container">
-            <asp:Repeater ID="SeatRepeater" runat="server">
-                <ItemTemplate>
-                    <div class="seat-wrapper">
-                        <img class="seat" src="./images/seatIcon/<%# Eval("movieSeatStatus").ToString().ToLower() == "available" ? "singleseat" : "soldseat" %>.png" alt="<%# Eval("movieSeatRow") %><%# Eval("movieSeatNo") %>" commandargument='<%# Eval("movieSeatID") %>' />
-                        <span class="seat-number"><%# Eval("movieSeatRow") %><%# Eval("movieSeatNo") %></span>
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
+                <asp:Repeater ID="SeatRepeater" runat="server" OnItemDataBound="SeatRepeater_ItemDataBound">
+                    <ItemTemplate>
+                        <div id="seatWrapper" runat="server">
+                            <img class="seat" src="./images/seatIcon/<%# Eval("movieSeatStatus").ToString().ToLower() == "available" ? "singleseat" : "soldseat" %>.png" alt="<%# Eval("movieSeatRow") %><%# Eval("movieSeatNo") %>" commandargument='<%# Eval("movieSeatID") %>' />
+                            <span class="seat-number"><%# Eval("movieSeatRow") %><%# Eval("movieSeatNo") %></span>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
 
             <div class="continueButton-container">
                 <asp:Button ID="continueButton" runat="server" Text="Continue" CssClass="btn btn-outline-primary continueButton" OnClick="continueButton_Click" />
             </div>
         </section>
-    </form>
 </asp:Content>
 
 
@@ -205,20 +207,24 @@
                 if (image == "./images/seatIcon/singleseat.png") {
                     // Change src attribute of image
                     $(this).attr("src", "./images/seatIcon/selectedseat.png");
-                    $(this).addClass("selected-seat-id")
+                    $(this).addClass("selected-seat-no")
                 }
                 else if (image == "./images/seatIcon/selectedseat.png") {
                     // Change src attribute of image
                     $(this).attr("src", "./images/seatIcon/singleseat.png");
-                    $(this).removeClass("selected-seat-id")
+                    $(this).removeClass("selected-seat-no")
                 }
 
-                var selectedSeats = [];
-                $(".selected-seat-id").each(function () {
-                    selectedSeats.push($(this).attr("alt"));
+                var selectedSeatsNo = [];
+                var selectedSeatsID = [];
+                $(".selected-seat-no").each(function () {
+                    selectedSeatsNo.push($(this).attr("alt"));
+                    selectedSeatsID.push($(this).attr("commandargument"))
                 });
-                $("#selectedSeat").text(selectedSeats.join(", "));
+                $("#selectedSeat").text(selectedSeatsNo.join(", "));
+                $("#selectedSeatIDs").val(selectedSeatsID.join(",")); 
             });
         });
     </script>
 </asp:Content>
+
