@@ -11,34 +11,43 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class Register
+    public partial class TestLogin
     {
 
         /// <summary>
-        /// CreateUserWizard1 control.
+        /// LoginSianema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CreateUserWizard CreateUserWizard1;
+        protected global::System.Web.UI.WebControls.Login LoginSianema;
 
         /// <summary>
-        /// CreateUserWizardStep1 control.
+        /// LoginViewSianema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CreateUserWizardStep CreateUserWizardStep1;
+        protected global::System.Web.UI.WebControls.LoginView LoginViewSianema;
 
         /// <summary>
-        /// CompleteWizardStep1 control.
+        /// LoginNameSianema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompleteWizardStep CompleteWizardStep1;
+        protected global::System.Web.UI.WebControls.LoginName LoginNameSianema;
+
+        /// <summary>
+        /// LoginStatusSianema control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginStatus LoginStatusSianema;
     }
 }

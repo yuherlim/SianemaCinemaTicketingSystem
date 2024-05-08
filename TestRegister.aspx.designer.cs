@@ -11,7 +11,7 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class Register
+    public partial class TestRegister
     {
 
         /// <summary>

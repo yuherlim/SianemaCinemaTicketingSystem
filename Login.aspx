@@ -14,7 +14,7 @@
                     <div class="login-fields">
                         <h4>Welcome back!</h4>
                         <form runat="server">
-                            <asp:Login ID="Login" runat="server">
+                            <asp:Login ID="SianemaLogin" runat="server">
                                 <LayoutTemplate>
                                     <div class="form-group username-field">
                                         <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="UserName">Email address<span>
