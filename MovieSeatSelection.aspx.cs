@@ -129,6 +129,7 @@ namespace SianemaCinemaTicketingSystem
 
             // Redirect to the payment page with the necessary parameters
             string selectedSeatIDList = selectedSeatIDs.Value;
+            selectedSeatIDList = selectedSeatIDList.Replace("\r\n", "");
             Response.Redirect("Payment.aspx?selectedSeats=" + selectedSeatIDList + "&hallTimeSlotID=" + hallTimeSlotID + "&transactionID=" + transactionID);
         }
 

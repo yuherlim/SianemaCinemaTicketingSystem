@@ -158,7 +158,7 @@
 
             <div class="selected-seat-display">
                 <h4 id="selectedSeat"></h4>
-                <asp:HiddenField ID="selectedSeatIDs" runat="server" />
+                <asp:HiddenField ID="selectedSeatIDs" runat="server" ClientIDMode="Static"/>
             </div>
 
 
