@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,6 +16,23 @@ namespace SianemaCinemaTicketingSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if there is a logged-in user
+            if (User.Identity.IsAuthenticated)
+            {
+                // Check if the logged-in user belongs to the "Customer" role
+                if (Roles.IsUserInRole("Customer"))
+                {
+                    // Redirect the customer to the home page
+                    Response.Redirect("~/Homepage.aspx");
+                }
+                else if (Roles.IsUserInRole("Admin"))
+                {
+                    // Redirect the admin to the admin page
+                    Response.Redirect("~/Admin/AdminPage.aspx");
+                }
+                // You can add more role checks if needed
+            }
+
             if (!IsPostBack)
             {
                 // Check if a success message exists in session
@@ -25,6 +43,13 @@ namespace SianemaCinemaTicketingSystem
 
                     // Clear the session variable to prevent displaying the message again
                     Session.Remove("UserCreationSuccessMessage");
+                }
+
+                // Check if the "Remember Me" cookie exists
+                if (Request.Cookies["RememberMe"] != null)
+                {
+                    // Populate the email field with the stored value from the cookie
+                    Email.Text = Request.Cookies["RememberMe"].Value;
                 }
             }
         }
@@ -46,6 +71,9 @@ namespace SianemaCinemaTicketingSystem
             {
                 if (AuthenticateAdmin(email, password))
                 {
+                    // Set authentication cookie for admin user
+                    FormsAuthentication.SetAuthCookie(email, false);
+
                     Session["UserType"] = "Admin";
                     Response.Redirect("~/HallTimeSlot.aspx");
                 }
@@ -56,8 +84,15 @@ namespace SianemaCinemaTicketingSystem
             }
             else
             {
+                
                 if (AuthenticateUser(email, password))
                 {
+                    // Authenticate customer user
+                    string userId = GetUserIdByEmail(email); // Implement this method to retrieve the user's ID
+
+                    // Set authentication cookie for customer user using user ID
+                    FormsAuthentication.SetAuthCookie(userId, false);
+
                     Session["UserType"] = "Customer";
                     Response.Redirect("~/Homepage.aspx");
                 }
@@ -139,6 +174,22 @@ namespace SianemaCinemaTicketingSystem
                 byte[] hashedPasswordBytesWithSalt = sha256.ComputeHash(hashedPasswordBytes);
                 return Convert.ToBase64String(hashedPasswordBytesWithSalt);
             }
+        }
+
+        private string GetUserIdByEmail(string email)
+        {
+            string userId = "";
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                connection.Open();
+                string query = "SELECT custID FROM Customer WHERE custEmail = @Email";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    userId = (string)command.ExecuteScalar();
+                }
+            }
+            return userId;
         }
     }
 }
