@@ -15,51 +15,6 @@ namespace SianemaCinemaTicketingSystem
     {
 
         /// <summary>
-        /// SingleSeatPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatPrice;
-
-        /// <summary>
-        /// SingleSeatAmount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatAmount;
-
-        /// <summary>
-        /// CoupleSeatPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell CoupleSeatPrice;
-
-        /// <summary>
-        /// CoupleSeatAmount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell CoupleSeatAmount;
-
-        /// <summary>
-        /// SubTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell SubTotal;
-
-        /// <summary>
         /// viewTicketButton control.
         /// </summary>
         /// <remarks>

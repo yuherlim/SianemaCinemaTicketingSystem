@@ -60,13 +60,13 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl seatsId;
 
         /// <summary>
-        /// SingleSeatPrice control.
+        /// SingleSeatNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatPrice;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatNumber;
 
         /// <summary>
         /// SingleSeatAmount control.
@@ -78,31 +78,22 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatAmount;
 
         /// <summary>
-        /// CoupleSeatPrice control.
+        /// Total control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell CoupleSeatPrice;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell Total;
 
         /// <summary>
-        /// CoupleSeatAmount control.
+        /// TotalAmountHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell CoupleSeatAmount;
-
-        /// <summary>
-        /// SubTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell SubTotal;
+        protected global::System.Web.UI.WebControls.HiddenField TotalAmountHiddenField;
 
         /// <summary>
         /// Label1 control.
@@ -202,5 +193,14 @@ namespace SianemaCinemaTicketingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button PayButton;
+
+        /// <summary>
+        /// BackButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BackButton;
     }
 }

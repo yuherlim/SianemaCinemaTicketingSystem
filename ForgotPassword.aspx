@@ -10,21 +10,19 @@
             <div class="row">
                 <section class="forgot-password-block">
                     <span class="login-key"></span>
-                    <form runat="server">
-                        <div class="forgot-password-fields">
-                            <div class="description">
-                                <h2>Password Reset</h2>
-                                <p>Please enter your registered email address and we will send you a link to reset your password.</p>
-                            </div>
-                            <div class="form-group email-field">
-                                <label for="email">Email address<span>*</span></label>
-                                <asp:TextBox ID="Email" runat="server" CssClass="form-control" aria-describedby="emailHelp" type="email" placeholder="Enter email"></asp:TextBox>
-                            </div>
-                            <div class="send-reset-btn mb-5">
-                                <asp:Button ID="SendResetButton" runat="server" Text="SEND RESET EMAIL" CssClass="btn btn-primary send-reset-btn" title="SEND RESET EMAIL" />
-                            </div>
+                    <div class="forgot-password-fields">
+                        <div class="description">
+                            <h2>Password Reset</h2>
+                            <p>Please enter your registered email address and we will send you a link to reset your password.</p>
                         </div>
-                    </form>
+                        <div class="form-group email-field">
+                            <label for="email">Email address<span>*</span></label>
+                            <asp:TextBox ID="Email" runat="server" CssClass="form-control" aria-describedby="emailHelp" type="email" placeholder="Enter email"></asp:TextBox>
+                        </div>
+                        <div class="send-reset-btn mb-5">
+                            <asp:Button ID="SendResetButton" runat="server" Text="SEND RESET EMAIL" CssClass="btn btn-primary send-reset-btn" title="SEND RESET EMAIL" />
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>

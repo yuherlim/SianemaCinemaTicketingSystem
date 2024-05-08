@@ -15,6 +15,7 @@ namespace SianemaCinemaTicketingSystem
     {
 
         /// <summary>
+<<<<<<< HEAD
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -42,6 +43,8 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.Button btnSearchDate;
 
         /// <summary>
+=======
+>>>>>>> origin/master
         /// HallRepeater control.
         /// </summary>
         /// <remarks>

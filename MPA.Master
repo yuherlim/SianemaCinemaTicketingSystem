@@ -17,53 +17,82 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="js/admin/boostrap.min.js"></script>
     <script src="js/admin/popper.min.js"></script>
+<<<<<<< HEAD
     <script src="js/admin/boostrap-datepicker.min.js"></script>
     <script src="js/admin/flatpickr.min.js"></script>
     <script src="js/admin/select2.min.js"></script> 
     <script src="js/admin/mpa.js"></script>
+=======
+    <%--<script src="js/admin/bootstrap-datepicker.min.js"></script>--%>
+    <script src="js/admin/flatpickr.min.js"></script>
+    <script src="js/admin/select2.min.js"></script>
+    <script src="js/mpa.js"></script>
+>>>>>>> origin/master
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <form runat="server">
 
 
+<<<<<<< HEAD
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" id="navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="#!">
                 <img id="logo" src="logoSianemaAdmin.png" alt="Logo" width="160" height="60">
             </a>
 
+=======
+>>>>>>> origin/master
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="HallTimeSlot.aspx">Hall TimeSlot<span class="sr-only"></span></a>
-                    </li>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" id="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#!">
+                    <img id="logo" src="logoSianemaAdmin.png" alt="Logo" width="160" height="60">
+                </a>
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="Hall.aspx">Hall<span class="sr-only"></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ManageMovie.aspx">Movie<span class="sr-only"></span></a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="Maintenance.aspx">Maintenance</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="HallTimeSlot.aspx">Hall TimeSlot<span class="sr-only"></span></a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="Hall.aspx">Hall<span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ManageMovie.aspx">Movie<span class="sr-only"></span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="Maintenance.aspx">Maintenance</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="CustomerInquire.aspx">Customer Inquires</a>
+                        </li>
+                    </ul>
+                </div>
+                <asp:Button ID="LogoutButton" runat="server" Text="LOGOUT" CssClass="btnLogout btn btn-primary btn-sm" title="LOGOUT" OnClick="LogoutButton_Click" />
             </div>
+<<<<<<< HEAD
             <a class="btn btn-primary btn-sm" id="btnLogout" href="AdminLogin.aspx">Logout</a>
         </div>
     </nav>
+=======
+        </nav>
+>>>>>>> origin/master
 
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
 
-    <asp:ContentPlaceHolder ID="Js" runat="server">
-    </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="Js" runat="server">
+        </asp:ContentPlaceHolder>
 
-
+    </form>
 </body>
 </html>
+

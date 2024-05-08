@@ -13,50 +13,154 @@ namespace SianemaCinemaTicketingSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlConnection conn;
-            string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-            conn = new SqlConnection(strCon);
-            conn.Open();
-
-            string strToRetrieve = "Select * From Movie";
-
-            SqlCommand cmdToRetrieve;
-            cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
-
-            SqlDataReader movieDetailsReader = cmdToRetrieve.ExecuteReader();
-
-            if (movieDetailsReader.Read())
+            if (!IsPostBack)
             {
-                string imageUrl = movieDetailsReader["movieCoverPhoto"].ToString();
-                movieCoverPhoto.ImageUrl = imageUrl;
+                // Find the movieCoverPhoto control
+                Image movieCoverPhoto = (Image)MovieDetailsContainer.FindControl("movieCoverPhoto");
+                byte[] imageData;
+                List<DateTime> dates = new List<DateTime>();
 
-                movieName.InnerText = movieDetailsReader["movieName"].ToString();
-                movieGenre.InnerText = movieDetailsReader["movieGenre"].ToString();
-                movieLanguage.InnerText = movieDetailsReader["movieLanguage"].ToString();
-                movieSubtitle.InnerText = movieDetailsReader["movieSubtitle"].ToString();
-                movieCast.InnerText = movieDetailsReader["movieCast"].ToString();
-                movieDistributer.InnerText = movieDetailsReader["movieDistributor"].ToString();
-                movieSynopsis.InnerText = movieDetailsReader["movieSynopsis"].ToString();
+                DateTime currentDate = DateTime.Today;
 
+                // Add current date and the next six days to the list
+                for (int i = 0; i < 7; i++)
+                {
+                    dates.Add(currentDate.AddDays(i));
+                }
+
+                // Bind the list of dates to the repeater
+                dateRepeater.DataSource = dates;
+                dateRepeater.DataBind();
+
+                if (Request.QueryString["movieID"] != null)
+                {
+                    string movieID = Request.QueryString["movieID"];
+
+                    SqlConnection conn;
+                    string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                    conn = new SqlConnection(strCon);
+                    conn.Open();
+
+                    string strToRetrieve = "SELECT * FROM Movie WHERE movieID = @MovieID";
+
+                    SqlCommand cmdToRetrieve;
+                    cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
+                    cmdToRetrieve.Parameters.AddWithValue("@MovieID", movieID);
+
+                    SqlDataReader movieDetailsReader = cmdToRetrieve.ExecuteReader();
+
+                    if (movieDetailsReader.Read())
+                    {
+                        imageData = (byte[])movieDetailsReader["movieCoverPhoto"];
+                        string base64String = Convert.ToBase64String(imageData);
+                        movieCoverPhoto.ImageUrl = $"data:image/jpeg;base64, {base64String}";
+
+                        movieName.InnerText = movieDetailsReader["movieName"].ToString();
+                        movieGenre.InnerText = movieDetailsReader["movieGenre"].ToString();
+                        movieLanguage.InnerText = movieDetailsReader["movieLanguage"].ToString();
+                        movieDuration.InnerText = movieDetailsReader["movieDuration"].ToString();
+                        movieClassification.InnerText = movieDetailsReader["movieClassification"].ToString();
+                        movieSubtitle.InnerText = movieDetailsReader["movieSubtitle"].ToString();
+                        movieCast.InnerText = movieDetailsReader["movieCast"].ToString();
+                        releaseDate.InnerText = movieDetailsReader["releaseDate"].ToString();
+                        movieDistributer.InnerText = movieDetailsReader["movieDistributor"].ToString();
+                        movieSynopsis.InnerText = movieDetailsReader["movieSynopsis"].ToString();
+
+                    }
+
+                    movieDetailsReader.Close();
+                    conn.Close();
+
+                    // Check if the date query parameter exists
+                    if (Request.QueryString["date"] != null)
+                    {
+                        string selectedDate = Request.QueryString["date"];
+
+                        SqlConnection conn2;
+                        string strCon2 = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                        conn2 = new SqlConnection(strCon2);
+                        conn2.Open();
+
+                        string strToRetrieve2 = "SELECT * FROM HallTimeSlot WHERE movieID = @MovieID AND hallTimeSlotDate = @MovieDate AND hallTimeSlotPurpose = @hallPurpose";
+
+                        SqlCommand cmdToRetrieve2;
+                        cmdToRetrieve2 = new SqlCommand(strToRetrieve2, conn2);
+                        cmdToRetrieve2.Parameters.AddWithValue("@MovieID", movieID);
+                        cmdToRetrieve2.Parameters.AddWithValue("@hallPurpose", "Movie");
+                        cmdToRetrieve2.Parameters.AddWithValue("@MovieDate", selectedDate); // Assuming selectedDate contains the time slot
+
+                        SqlDataReader movieTimeReader = cmdToRetrieve2.ExecuteReader();
+
+                        // Check if the reader has rows
+                        if (movieTimeReader.HasRows)
+                        {
+                            movieTimeRepeater.DataSourceID = null;
+                            movieTimeRepeater.DataSource = movieTimeReader;
+                            movieTimeRepeater.DataBind();
+                            movieTimeReader.Close();
+                        }
+                    }
+                    else
+                    {
+                        // If date query parameter is not present, set the default date to the current date
+                        string defaultDate = currentDate.ToString("yyyy/MM/dd");
+                        string redirectUrl = $"MovieDetails.aspx?movieID={movieID}&date={defaultDate}";
+                        Response.Redirect(redirectUrl);
+                    }
+                }
             }
+            // Loop through the repeater items to find the selected or default date button
+            foreach (RepeaterItem item in dateRepeater.Items)
+            {
+                Button dateButton = item.FindControl("dateButton") as Button;
+                if (dateButton != null)
+                {
+                    // Get the date value from the button's CommandArgument
+                    string dateValue = dateButton.CommandArgument;
 
-            DateTime currentDate = DateTime.Today;
-
-             date1.Text = "Today\n" + currentDate.ToString("dd-MMM").ToUpper();
-             date2.Text = currentDate.AddDays(1).ToString("ddd\ndd-MMM").ToUpper();
-             date3.Text = currentDate.AddDays(2).ToString("ddd\ndd-MMM").ToUpper();
-             date4.Text = currentDate.AddDays(3).ToString("ddd\ndd-MMM").ToUpper();
-             date5.Text = currentDate.AddDays(4).ToString("ddd\ndd-MMM").ToUpper();
-             date6.Text = currentDate.AddDays(5).ToString("ddd\ndd-MMM").ToUpper();
-             date7.Text = currentDate.AddDays(6).ToString("ddd\ndd-MMM").ToUpper();
-
-            conn.Close();
+                    // Check if it matches the selected date or the default date
+                    if (Request.QueryString["date"] != null && dateValue == Request.QueryString["date"])
+                    {
+                        // Add a CSS class to style the selected date button differently
+                        dateButton.CssClass += " selected-date-button";
+                    }
+                    else if (Request.QueryString["date"] == null && dateValue == DateTime.Today.ToString("yyyy-MM-dd"))
+                    {
+                        // Add a CSS class to style the default date button differently
+                        dateButton.CssClass += " selected-date-button";
+                    }
+                }
+            }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Button_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MovieSeatSelection.aspx");
+            // Get the button that triggered the event
+            Button button = (Button)sender;
+
+            // Get the hallTimeSlotID from the CommandArgument property of the button
+            string hallTimeSlotID = button.CommandArgument;
+
+            // Redirect to MovieSeatSelection.aspx with hallTimeSlotID as a query parameter
+            Response.Redirect("MovieSeatSelection.aspx?hallTimeSlotID=" + hallTimeSlotID);
+        }
+
+
+
+        protected void DateButton_Click(object sender, EventArgs e)
+        {
+            // Handle button click event
+            Button button = (Button)sender;
+            string date = button.CommandArgument;
+
+            // Get the movieID from the query string
+            string movieID = Request.QueryString["movieID"];
+
+            // Redirect to MovieDetails.aspx with both movieID and date as query parameters
+            Response.Redirect($"MovieDetails.aspx?movieID={movieID}&date={date}");
         }
     }
 }
