@@ -89,6 +89,7 @@
     <Content Include="css\bootstrap4.5.2.min.css" />
     <Content Include="css\font-awesome4.7.0.min.css" />
     <Content Include="css\login.css" />
+    <Content Include="Global.asax" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
     <Content Include="js\admin\adminLogin.js" />
@@ -179,6 +180,9 @@
     </Compile>
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hall.aspx.cs">
       <DependentUpon>Hall.aspx</DependentUpon>

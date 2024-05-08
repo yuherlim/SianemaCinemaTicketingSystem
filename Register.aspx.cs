@@ -36,16 +36,16 @@ namespace SianemaCinemaTicketingSystem
             string custPhoneNo = MobileNumber.Text;
             string custEmail = Email.Text;
             string username = ExtractUsernameFromEmail(Email.Text);
-            string password = HashPassword(Password.Text);
             string securityQuestion = Question.Text; // Get security question from the form
-            string securityAnswer = HashSecurityAnswer(Answer.Text); // Hash security answer
-
+                                                     // Hash the password and security answer
+            (string hashedPassword, string passwordSalt) = HashPassword(Password.Text);
+            (string hashedAnswer, string answerSalt) = HashSecurityAnswer(Answer.Text);
 
             // Save the customer to the database
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand("INSERT INTO Customer (custID, custName, custPhoneNo, custEmail, custBirthDate, username, password, custProfilePic, custSecurityQuestion, custSecurityAnswer) VALUES (@custID, @custName, @custPhoneNo, @custEmail, @custBirthDate, @username, @password, @custProfilePic, @custSecurityQuestion, @custSecurityAnswer)", connection))
+                using (SqlCommand command = new SqlCommand("INSERT INTO Customer (custID, custName, custPhoneNo, custEmail, custBirthDate, username, password, custProfilePic, custSecurityQuestion, custSecurityAnswer, custPasswordSalt, custSecurityAnswerSalt) VALUES (@custID, @custName, @custPhoneNo, @custEmail, @custBirthDate, @username, @password, @custProfilePic, @custSecurityQuestion, @custSecurityAnswer, @custPasswordSalt, @custSecurityAnswerSalt)", connection))
                 {
                     command.Parameters.AddWithValue("@custID", custID);
                     command.Parameters.AddWithValue("@custName", custName);
@@ -53,7 +53,7 @@ namespace SianemaCinemaTicketingSystem
                     command.Parameters.AddWithValue("@custEmail", custEmail);
                     command.Parameters.AddWithValue("@custBirthDate", DBNull.Value);
                     command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", password);
+                    command.Parameters.AddWithValue("@password", hashedPassword);
 
                     // Explicitly defining the data type of @custProfilePic as VarBinary
                     SqlParameter custProfilePicParam = new SqlParameter("@custProfilePic", SqlDbType.VarBinary);
@@ -61,8 +61,10 @@ namespace SianemaCinemaTicketingSystem
                     command.Parameters.Add(custProfilePicParam);
 
                     // Add parameters for security question and answer
-                    command.Parameters.AddWithValue("@custSecurityQuestion", securityQuestion);
-                    command.Parameters.AddWithValue("@custSecurityAnswer", securityAnswer);
+                    command.Parameters.AddWithValue("@custSecurityQuestion", Question.Text);
+                    command.Parameters.AddWithValue("@custSecurityAnswer", hashedAnswer);
+                    command.Parameters.AddWithValue("@custPasswordSalt", passwordSalt);
+                    command.Parameters.AddWithValue("@custSecurityAnswerSalt", answerSalt);
 
                     command.ExecuteNonQuery();
                 }
@@ -76,7 +78,7 @@ namespace SianemaCinemaTicketingSystem
             }
 
             // Assign the "Customer" role to the new user
-            Roles.AddUserToRole(username, "Customer");
+            Roles.AddUserToRole(custID, "Customer");
 
             // Update label to indicate successful user creation
             Session["UserCreationSuccessMessage"] = "User created successfully. You can now login!";
@@ -84,7 +86,7 @@ namespace SianemaCinemaTicketingSystem
             Response.Redirect("Login.aspx");
         }
 
-        private string HashPassword(string password)
+        private (string hashedPassword, string salt) HashPassword(string password)
         {
             // Use a salted hash algorithm like PBKDF2
             byte[] salt = new byte[16];
@@ -101,11 +103,13 @@ namespace SianemaCinemaTicketingSystem
             using (SHA256 sha256 = SHA256.Create())
             {
                 byte[] hashedPasswordBytesWithSalt = sha256.ComputeHash(hashedPasswordBytes);
-                return Convert.ToBase64String(hashedPasswordBytesWithSalt);
+                string hashedPassword = Convert.ToBase64String(hashedPasswordBytesWithSalt);
+                string saltString = Convert.ToBase64String(salt);
+                return (hashedPassword, saltString);
             }
         }
 
-        private string HashSecurityAnswer(string answer)
+        private (string hashedAnswer, string salt) HashSecurityAnswer(string answer)
         {
             // Use a salted hash algorithm like PBKDF2
             byte[] salt = new byte[16];
@@ -122,7 +126,9 @@ namespace SianemaCinemaTicketingSystem
             using (SHA256 sha256 = SHA256.Create())
             {
                 byte[] hashedAnswerBytesWithSalt = sha256.ComputeHash(hashedAnswerBytes);
-                return Convert.ToBase64String(hashedAnswerBytesWithSalt);
+                string hashedAnswer = Convert.ToBase64String(hashedAnswerBytesWithSalt);
+                string saltString = Convert.ToBase64String(salt);
+                return (hashedAnswer, saltString);
             }
         }
 

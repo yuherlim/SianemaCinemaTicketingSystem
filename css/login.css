@@ -77,6 +77,10 @@ main.login section.login-block div.login-fields table {
   width: 100%;
 }
 
+main.login section.login-block div.login-fields div.login-validation-msg {
+  margin-bottom: 1rem;
+}
+
 main.login section.login-block div.login-fields div.login-validation-msg ul li {
   color: var(--validation-red);
 }
@@ -151,6 +155,10 @@ main.login section.image-block div.testing-image img {
 .success-label {
   color: var(--green);
   font-size: 1.5rem;
+}
+
+.error-msg-label {
+  color: var(--validation-red);
 }
 
 /* desktop styles start */

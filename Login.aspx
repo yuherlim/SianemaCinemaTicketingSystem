@@ -60,12 +60,15 @@
 
                             <div class="login-validation-msg">
                                 <asp:ValidationSummary ID="ValidationSummary" runat="server" ValidationGroup="Login" />
+                                <asp:Label ID="lblErrorMessage" runat="server" Text="" CssClass="error-msg-label"></asp:Label>
                             </div>
+
+                            
 
                             <div class="btn-group">
                                 <div class="login-btn-row mb-5">
                                     <%--<button type="submit" class="btn btn-primary login-btn" title="LOGIN">LOGIN</button>--%>
-                                    <asp:Button ID="LoginButton" runat="server" Text="LOGIN" CssClass="btn btn-primary login-btn" title="LOGIN" ValidationGroup="Login" />
+                                    <asp:Button ID="LoginButton" runat="server" Text="LOGIN" CssClass="btn btn-primary login-btn" title="LOGIN" ValidationGroup="Login" OnClick="LoginButton_Click" />
                                     <a href="./ForgotPassword.aspx" class="forget-password" title="Forgot Password?">Forgot Password?</a>
                                 </div>
 
