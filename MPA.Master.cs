@@ -18,6 +18,9 @@ namespace SianemaCinemaTicketingSystem
 
         protected void LogoutUser()
         {
+            // Remove the session variable for user type
+            Session.Remove("UserType");
+
             // Sign out the user
             FormsAuthentication.SignOut();
 

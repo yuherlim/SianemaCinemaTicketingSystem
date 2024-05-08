@@ -95,6 +95,7 @@ namespace SianemaCinemaTicketingSystem
                     FormsAuthentication.SetAuthCookie(userId, false);
 
                     Session["UserType"] = "Customer";
+                    Session["UserId"] = userId;
                     Response.Redirect("~/Homepage.aspx");
                 }
                 else
