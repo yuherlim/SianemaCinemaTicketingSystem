@@ -50,11 +50,11 @@
 
                         </div>
 
-                        <div class="form-check mb-2">
                             <%--<input type="checkbox" class="form-check-input" id="rememberMe">--%>
+                        <%--<div class="form-check mb-2">
                             <asp:CheckBox ID="RememberMe" runat="server" Text="Remember Me" />
+                        </div>--%>
                             <%--<label class="form-check-label" for="rememberMe">Remember Me</label>--%>
-                        </div>
 
                         <div class="login-validation-msg">
                             <asp:ValidationSummary ID="ValidationSummary" runat="server" ValidationGroup="Login" />

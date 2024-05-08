@@ -30,7 +30,7 @@ namespace SianemaCinemaTicketingSystem
                 else if (userType == "Admin")
                 {
                     // Redirect the admin to the admin page
-                    Response.Redirect("~/Admin/AdminPage.aspx");
+                    Response.Redirect("~/HallTimeSlot.aspx");
                 }
             }
 
@@ -46,12 +46,6 @@ namespace SianemaCinemaTicketingSystem
                     Session.Remove("UserCreationSuccessMessage");
                 }
 
-                // Check if the "Remember Me" cookie exists
-                if (Request.Cookies["RememberMe"] != null)
-                {
-                    // Populate the email field with the stored value from the cookie
-                    Email.Text = Request.Cookies["RememberMe"].Value;
-                }
             }
         }
 
