@@ -16,10 +16,10 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="js/admin/bootstrap.min.js"></script>
     <script src="js/admin/popper.min.js"></script>
-    <script src="js/admin/bootstrap-datepicker.min.js"></script>
+    <%--<script src="js/admin/bootstrap-datepicker.min.js"></script>--%>
     <script src="js/admin/flatpickr.min.js"></script>
     <script src="js/admin/select2.min.js"></script>
-    <script src="js/admin/mpa.js"></script>
+    <script src="js/mpa.js"></script>
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -33,7 +33,7 @@
             <a class="navbar-brand" href="#!">
                 <img id="logo" src="logoSianemaAdmin.png" alt="Logo" width="160" height="60">
             </a>
-          
+
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -51,9 +51,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="Maintenance.aspx">Maintenance</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="CustomerInquire.aspx">Customer Inquires</a>
+                    </li>
                 </ul>
             </div>
-            <a class="btn btn-primary btn-sm"  id="btnLogout" href="AdminLogin.aspx" >Logout</a>
+            <a class="btn btn-primary btn-sm" id="btnLogout" href="AdminLogin.aspx">Logout</a>
         </div>
     </nav>
 
@@ -66,3 +70,4 @@
 
 </body>
 </html>
+

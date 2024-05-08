@@ -58,9 +58,6 @@ div.row {
     border-collapse: separate !important;
 }
 
-tbody tr:first-child {
-    display: none;
-}
 
 .header {
     position: sticky; /* make the table heads sticky */
@@ -70,9 +67,7 @@ tbody tr:first-child {
     font-size: 14px
 }
 
-.hallName, .hallType, .numberOfSeats {
-    width: 25%;
-}
+
 
 .border {
     height: 2px;
@@ -96,17 +91,17 @@ td {
 }
 
 
+.contactName, .custInqID {
+    width: 75%;
+}
 
-.btnViewHall, .btnRemoveHall {
+
+.btnViewCustInq {
     background-color: var(--green);
     width: 70px;
     color: black;
 }
 
-.btnAdd {
-    background-color: var(--green);
-    color: black;
-}
 
 .btn-primary:hover {
     color: #fff;
@@ -161,7 +156,7 @@ td {
 }
 
 .modalText {
-    width: 120px;
+    width: 220px;
 }
 
 
@@ -169,6 +164,10 @@ td {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.modalDesc {
+    width: 60%;
 }
 
 .row2Section1, .row2Section2 {
@@ -185,17 +184,6 @@ td {
     margin-bottom: 16px;
 }
 
-.movImage {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-#movPosterImage {
-    height: 150px;
-    width: 100px;
-    background-color: aqua;
-}
 
 #movCoverPhotoImage {
     height: 125px;
@@ -215,12 +203,11 @@ td {
     color: black;
 }
 
-#hallImage {
+#upFile {
     height: 300px;
     width: 400px;
 }
 
-.modalRow3 {
-    justify-content: center;
-    margin-bottom: 15px;
+#email {
+    color: blue;
 }
