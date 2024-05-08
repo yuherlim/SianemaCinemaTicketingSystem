@@ -15,15 +15,13 @@
             </section>
             <section class="register-fields-row">
                 <form runat="server">
-                    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server">
+                    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser">
                         <WizardSteps>
                             <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
                                 <ContentTemplate>
                                     <div class="field-group">
                                         <div class="row">
 
-                                            <td align="right"></td>
-                                            <td></td>
 
                                             <div class="col username-field">
                                                 <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name<span>
@@ -87,6 +85,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row">
+
                                             <div class="col security-question-field">
                                                 <asp:Label ID="QuestionLabel" runat="server" AssociatedControlID="Question">Security Question<span>
                                                     <asp:RequiredFieldValidator ID="QuestionRequired" runat="server" ControlToValidate="Question" ErrorMessage="Security question is required." ToolTip="Security question is required." Display="Dynamic" ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
@@ -113,8 +114,8 @@
                                             <li>Contain minimum 8 characters.</li>
                                             <li>Include at least one number and symbol.</li>
                                             <li>Include both lower and upper case letters.</li>
-                                            <li>
-                                                <asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match." ValidationGroup="CreateUserWizard1"></asp:CompareValidator></li>
+                                            <li><asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match." ValidationGroup="CreateUserWizard1"></asp:CompareValidator></li>
+                                            <li><asp:Literal ID="ErrorMessage" runat="server" EnableViewState="False"></asp:Literal></li>
                                             <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="CreateUserWizard1" />
                                         </ul>
                                     </div>
@@ -123,7 +124,9 @@
                                         <div class="register-btn-container">
                                             <%--<button type="submit" class="btn btn-primary register-btn" title="REGISTER">REGISTER</button>--%>
                                             <%--<asp:Button ID="RegisterButton" runat="server" Text="REGISTER" CssClass="btn btn-primary register-btn" title="REGISTER" ValidationGroup="CreateUserWizard1" />--%>
-                                            <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="REGISTER" CssClass="btn btn-primary register-btn" title="REGISTER" ValidationGroup="CreateUserWizard1" />
+                                            <customnavigationtemplate>
+                                                <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="REGISTER" CssClass="btn btn-primary register-btn" title="REGISTER" ValidationGroup="CreateUserWizard1" />
+                                            </customnavigationtemplate>
                                         </div>
                                         <p>Already Member?</p>
                                         <div class="login-btn-container">
@@ -131,6 +134,7 @@
                                         </div>
                                     </div>
                                 </ContentTemplate>
+
                             </asp:CreateUserWizardStep>
                             <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
                             </asp:CompleteWizardStep>

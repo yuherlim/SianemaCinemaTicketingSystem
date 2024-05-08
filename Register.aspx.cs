@@ -29,52 +29,54 @@ namespace SianemaCinemaTicketingSystem
                 // Extract form data using a more robust approach
                 var formData = new
                 {
-                    CustName = CreateUserWizard1.UserName,
                     CustPhoneNo = GetCustPhoneNoFromForm(),
                     CustEmail = CreateUserWizard1.Email,
-                    CustBirthDate = GetCustBirthDateFromForm(),
                     Username = CreateUserWizard1.UserName,
                     Password = HashPassword(CreateUserWizard1.Password),
-                    CustProfilePic = GetCustProfilePicFromForm()
                 };
 
                 // Create a new customer object in the database
                 using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
                 {
                     connection.Open();
+                    string custID = GenerateCustID();
                     using (var command = new SqlCommand("INSERT INTO Customer (custID, custName, custPhoneNo, custEmail, custBirthDate, username, password, custProfilePic) VALUES (@custID, @custName, @custPhoneNo, @custEmail, @custBirthDate, @username, @password, @custProfilePic)", connection))
                     {
-                        command.Parameters.AddWithValue("@custID", Guid.NewGuid().ToString()); // Generate a unique custID
-                        command.Parameters.AddWithValue("@custName", formData.CustName);
+                        command.Parameters.AddWithValue("@custID", custID);
+                        command.Parameters.AddWithValue("@custName", string.Empty);
                         command.Parameters.AddWithValue("@custPhoneNo", formData.CustPhoneNo);
                         command.Parameters.AddWithValue("@custEmail", formData.CustEmail);
-                        command.Parameters.AddWithValue("@custBirthDate", formData.CustBirthDate);
+                        command.Parameters.AddWithValue("@custBirthDate", DBNull.Value);
                         command.Parameters.AddWithValue("@username", formData.Username);
                         command.Parameters.AddWithValue("@password", formData.Password);
-                        command.Parameters.AddWithValue("@custProfilePic", formData.CustProfilePic);
+                        command.Parameters.AddWithValue("@custProfilePic", DBNull.Value);
                         command.ExecuteNonQuery();
                     }
                 }
             }
         }
 
-        // Helper methods to extract form data
+        // Helper method to generate custID in the requested format
+        private string GenerateCustID()
+        {
+            string custID = "CUST-" + DateTime.Now.ToString("yyMMdd") + "-";
+            int num = 1;
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("SELECT COUNT(*) FROM Customer WHERE custID LIKE '" + custID + "%'", connection))
+                {
+                    num += (int)command.ExecuteScalar();
+                }
+            }
+            return custID + num.ToString("D5");
+        }
+
+        // Helper method to extract custPhoneNo from form
         private string GetCustPhoneNoFromForm()
         {
-            var custPhoneNoTextBox = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("CustPhoneNo");
+            var custPhoneNoTextBox = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("MobileNumber");
             return custPhoneNoTextBox?.Text.Trim();
-        }
-
-        private DateTime GetCustBirthDateFromForm()
-        {
-            var custBirthDateTextBox = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("CustBirthDate");
-            return Convert.ToDateTime(custBirthDateTextBox?.Text.Trim());
-        }
-
-        private byte[] GetCustProfilePicFromForm()
-        {
-            var custProfilePicFileUpload = (FileUpload)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("CustProfilePic");
-            return custProfilePicFileUpload?.FileBytes;
         }
 
         // Helper method to hash and store password securely
