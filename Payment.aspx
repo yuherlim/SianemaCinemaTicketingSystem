@@ -157,6 +157,7 @@
             </div>
         </div>
 
+        <asp:Timer ID="Timer1" runat="server" Interval="300000" OnTick="Timer1_Tick"></asp:Timer>
 
         <section class="payment-container">
             <div class="payment-body">

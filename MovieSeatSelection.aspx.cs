@@ -10,7 +10,6 @@ namespace SianemaCinemaTicketingSystem
     public partial class MovieSeatSelection : System.Web.UI.Page
     {
         string hallType = "";
-        string hallTimeSlotID = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +17,8 @@ namespace SianemaCinemaTicketingSystem
             {
                 if (Request.QueryString["hallTimeSlotID"] != null)
                 {
-                    hallTimeSlotID = Request.QueryString["hallTimeSlotID"];
+                    string hallTimeSlotID = Request.QueryString["hallTimeSlotID"];
+                    continueButton.CommandArgument = hallTimeSlotID;
 
                     SqlConnection conn;
                     string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -99,6 +99,8 @@ namespace SianemaCinemaTicketingSystem
 
         protected void continueButton_Click(object sender, EventArgs e)
         {
+
+            string hallTimeSlotID = (string)((Button)sender).CommandArgument;
             string transactionID = GenerateTransactionID();
             string custID = (string)Session["custId"];
             DateTime transactionDateTime = DateTime.Now;
