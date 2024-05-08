@@ -17,17 +17,12 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="js/admin/boostrap.min.js"></script>
     <script src="js/admin/popper.min.js"></script>
-<<<<<<< HEAD
+
     <script src="js/admin/boostrap-datepicker.min.js"></script>
     <script src="js/admin/flatpickr.min.js"></script>
     <script src="js/admin/select2.min.js"></script> 
     <script src="js/admin/mpa.js"></script>
-=======
-    <%--<script src="js/admin/bootstrap-datepicker.min.js"></script>--%>
-    <script src="js/admin/flatpickr.min.js"></script>
-    <script src="js/admin/select2.min.js"></script>
-    <script src="js/mpa.js"></script>
->>>>>>> origin/master
+
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -37,15 +32,13 @@
     <form runat="server">
 
 
-<<<<<<< HEAD
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" id="navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="#!">
                 <img id="logo" src="logoSianemaAdmin.png" alt="Logo" width="160" height="60">
             </a>
 
-=======
->>>>>>> origin/master
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" id="navbar">
             <div class="container-fluid">
@@ -78,13 +71,8 @@
                 </div>
                 <asp:Button ID="LogoutButton" runat="server" Text="LOGOUT" CssClass="btnLogout btn btn-primary btn-sm" title="LOGOUT" OnClick="LogoutButton_Click" />
             </div>
-<<<<<<< HEAD
-            <a class="btn btn-primary btn-sm" id="btnLogout" href="AdminLogin.aspx">Logout</a>
-        </div>
-    </nav>
-=======
-        </nav>
->>>>>>> origin/master
+
+
 
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
