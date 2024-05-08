@@ -87,7 +87,7 @@ main.register section.register-fields-row form div.row div.confirm-password-fiel
 
 
 main.register section.register-fields-row form div.row div.col label span {
-  color: red;
+  color: var(--validation-red);
 }
 
 main.register section.register-fields-row form div.btn-group {
@@ -99,12 +99,20 @@ main.register section.register-fields-row form div.password-info-block {
   margin-bottom: 30px;
 }
 
+main.register section.register-fields-row form div.password-info-block div.register-validation-msg {
+  color: var(--validation-red);
+}
+
 main.register section.register-fields-row form div.password-info-block h3.password-info-title {
   margin-bottom: 1rem;
 }
 
-main.register section.register-fields-row form div.password-info-block ul.password-info li {
+main.register section.register-fields-row form div.password-info-block ul li {
   margin-bottom: 0.5rem;
+}
+
+main.register section.register-fields-row form div.password-info-block ul li span {
+  color: var(--validation-red);
 }
 
 main.register section.register-fields-row form div.btn-group > * {
