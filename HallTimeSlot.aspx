@@ -8,7 +8,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<<<<<<< HEAD
+
 
     <form id="form1" runat="server">
         <div class="container">
@@ -23,22 +23,12 @@
                             <asp:Button runat="server" ClientIDMode="Static" ID="btnSearchDate" CssClass="btn btn-primary btn-sm btnAdd" OnClick="btnSearchDate_Click"
                                 Text="Search" />
                         </div>
-=======
-    <div class="container">
-        <div class="card card-fluid">
-            <div id="row1" class="card-header row">
-                <span class="row1Space">Manage Hall TimeSlot</span>
-                <div class="mb-3 selectDate" id="selectDate">
-                    <div class="input-group selectDate-input">
-                        <input id="tpSelectDate" type="text" class="form-control" placeholder="23-03-2024" />
-                        <span class="input-group-text"><i class="ri-time-line"></i></span>
->>>>>>> origin/master
+
                     </div>
                 </div>
             </div>
 
 
-<<<<<<< HEAD
                 <div id="row2" class="row">
                     <asp:Repeater ID="HallRepeater" runat="server" OnItemDataBound="HallRepeater_ItemDataBound" DataSourceID="SqlDataSource2">
                         <ItemTemplate>
@@ -83,79 +73,9 @@
                                             </div>
                                         </ItemTemplate>
                                     </asp:Repeater>
-=======
-            <div id="row2" class="row">
-                <asp:Repeater ID="HallRepeater" runat="server" OnItemDataBound="HallRepeater_ItemDataBound" DataSourceID="SqlDataSource2">
-                    <ItemTemplate>
-                        <div class="parentRptContainer">
-                            <div class="hallName">
-                                <%# Eval("HallName") %>
-                            </div>
-                            <div class="hallType">
-                                <%# Eval("HallType") %>
-                            </div>
-                            <div class="addTimeSlot">
-                                <asp:Button ID="btnAddTimeSlot" runat="server" ClientIDMode="static" CssClass="btn btn-primary btnAdd" Text="Add TimeSlot" OnClick="btnAddTimeSlot_Click" />
-                            </div>
-
-
-                        </div>
-                        <div class="childRptContainer">
-                            <div class="childRptHeader">
-                                <div class="timeSlotHeader">10:00am</div>
-                                <div class="timeSlotHeader">11:00am</div>
-                                <div class="timeSlotHeader">12:00pm</div>
-                                <div class="timeSlotHeader">01:00pm</div>
-                                <div class="timeSlotHeader">02:00pm</div>
-                                <div class="timeSlotHeader">03:00pm</div>
-                                <div class="timeSlotHeader">04:00pm</div>
-                                <div class="timeSlotHeader">05:00pm</div>
-                                <div class="timeSlotHeader">06:00pm</div>
-                                <div class="timeSlotHeader">07:00pm</div>
-                                <div class="timeSlotHeader">08:00pm</div>
-                                <div class="timeSlotHeader">09:00pm</div>
-                                <div class="timeSlotHeader">10:00pm</div>
-                                <div class="timeSlotHeader">11:00pm</div>
-                                <div class="timeSlotHeader">12:00am</div>
-                                <div class="timeSlotHeader">01:00am</div>
-                                <div class="timeSlotHeader">02:00am</div>
-                            </div>
-                            <div class="childRptBody">
-                                <asp:Repeater ID="TimeSlotRepeater" runat="server">
-                                    <ItemTemplate>
-                                        <div class="timeSlot">
-                                            <span class="timeSlotMovieName"><%# Eval("movieName") %></span>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Hall]"></asp:SqlDataSource>
-
-            </div>
-
-            <!-- Movie Modal -->
-            <div class="modal fade" id="modalMovie" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalTitle">View Movie</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="modalRowID" class="modalRow1 modalRow">
-                                <div class="modalText">Movie ID</div>
-                                <div class="modalColon">: </div>
-                                <div id="modalID">
-                                    MOV-310324-0001
->>>>>>> origin/master
                                 </div>
                             </div>
 
-<<<<<<< HEAD
                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Hall]"></asp:SqlDataSource>
 
                 </div>
@@ -307,47 +227,15 @@
                                                 <option value="Jason Statham">Jason Statham</option>
                                                 <option value="Vin Diesel">Vin Diesel</option>
                                                 <option value="Dwayne Johnson">Dwayne Johnson</option>
-=======
-                            <div class="modalRow2 modalRow">
-                                <section class="row2Section1">
-                                    <div class="mb-3 movName">
-                                        <label for="txtName" class="form-label">Name</label>
-                                        <asp:TextBox ID="txtName" CssClass="form-control modalInputField" runat="server" ClientIDMode="Static"></asp:TextBox>
-                                    </div>
-
-                                    <div class="mb-3 movGenre">
-                                        <label for="sltGenre" class="form-label">Movie Genre</label><br />
-                                        <select id="sltGenre" class="select2 form-control select2-multiple sltGenre modalInputField" data-toggle="select2" multiple="multiple" data-placeholder="Choose ..." tabindex="-1" aria-hidden="true">
-                                            <optgroup label="Genre">
-                                                <option value="Action">Action</option>
-                                                <option value="Adventure">Adventure</option>
-                                                <option value="Comedy">Comedy</option>
-                                                <option value="Fantasy">Fantasy</option>
-                                                <option value="Horror">Horror</option>
-                                                <option value="Romance">Romance</option>
->>>>>>> origin/master
                                             </optgroup>
                                         </select>
                                         <asp:HiddenField runat="server" ClientIDMode="Static" ID="movCastValue"></asp:HiddenField>
                                     </div>
 
-<<<<<<< HEAD
                                     <div class="mb-3 movSypnosis">
                                         <label for="txtSypnosis" class="form-label">Movie Sypnosis</label>
                                         <textarea class="form-control modalInputField" id="txtSypnosis" rows="5" runat="server" clientidmode="static"></textarea>
                                         <asp:HiddenField runat="server" ClientIDMode="Static" ID="movSynopsisValue"></asp:HiddenField>
-=======
-                                    <div class="mb-3 movClassification">
-                                        <label for="sltClass" class="form-label">Movie Classification</label><br />
-                                        <select id="sltClass" class="select2 form-control select2-multiple sltGenre modalInputField" data-toggle="select2" data-placeholder="Choose ..." tabindex="-1" aria-hidden="true">
-                                            <option value="U">U</option>
-                                            <option value="P12">P12</option>
-                                            <option value="13">13</option>
-                                            <option value="16">16</option>
-                                            <option value="18">18</option>
-
-                                        </select>
->>>>>>> origin/master
                                     </div>
 
                                     <div class="mb-3 movLanguage">
@@ -392,15 +280,12 @@
                                             <label for="fuPoster" class="form-label">Movie Poster</label>
                                             <asp:FileUpload ID="fuPoster" class="form-control modalInputField" runat="server" ClientIDMode="static" />
 
-<<<<<<< HEAD
                                     <div class="mb-3 movScreenUntil">
                                         <label class="form-label">Movie Screen Until</label>
                                         <div class="input-group">
                                             <input id="tpScreenUntil" type="text" class="form-control modalInputField" placeholder="23-03-2024" />
                                             <span class="input-group-text"><i class="ri-time-line"></i></span>
                                             <asp:HiddenField runat="server" ClientIDMode="Static" ID="movScreenUntilValue"></asp:HiddenField>
-=======
->>>>>>> origin/master
                                         </div>
 
                                         <div class="movImage">
@@ -453,7 +338,6 @@
                                         </optgroup>
                                     </select>
                                 </div>
-<<<<<<< HEAD
                                 <div class="hallTimeSlotRow">
                                     <div class="hallDetailContainer">
                                         <div class="hallName">
@@ -493,23 +377,6 @@
                                             </asp:Repeater>
                                             <asp:HiddenField runat="server" ID="onScreenMovieListValue" ClientIDMode="Static"></asp:HiddenField>
                                         </div>
-=======
-
-                                <div class="mb-3 movSypnosis">
-                                    <label for="txtSypnosis" class="form-label">Movie Sypnosis</label>
-                                    <textarea class="form-control modalInputField" id="txtSypnosis" rows="5" runat="server" clientidmode="static"></textarea>
-                                </div>
-
-                            </div>
-
-                            <div class="modalRow5 modalRow">
-
-                                <div class="mb-3 movScreenFrom">
-                                    <label class="form-label">Movie Screen From</label>
-                                    <div class="input-group">
-                                        <input id="tpScreenFrom" type="text" class="form-control modalInputField" placeholder="23-03-2024" />
-                                        <span class="input-group-text"><i class="ri-time-line"></i></span>
->>>>>>> origin/master
                                     </div>
                                 </div>
 
