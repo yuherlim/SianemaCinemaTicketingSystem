@@ -11,43 +11,43 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class MPA
+    public partial class TestLogin
     {
 
         /// <summary>
-        /// head control.
+        /// LoginSianema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.Login LoginSianema;
 
         /// <summary>
-        /// LogoutButton control.
+        /// LoginViewSianema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LogoutButton;
+        protected global::System.Web.UI.WebControls.LoginView LoginViewSianema;
 
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// LoginNameSianema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.LoginName LoginNameSianema;
 
         /// <summary>
-        /// Js control.
+        /// LoginStatusSianema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Js;
+        protected global::System.Web.UI.WebControls.LoginStatus LoginStatusSianema;
     }
 }

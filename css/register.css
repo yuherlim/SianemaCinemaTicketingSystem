@@ -12,7 +12,7 @@ section {
   margin: initial;
 }
 
-.form-control:focus {
+.-control:focus {
   border-color: var(--green);
   box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
 }
@@ -62,68 +62,82 @@ main.register section.title-row div.register-title-block span.register-key::befo
 
 /* section.register-fields-row start */
 
-main.register section.register-fields-row form div.field-group {
+main.register section.register-fields-row table {
+  width: 100%;
+}
+
+main.register section.register-fields-row div.field-group {
   margin-bottom: 60px;
 }
 
-main.register section.register-fields-row form div.row div.col {
+main.register section.register-fields-row div.row div.col {
   flex-basis: 100%;
   margin-bottom: 30px;
 }
 
-main.register section.register-fields-row form div.row div.password-field a,
-main.register section.register-fields-row form div.row div.confirm-password-field a {
+main.register section.register-fields-row div.row div.password-field a,
+main.register section.register-fields-row div.row div.confirm-password-field a {
   color: var(--gray);
 }
 
-main.register section.register-fields-row form div.row div.password-field a:hover,
-main.register section.register-fields-row form div.row div.confirm-password-field a:hover {
+main.register section.register-fields-row div.row div.password-field a:hover,
+main.register section.register-fields-row div.row div.confirm-password-field a:hover {
   color: var(--green);
 }
 
 
-main.register section.register-fields-row form div.row div.col label span {
-  color: red;
+main.register section.register-fields-row div.row div.col label span {
+  color: var(--validation-red);
 }
 
-main.register section.register-fields-row form div.btn-group {
+main.register section.register-fields-row div.btn-group {
   display: flex;
   flex-direction: column;
 }
 
-main.register section.register-fields-row form div.password-info-block {
+main.register section.register-fields-row div.password-info-block {
   margin-bottom: 30px;
 }
 
-main.register section.register-fields-row form div.password-info-block h3.password-info-title {
+main.register section.register-fields-row div.password-info-block div.register-validation-msg {
+  color: var(--validation-red);
+}
+
+main.register section.register-fields-row div.password-info-block h3.password-info-title {
   margin-bottom: 1rem;
 }
 
-main.register section.register-fields-row form div.password-info-block ul.password-info li {
+main.register section.register-fields-row div.password-info-block ul li {
   margin-bottom: 0.5rem;
 }
 
-main.register section.register-fields-row form div.btn-group > * {
+main.register section.register-fields-row div.password-info-block ul li span {
+  color: var(--validation-red);
+}
+
+main.register section.register-fields-row div.btn-group > * {
   flex: 0 1 auto;
 }
 
-main.register section.register-fields-row form div.btn-group div.register-btn-container {
+main.register section.register-fields-row div.btn-group div.register-btn-container {
   margin-bottom: 30px;
 }
 
-main.register section.register-fields-row form div.btn-group div.register-btn-container .register-btn {
+main.register section.register-fields-row div.btn-group div.register-btn-container .register-btn {
   font-size: 14px;
   font-weight: 700;
   line-height: 40px;
   padding: 0px 20px;
 }
 
-main.register section.register-fields-row form div.btn-group div.login-btn-container .login-btn {
+main.register section.register-fields-row div.btn-group div.login-btn-container .login-btn {
   font-size: 14px;
   font-weight: 700;
   line-height: 40px;
   padding: 0 15px;
 }
+
+
 
 /* section.register-fields-row end */
 
@@ -132,22 +146,22 @@ main.register section.register-fields-row form div.btn-group div.login-btn-conta
 @media only screen and (min-width: 1000px) {
   /* section.register-fields-row start */
 
-  main.register section.register-fields-row form div.row {
+  main.register section.register-fields-row div.row {
     margin-bottom: 30px;
   }
 
-  main.register section.register-fields-row form div.row div.col {
+  main.register section.register-fields-row div.row div.col {
     flex-basis: 0;
     margin-bottom: 0;
   }
 
-  main.register section.register-fields-row form div.btn-group div.register-btn-container .register-btn {
+  main.register section.register-fields-row div.btn-group div.register-btn-container .register-btn {
     font-size: 22px;
     line-height: 46px;
     padding: 0px 35px;
   }
 
-  main.register section.register-fields-row form div.btn-group div.login-btn-container .login-btn {
+  main.register section.register-fields-row div.btn-group div.login-btn-container .login-btn {
     font-size: 18px;
     line-height: 46px;
     padding: 0 25px;

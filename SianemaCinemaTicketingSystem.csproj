@@ -53,6 +53,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -74,7 +75,9 @@
     </Content>
     <Content Include="ContactUs.aspx" />
     <Content Include="css\admin\adminLogin.css" />
+    <Content Include="css\admin\boostrap5.3.3.css" />
     <Content Include="css\admin\bootstrap-datepicker.min.css" />
+    <Content Include="css\admin\custInq.css" />
     <Content Include="css\admin\flatpickr.min.css" />
     <Content Include="css\admin\font-awesome.min.css" />
     <Content Include="css\admin\hall.css" />
@@ -86,13 +89,24 @@
     <Content Include="css\admin\select2.min.css" />
     <Content Include="css\bootstrap-datepicker1.9.0.min.css" />
     <Content Include="css\bootstrap4.5.2.min.css" />
+    <Content Include="css\contactUs.css" />
     <Content Include="css\font-awesome4.7.0.min.css" />
+    <Content Include="css\homepage.css" />
     <Content Include="css\login.css" />
+    <Content Include="Global.asax" />
+    <Content Include="CustomerInquire.aspx" />
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
+    <Content Include="images\custInq\00d0e755-3ced-4028-9012-d651c867e396.jpg" />
+    <Content Include="images\custInq\34a0d8b5-9602-4684-b0d7-323bc21ef012.jpg" />
+    <Content Include="images\custInq\35c77ef4-36cf-4af4-bfc0-d7a7abfea016.jpg" />
+    <Content Include="images\custInq\5fa8dc04-d957-4da5-a1d1-434c07721c3b.jpg" />
+    <Content Include="images\custInq\a5dd6029-84be-43b6-aaa0-82752460d08d.jpg" />
+    <Content Include="images\custInq\aa5b8409-d738-4259-b4d0-0163a21e76f9.jpg" />
     <Content Include="js\admin\adminLogin.js" />
     <Content Include="js\admin\bootsrap-datepicker.min.js" />
     <Content Include="js\admin\bootstrap.min.js" />
+    <Content Include="js\admin\custInq.js" />
     <Content Include="js\admin\flatpickr.min.js" />
     <Content Include="js\admin\hall.js" />
     <Content Include="js\admin\hallTimeSlot.js" />
@@ -132,6 +146,7 @@
     <Content Include="js\admin\select2.min.js" />
     <Content Include="js\bootstrap-datepicker1.9.0.min.js" />
     <Content Include="js\bootstrap4.5.2.min.js" />
+    <Content Include="js\homepage.js" />
     <Content Include="js\jquery3.7.1.min.js" />
     <Content Include="js\login.js" />
     <Content Include="js\myProfile.js" />
@@ -146,6 +161,8 @@
     <Content Include="Register.aspx" />
     <Content Include="MovieSeatSelection.aspx" />
     <Content Include="css\userAccount.css" />
+    <Content Include="TestLogin.aspx" />
+    <Content Include="TestRegister.aspx" />
     <Content Include="TransactionHistory.aspx" />
     <Content Include="TransactionHistoryDetails.aspx" />
     <Content Include="Web.config" />
@@ -170,12 +187,22 @@
     <Compile Include="ContactUs.aspx.designer.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CustomerInquire.aspx.cs">
+      <DependentUpon>CustomerInquire.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerInquire.aspx.designer.cs">
+      <DependentUpon>CustomerInquire.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hall.aspx.cs">
       <DependentUpon>Hall.aspx</DependentUpon>
@@ -248,7 +275,6 @@
     <Compile Include="PaymentSuccess.aspx.designer.cs">
       <DependentUpon>PaymentSuccess.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -276,6 +302,20 @@
     </Compile>
     <Compile Include="HallTimeSlot.aspx.designer.cs">
       <DependentUpon>HallTimeSlot.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestLogin.aspx.cs">
+      <DependentUpon>TestLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestLogin.aspx.designer.cs">
+      <DependentUpon>TestLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestRegister.aspx.cs">
+      <DependentUpon>TestRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestRegister.aspx.designer.cs">
+      <DependentUpon>TestRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="TransactionHistory.aspx.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>
@@ -316,7 +356,6 @@
   <ItemGroup>
     <Content Include="MP.Master" />
     <Content Include="MPA.Master" />
-    <Content Include="css\admin\boostrap5.3.3.css" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="packages.config" />
     <Content Include="UserAccount.master" />
