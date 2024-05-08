@@ -100,6 +100,7 @@
 
         .pay-button {
             padding: 10px 20px;
+            margin-bottom:10px;
         }
 
         .card-details-fill-container {
@@ -252,9 +253,9 @@
             </div>
 
             <div class="total-payment-botnav">
-                <h2 class="total-amount" id="TotalAmount" runat="server">RM 39.00</h2>
+                <h2 class="total-amount" id="TotalAmount" runat="server"/>
                 <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="btn btn-outline-primary pay-button" OnClick="PayButton_Click" />
-                <asp:Button ID="BackButton" runat="server" Text="Back To Home Page" CssClass="btn btn-outline-primary pay-button" OnClick="BackButton_Click" />
+                <asp:Button ID="BackButton" runat="server" Text="Back To Home Page" CssClass="btn btn-outline-primary back-button" OnClick="BackButton_Click" />
             </div>
         </section>
 </asp:Content>

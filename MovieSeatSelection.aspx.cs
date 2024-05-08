@@ -13,6 +13,20 @@ namespace SianemaCinemaTicketingSystem
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if there is a logged-in user
+            if (User.Identity.IsAuthenticated)
+            {
+                // Check the user type stored in session variable
+                string userType = (string)Session["UserType"];
+
+                if (userType != "Customer")
+                {
+                    // Redirect the user to the login page if not a customer
+                    Response.Redirect("~/Login.aspx");
+                }
+                
+            }
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["hallTimeSlotID"] != null)
@@ -99,7 +113,7 @@ namespace SianemaCinemaTicketingSystem
 
         protected void continueButton_Click(object sender, EventArgs e)
         {
-            //string userID = Session["UserId"].ToString();
+            string userID = Session["UserId"].ToString();
 
             string hallTimeSlotID = (string)((Button)sender).CommandArgument;
             string transactionID = GenerateTransactionID();
@@ -120,7 +134,7 @@ namespace SianemaCinemaTicketingSystem
 
             SqlCommand cmdToInsert = new SqlCommand(strToCreate, conn);
             cmdToInsert.Parameters.AddWithValue("@transactionID", transactionID);
-            cmdToInsert.Parameters.AddWithValue("@custID", "CUST-240508-00001");
+            cmdToInsert.Parameters.AddWithValue("@custID", userID);
             cmdToInsert.Parameters.AddWithValue("@transactionDateTime", transactionDateTime);
             cmdToInsert.Parameters.AddWithValue("@transactionAmount", transactionAmount);
             cmdToInsert.Parameters.AddWithValue("@transactionStatus", transactionStatus);
