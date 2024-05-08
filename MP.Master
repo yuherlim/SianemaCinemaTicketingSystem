@@ -211,12 +211,14 @@
                             <a class="nav-link" href="ContactUs.aspx">Contact Us</a>
                         </li>
                     </ul>
-                    <a class="btn btn-primary login-btn my-2 my-sm-0 mr-sm-2" href="Login.aspx" title="LOGIN" role="button">LOGIN</a>
-                    <a class="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" href="Register.aspx" title="JOIN NOW" role="button">JOIN NOW</a>
-                    <asp:Button ID="LogoutButton" runat="server" Text="LOGOUT" CssClass="btn btn-primary logout-btn" title="LOGOUT" OnClick="LogoutButton_Click" />
+                    <asp:Button ID="LoginButton" runat="server" Text="LOGIN" CssClass="btn btn-primary login-btn my-2 my-sm-0 mr-sm-2" title="LOGIN" OnClick="LoginButton_Click" />
+                    <%--<a class="btn btn-primary login-btn my-2 my-sm-0 mr-sm-2" href="Login.aspx" title="LOGIN" role="button">LOGIN</a>--%>
+                    <asp:Button ID="RegisterButton" runat="server" Text="JOIN NOW" CssClass="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" title="JOIN NOW" OnClick="RegisterButton_Click" />
+                    <%--<a class="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" href="Register.aspx" title="JOIN NOW" role="button">JOIN NOW</a>--%>
+                    <asp:Button ID="LogoutButton" runat="server" Text="LOGOUT" CssClass="btn btn-primary logout-btn my-2 my-sm-0 mr-sm-2" title="LOGOUT" OnClick="LogoutButton_Click" />
 
 
-                    <div class="dropdown show">
+                    <div id="DropDownListForAuthenticatedUsers" class="dropdown show" runat="server">
                         <a class="btn btn-secondary dropdown-toggle mr-sm-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User 1
                         </a>
 

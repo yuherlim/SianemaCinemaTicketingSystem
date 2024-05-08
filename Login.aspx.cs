@@ -19,18 +19,19 @@ namespace SianemaCinemaTicketingSystem
             // Check if there is a logged-in user
             if (User.Identity.IsAuthenticated)
             {
-                // Check if the logged-in user belongs to the "Customer" role
-                if (Roles.IsUserInRole("Customer"))
+                // Check the user type stored in session variable
+                string userType = (string)Session["UserType"];
+
+                if (userType == "Customer")
                 {
                     // Redirect the customer to the home page
                     Response.Redirect("~/Homepage.aspx");
                 }
-                else if (Roles.IsUserInRole("Admin"))
+                else if (userType == "Admin")
                 {
                     // Redirect the admin to the admin page
                     Response.Redirect("~/Admin/AdminPage.aspx");
                 }
-                // You can add more role checks if needed
             }
 
             if (!IsPostBack)
