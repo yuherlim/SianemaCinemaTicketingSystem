@@ -36,8 +36,6 @@
                                 <div class="addTimeSlot">
                                     <asp:Button ID="btnAddTimeSlot" runat="server" ClientIDMode="static" CssClass="btn btn-primary btn-sm btnAdd" Text="Add TimeSlot" OnClick="btnAddTimeSlot_Click" />
                                 </div>
-
-
                             </div>
                             <div class="childRptContainer">
                                 <div class="childRptHeader">

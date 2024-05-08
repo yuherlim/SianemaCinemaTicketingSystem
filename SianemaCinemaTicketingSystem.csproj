@@ -74,7 +74,7 @@
     </Content>
     <Content Include="ContactUs.aspx" />
     <Content Include="css\admin\adminLogin.css" />
-    <Content Include="css\admin\bootstrap-datepicker.min.css" />
+    <Content Include="css\admin\boostrap-datepicker.min.css" />
     <Content Include="css\admin\flatpickr.min.css" />
     <Content Include="css\admin\font-awesome.min.css" />
     <Content Include="css\admin\hall.css" />
@@ -88,8 +88,8 @@
     <Content Include="Hall.aspx" />
     <Content Include="Homepage.aspx" />
     <Content Include="js\admin\adminLogin.js" />
-    <Content Include="js\admin\bootsrap-datepicker.min.js" />
-    <Content Include="js\admin\bootstrap.min.js" />
+    <Content Include="js\admin\boostrap-datepicker.min.js" />
+    <Content Include="js\admin\boostrap.min.js" />
     <Content Include="js\admin\flatpickr.min.js" />
     <Content Include="js\admin\hall.js" />
     <Content Include="js\admin\hallTimeSlot.js" />

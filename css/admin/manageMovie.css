@@ -215,3 +215,7 @@ td {
 .modal-content {
     color: black;
 }
+
+.label{
+    display:none;
+}

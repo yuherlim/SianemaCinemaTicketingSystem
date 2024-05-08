@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="css/admin/manageMovie.css" />
-    <script defer src="js/admin/manage-movie.js"></script> 
+    <script defer src="js/admin/manage-movie.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -25,7 +25,7 @@
 
                 <div id="row2" class="row">
                     <%--Movies List table--%>
-                    <asp:GridView ID="gvMovie" CssClass="table" BorderWidth="0px" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowSorting="True" ClientIDMode="Static" OnSelectedIndexChanged="gvMovie_SelectedIndexChanged1">
+                    <asp:GridView ID="gvMovie" CssClass="table" OnRowDataBound="gvMovie_RowDataBound" BorderWidth="0px" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowSorting="True" ClientIDMode="Static" OnSelectedIndexChanged="gvMovie_SelectedIndexChanged1">
                         <Columns>
                             <asp:TemplateField ShowHeader="False">
                                 <HeaderTemplate>
@@ -49,30 +49,31 @@
                                 </HeaderTemplate>
 
                             </asp:TemplateField>
-
-                            <asp:ImageField DataImageUrlField="moviePoster" HeaderText="Image">
-                                <ControlStyle Height="150px" Width="100px" />
-                            </asp:ImageField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:Image ID="moviePoster" runat="server" Width="100px" Height="150px" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField HeaderText="Name" DataField="movieName" ShowHeader="False" />
                             <asp:BoundField DataField="movieGenre" HeaderText="Genre" ShowHeader="False" />
                             <asp:BoundField DataField="movieDuration" HeaderText="Duration" ShowHeader="False" />
                             <asp:BoundField DataField="movieDistributor" HeaderText="Distributor" ShowHeader="False" />
                             <asp:BoundField DataField="screenFromDate" HeaderText="Screen From" ShowHeader="False" DataFormatString="{0:d}" />
                             <asp:BoundField DataField="screenUntilDate" HeaderText="Screen Until" ShowHeader="False" DataFormatString="{0:d}" />
+
                             <asp:TemplateField ShowHeader="False">
                                 <ItemTemplate>
-                                    <button type="button" id="btnView" class="btn btn-primary btn-sm btnViewMovie">
-                                        View
-                                    </button>
+                                    <asp:Label ID="movieID" runat="server" Visible="false" Text='<%# Eval("movieID") %>' />
+                                    <asp:Button ID="btnView" runat="server" ClientIDMode="static" CssClass="btn btn-primary btn-sm btnViewMovie" OnClick="btnView_Click"
+                                        Text="View" />
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
 
                             <asp:TemplateField ShowHeader="False">
                                 <ItemTemplate>
-                                    <button type="button" id="btnEdit" class="btn btn-primary btn-sm btnEditMovie">
-                                        Edit
-                                    </button>
+                                    <asp:Button ID="btnEdit" runat="server" ClientIDMode="static" CssClass="btn btn-primary btn-sm btnEditMovie" OnClick="btnEdit_Click"
+                                        Text="Edit" />
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
@@ -81,9 +82,9 @@
                             <div align="center">No records found.</div>
                         </EmptyDataTemplate>
                     </asp:GridView>
-                 
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [moviePoster], [movieName], [movieSynopsis], [screenFromDate], [movieDuration], [screenUntilDate], [movieDistributor], [movieGenre] FROM [Movie] WHERE movieID <> 'NA'"></asp:SqlDataSource>
-                 
+
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [moviePoster], [movieName], [movieSynopsis], [screenFromDate], [movieDuration], [screenUntilDate], [movieDistributor], [movieGenre], [movieID] FROM [Movie] WHERE movieID <> 'NA'"></asp:SqlDataSource>
+
                 </div>
             </div>
 
@@ -100,7 +101,8 @@
                                 <div class="modalText">Movie ID</div>
                                 <div class="modalColon">: </div>
                                 <div id="modalID">
-                                    MOV-310324-0001
+                                    <asp:Label runat="server" ClientIDMode="Static" ID="movID"></asp:Label>
+
                                 </div>
                             </div>
 
@@ -121,6 +123,8 @@
                                             <option value="Horror">Horror</option>
                                             <option value="Romance">Romance</option>
                                         </select>
+
+                                        <asp:HiddenField runat="server" ClientIDMode="Static" ID="movGenreValue"></asp:HiddenField>
                                     </div>
 
                                     <div class="mb-3 movClassification">
@@ -131,8 +135,8 @@
                                             <option value="13">13</option>
                                             <option value="16">16</option>
                                             <option value="18">18</option>
-
                                         </select>
+                                        <asp:HiddenField runat="server" ClientIDMode="Static" ID="movClassificationValue"></asp:HiddenField>
                                     </div>
 
                                     <div class="mb-3 movLanguage">
@@ -146,6 +150,7 @@
                                                 <option value="Malay">Malay</option>
                                             </optgroup>
                                         </select>
+                                        <asp:HiddenField runat="server" ClientIDMode="Static" ID="movLanguageValue"></asp:HiddenField>
                                     </div>
 
                                     <div class="mb-3 movSubtitle">
@@ -159,6 +164,7 @@
                                                 <option value="Malay">Malay</option>
                                             </optgroup>
                                         </select>
+                                        <asp:HiddenField runat="server" ClientIDMode="Static" ID="movSubtitleValue"></asp:HiddenField>
                                     </div>
 
                                     <div class="mb-3 movDuration">
@@ -166,6 +172,7 @@
                                         <div class="input-group">
                                             <input id="tpDuration" type="text" class="form-control modalInputField" placeholder="01:30">
                                             <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movDurationValue"></asp:HiddenField>
                                         </div>
                                     </div>
                                 </section>
@@ -174,8 +181,7 @@
                                     <section class="row2Section2-1">
                                         <div class="mb-3 movPoster">
                                             <label for="fuPoster" class="form-label">Movie Poster</label>
-                                            <asp:FileUpload ID="fuPoster" class="form-control modalInputField" runat="server" ClientIDMode="static" />
-
+                                            <asp:FileUpload ID="fuPoster" class="form-control modalInputField" runat="server" Accept="image/*" Filter="JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png" ClientIDMode="static" />
                                         </div>
 
                                         <div class="movImage">
@@ -210,6 +216,7 @@
                                     <div class="input-group">
                                         <input id="tpReleaseDate" type="text" class="form-control modalInputField" placeholder="23-03-2024" />
                                         <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                        <asp:HiddenField runat="server" ClientIDMode="Static" ID="movReleaseDateValue"></asp:HiddenField>
                                     </div>
                                 </div>
 
@@ -227,11 +234,13 @@
                                             <option value="Dwayne Johnson">Dwayne Johnson</option>
                                         </optgroup>
                                     </select>
+                                    <asp:HiddenField runat="server" ClientIDMode="Static" ID="movCastValue"></asp:HiddenField>
                                 </div>
 
                                 <div class="mb-3 movSypnosis">
                                     <label for="txtSypnosis" class="form-label">Movie Sypnosis</label>
-                                    <textarea class="form-control modalInputField" id="txtSypnosis" rows="5" runat="server" clientidmode="static"></textarea>
+                                    <textarea class="form-control modalInputField" id="txtSynopsis" rows="5" runat="server" clientidmode="static"></textarea>
+                                    <asp:HiddenField runat="server" ClientIDMode="Static" ID="movSynopsisValue"></asp:HiddenField>
                                 </div>
 
                             </div>
@@ -243,6 +252,7 @@
                                     <div class="input-group">
                                         <input id="tpScreenFrom" type="text" class="form-control modalInputField" placeholder="23-03-2024" />
                                         <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                        <asp:HiddenField runat="server" ClientIDMode="Static" ID="movScreenFromValue"></asp:HiddenField>
                                     </div>
                                 </div>
 
@@ -251,6 +261,7 @@
                                     <div class="input-group">
                                         <input id="tpScreenUntil" type="text" class="form-control modalInputField" placeholder="23-03-2024" />
                                         <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                        <asp:HiddenField runat="server" ClientIDMode="Static" ID="movScreenUntilValue"></asp:HiddenField>
                                     </div>
                                 </div>
 
@@ -259,10 +270,10 @@
                             <div class="modal-footer">
                                 <button type="button" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                                <asp:Button ID="btnConfirm" runat="server" ClientIDMode="static" CssClass="btn btn-secondary"
+                                <asp:Button ID="btnConfirm" runat="server" ClientIDMode="static" CssClass="btn btn-secondary" OnClick="btnConfirm_Click"
                                     Text="Confirm" />
+                                <asp:HiddenField runat="server" ClientIDMode="Static" ID="btnConfirmMode"></asp:HiddenField>
                             </div>
-
                         </div>
                     </div>
                 </div>
