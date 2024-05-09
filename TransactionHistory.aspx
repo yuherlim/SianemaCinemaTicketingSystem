@@ -15,7 +15,75 @@
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-upcoming-movie" role="tabpanel" aria-labelledby="nav-upcoming-movie-tab">
+                    <div class="tab-pane fade" id="nav-last-seen" role="tabpanel" aria-labelledby="nav-last-seen-tab">
+                        <asp:Repeater ID="LastSeenRepeater" runat="server">
+                            <ItemTemplate>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <h5 class="movie-name"><%# Eval("transactionDateTime")%></h5>
+                                        </div>
+                                        <div class="card-text">
+                                            <div class="movie-hall-type">
+                                                <p><span>Amount </span><%# Eval("transactionAmount")%></p>
+                                            </div>
+                                            <div class="movie-hall-number with-icon">
+                                                <p>Completed</p>
+                                            </div>
+                                        </div>
+                                        <div class="more-info-btn-container">
+                                            <a href="TransactionHistoryDetails.aspx" class="btn btn-primary more-info-btn">More info</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+
+                        <%--<div class="card">
+        <div class="card-body">
+            <div class="card-title">
+                <h5 class="movie-name">Violet Evergarden: The Movie</h5>
+                <p class="movie-classification">R-13</p>
+                <p class="movie-genre">Animation, Drama, Fantasy</p>
+                <p class="divider">-</p>
+                <p class="movie-duration">140 Minutes</p>
+                <p class="divider">-</p>
+                <p class="movie-language">Japanese</p>
+            </div>
+            <div class="card-text">
+                <div class="movie-hall-type">
+                    <p><span>Hall Type: </span>Big</p>
+                </div>
+                <div class="movie-hall-number">
+                    <img src="./images/cinemaIcon/hall.png" alt="Hall" width="16" height="16" />
+                    <p>1</p>
+                </div>
+                <div class="movie-date with-icon">
+                    <img src="./images/cinemaIcon/date.png" alt="Movie Date" width="16" height="16" />
+                    <p>02-Apr-2021</p>
+                </div>
+                <div class="movie-time with-icon">
+                    <img src="./images/cinemaIcon/time.png" alt="Movie Time" width="16" height="16" />
+                    <p>3:15 pm</p>
+                </div>
+                <div class="number-of-seats with-icon">
+                    <img src="./images/cinemaIcon/seat.png" alt="Number of Seats" width="16" height="16" />
+                    <p>1<span> Seat(s)</span></p>
+                </div>
+                <div class="booked-seats">
+                    <p>H12</p>
+                </div>
+            </div>
+            <div class="more-info-btn-container">
+                <a href="TransactionHistoryDetails.aspx" class="btn btn-primary more-info-btn">More info</a>
+            </div>
+        </div>
+        <div class="card-footer text-muted text-right duration-since-movie-date">
+            3 years ago
+        </div>
+    </div>--%>
+                    </div>
+                    <%-- %><div class="tab-pane fade show active" id="nav-upcoming-movie" role="tabpanel" aria-labelledby="nav-upcoming-movie-tab">
                         <asp:Repeater ID="UpcomingMovieRepeater" runat="server">
                             <ItemTemplate>
                                 <div class="card">
@@ -103,103 +171,10 @@
                             </div>
                         </div>
                     </div>--%>
-                    </div>
-                    <div class="tab-pane fade" id="nav-last-seen" role="tabpanel" aria-labelledby="nav-last-seen-tab">
-                        <asp:Repeater ID="LastSeenRepeater" runat="server">
-                            <ItemTemplate>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h5 class="movie-name"><%# Eval("MovieName")%></h5>
-                                            <p class="movie-classification"><%# Eval("MovieClassification")%></p>
-                                            <p class="movie-genre"><%# Eval("MovieGenre")%></p>
-                                            <p class="divider">-</p>
-                                            <p class="movie-duration"><%# Eval("MovieDuration")%></p>
-                                            <p class="divider">-</p>
-                                            <p class="movie-language"><%# Eval("MovieLanguage")%></p>
-                                        </div>
-                                        <div class="card-text">
-                                            <div class="movie-hall-type">
-                                                <p><span>Hall Type: </span><%# Eval("MovieHallType")%></p>
-                                            </div>
-                                            <div class="movie-hall-number with-icon">
-                                                <img src="./images/cinemaIcon/hall.png" alt="Hall" width="16" height="16" />
-                                                <p><%# Eval("MovieHallNumber")%></p>
-                                            </div>
-                                            <div class="movie-date with-icon">
-                                                <img src="./images/cinemaIcon/date.png" alt="Movie Date" width="16" height="16" />
-                                                <p><%# Eval("MovieDate")%></p>
-                                            </div>
-                                            <div class="movie-time with-icon">
-                                                <img src="./images/cinemaIcon/time.png" alt="Movie Time" width="16" height="16" />
-                                                <p><%# Eval("MovieTime")%></p>
-                                            </div>
-                                            <div class="number-of-seats with-icon">
-                                                <img src="./images/cinemaIcon/seat.png" alt="Number of Seats" width="16" height="16" />
-                                                <p><%# Eval("NumberOfSeats")%><span> Seat(s)</span></p>
-                                            </div>
-                                            <div class="booked-seats">
-                                                <p><%# Eval("BookedSeats")%></p>
-                                            </div>
-                                        </div>
-                                        <div class="more-info-btn-container">
-                                            <a href="TransactionHistoryDetails.aspx" class="btn btn-primary more-info-btn">More info</a>
-                                        </div>
-
-                                    </div>
-                                    <div class="card-footer text-muted text-right duration-since-movie-date">
-                                        <%# Eval("DurationSinceMovieDate")%> ago
-                                    </div>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-
-                        <%--<div class="card">
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <h5 class="movie-name">Violet Evergarden: The Movie</h5>
-                                    <p class="movie-classification">R-13</p>
-                                    <p class="movie-genre">Animation, Drama, Fantasy</p>
-                                    <p class="divider">-</p>
-                                    <p class="movie-duration">140 Minutes</p>
-                                    <p class="divider">-</p>
-                                    <p class="movie-language">Japanese</p>
-                                </div>
-                                <div class="card-text">
-                                    <div class="movie-hall-type">
-                                        <p><span>Hall Type: </span>Big</p>
-                                    </div>
-                                    <div class="movie-hall-number">
-                                        <img src="./images/cinemaIcon/hall.png" alt="Hall" width="16" height="16" />
-                                        <p>1</p>
-                                    </div>
-                                    <div class="movie-date with-icon">
-                                        <img src="./images/cinemaIcon/date.png" alt="Movie Date" width="16" height="16" />
-                                        <p>02-Apr-2021</p>
-                                    </div>
-                                    <div class="movie-time with-icon">
-                                        <img src="./images/cinemaIcon/time.png" alt="Movie Time" width="16" height="16" />
-                                        <p>3:15 pm</p>
-                                    </div>
-                                    <div class="number-of-seats with-icon">
-                                        <img src="./images/cinemaIcon/seat.png" alt="Number of Seats" width="16" height="16" />
-                                        <p>1<span> Seat(s)</span></p>
-                                    </div>
-                                    <div class="booked-seats">
-                                        <p>H12</p>
-                                    </div>
-                                </div>
-                                <div class="more-info-btn-container">
-                                    <a href="TransactionHistoryDetails.aspx" class="btn btn-primary more-info-btn">More info</a>
-                                </div>
-                            </div>
-                            <div class="card-footer text-muted text-right duration-since-movie-date">
-                                3 years ago
-                            </div>
-                        </div>--%>
-                    </div>
                 </div>
+
             </div>
+        </div>
     </main>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="js" runat="server">

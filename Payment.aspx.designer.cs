@@ -60,13 +60,13 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl seatsId;
 
         /// <summary>
-        /// SingleSeatPrice control.
+        /// SingleSeatNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatPrice;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatNumber;
 
         /// <summary>
         /// SingleSeatAmount control.
@@ -78,31 +78,22 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.HtmlControls.HtmlTableCell SingleSeatAmount;
 
         /// <summary>
-        /// CoupleSeatPrice control.
+        /// Total control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell CoupleSeatPrice;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell Total;
 
         /// <summary>
-        /// CoupleSeatAmount control.
+        /// TotalAmountHiddenField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell CoupleSeatAmount;
-
-        /// <summary>
-        /// SubTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell SubTotal;
+        protected global::System.Web.UI.WebControls.HiddenField TotalAmountHiddenField;
 
         /// <summary>
         /// Label1 control.
@@ -112,6 +103,15 @@ namespace SianemaCinemaTicketingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
         /// TextBox1 control.
@@ -132,6 +132,15 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.Label lblCardNumber;
 
         /// <summary>
+        /// RequiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+
+        /// <summary>
         /// txtCardNumber control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace SianemaCinemaTicketingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCVV;
+
+        /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
         /// <summary>
         /// txtCVV control.
@@ -186,6 +204,15 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.DropDownList DropDownListYear;
 
         /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+
+        /// <summary>
         /// TotalAmount control.
         /// </summary>
         /// <remarks>
@@ -202,5 +229,14 @@ namespace SianemaCinemaTicketingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button PayButton;
+
+        /// <summary>
+        /// BackButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BackButton;
     }
 }

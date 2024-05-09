@@ -1,0 +1,22 @@
+﻿.cu-label {
+    margin: auto;
+    padding: 10px;
+    color: var(--white);
+    font-size: 18px;
+}
+
+.hr-white {
+    border-color: var(--white);
+}
+
+/* Style for the file upload row */
+.file-upload-row {
+    background-color: var(--white); /* Solid white background */
+    color: var(--black);
+    padding: 10px; /* Add padding if needed */
+    border: 1px solid #ccc; /* Add border for better visibility */
+}
+
+
+
+

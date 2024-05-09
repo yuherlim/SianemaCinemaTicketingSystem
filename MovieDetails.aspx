@@ -76,7 +76,7 @@
         }
 
             .date-button:hover {
-                background-color: var(--green);
+                background-color: var(--button-green);
                 color: var(--white);
             }
 
@@ -87,6 +87,7 @@
             gap: 2%;
             background: #1a1a19;
         }
+
 
         .movie-time-selection {
             width: 70%;
@@ -119,105 +120,95 @@
         }
 
         .chair-image-container {
-            padding-left:50px;
+            padding-left: 50px;
         }
 
         .chair-image {
-            margin-right:20px
+            margin-right: 20px
+        }
+
+        .selected-date-button {
+            background-color: var(--button-green);
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form class="form1" runat="server">
-        <section class="movie-details-page">
-            <div class="movie-details-container">
-                <asp:Image ID="movieCoverPhoto" runat="server" ImageUrl='<%# Eval("movieCoverPhoto") %>' />
+    <section class="movie-details-page">
+        <div class="movie-details-container" id="MovieDetailsContainer" runat="server">
+            <asp:Image ID="movieCoverPhoto" runat="server" />
 
-                <div class="movie-details-information-container">
+            <div class="movie-details-information-container">
 
-                    <h1 id="movieName" runat="server"></h1>
+                <h1 id="movieName" runat="server"></h1>
 
-                    <ul class="movie-details-info1">
-                        <li id="movieGenre" runat="server"></li>
-                        <li id="movieLanguage" runat="server"></li>
-                        <li id="movieDuration" runat="server"></li>
-                    </ul>
+                <ul class="movie-details-info1">
+                    <li id="movieGenre" runat="server"></li>
+                    <li id="movieLanguage" runat="server"></li>
+                    <li id="movieDuration" runat="server"></li>
+                    <li id="movieClassification" runat="server"></li>
+                </ul>
 
 
-                    <ul class="movie-details-info2">
-                        <li>
-                            <h4>Subtitle</h4>
-                            <p id="movieSubtitle" runat="server" />
-                        </li>
-                        <li>
-                            <h4>Release Date</h4>
-                            <p id="releaseDate" runat="server" />
-                        </li>
-                        <li>
-                            <h4>Cast</h4>
-                            <p id="movieCast" runat="server" />
-                        </li>
-                        <li>
-                            <h4>Distributor</h4>
-                            <p id="movieDistributer" runat="server" />
-                        </li>
+                <ul class="movie-details-info2">
+                    <li>
+                        <h4>Subtitle</h4>
+                        <p id="movieSubtitle" runat="server" />
+                    </li>
+                    <li>
+                        <h4>Release Date</h4>
+                        <p id="releaseDate" runat="server" />
+                    </li>
+                    <li>
+                        <h4>Cast</h4>
+                        <p id="movieCast" runat="server" />
+                    </li>
+                    <li>
+                        <h4>Distributor</h4>
+                        <p id="movieDistributer" runat="server" />
+                    </li>
 
-                    </ul>
-                    <h4>Synopsis</h4>
-                    <p id="movieSynopsis" runat="server"></p>
-
-                </div>
+                </ul>
+                <h4>Synopsis</h4>
+                <p id="movieSynopsis" runat="server"></p>
 
             </div>
 
-            <div class="cinema-date-selection-container">
-                <div class="cinema-date-selection">
-                    <ul class="date-selection">
-                        <li>
-                            <asp:Button ID="date1" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date2" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date3" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date4" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date5" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date6" runat="server" CssClass="date-button" />
-                        </li>
-                        <li>
-                            <asp:Button ID="date7" runat="server" CssClass="date-button" />
-                        </li>
-                    </ul>
+        </div>
+
+        <div class="cinema-date-selection-container">
+            <div class="cinema-date-selection">
+                <ul class="date-selection">
+                    <asp:Repeater ID="dateRepeater" runat="server">
+                        <ItemTemplate>
+                            <li>
+                                <asp:Button ID="dateButton" runat="server" CssClass="date-button" Text='<%# Eval("Date", "{0:ddd\ndd-MMM}").ToUpper() %>' CommandArgument='<%# Eval("Date", "{0:yyyy-MM-dd}") %>' OnClick="DateButton_Click" />
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+
+
+
+            </div>
+        </div>
+
+        <div class="movie-time-selection-container">
+            <div class="movie-time-selection">
+                <h2 class="classic-header">Classic</h2>
+                <div class="chair-image-container">
+                    <img src="./images/seatIcon/singleseat.png" height="50" width="50" class="chair-image" />
+                    <h3 id="selectedDate" runat="server"></h3>
 
                 </div>
-            </div>
-
-            <div class="movie-time-selection-container">
-                <div class="movie-time-selection">
-                    <h2 class="classic-header">Classic</h2>
-
-                    <div class="chair-image-container">
-                        <img src="./images/seatIcon/singleseat.png" height="50" width="50" class="chair-image" />
-                        <img src="./images/seatIcon/coupleseat.png" height="70" width="70" class="chair-image" />
-
-                    </div>
-                    <div class="movie-time">
-                        <asp:Button ID="Button1" runat="server" CssClass="time-button" Text="08:00 AM" OnClick="Button1_Click" />
-                        <asp:Button ID="Button2" runat="server" CssClass="time-button" Text="11:00 AM" />
-                        <asp:Button ID="Button3" runat="server" CssClass="time-button" Text="04:00 PM" />
-                        <asp:Button ID="Button4" runat="server" CssClass="time-button" Text="08:00 PM" />
-
-                    </div>
+                <div class="movie-time">
+                    <asp:Repeater ID="movieTimeRepeater" runat="server">
+                        <ItemTemplate>
+                            <asp:Button ID="TimeButton" runat="server" CssClass="time-button" Text='<%# Eval("hallTimeSlotTime") %>' CommandArgument='<%# Eval("hallTimeSlotID") %>' OnClick="Button_Click" />
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
             </div>
+        </div>
 
-        </section>
-    </form>
+    </section>
 </asp:Content>

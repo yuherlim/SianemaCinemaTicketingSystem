@@ -5,19 +5,20 @@
 <html>
 <head runat="server">
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/bootstrap4.5.2.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-datepicker1.9.0.min.css">
+    <link rel="stylesheet" href="./css/font-awesome4.7.0.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
 
     <style>
         :root {
             --green: #6ae500;
-            --dark-green: #28a745;
+            --button-green: #214700;
             --white: #ffffff;
             --black: #000000;
             --gray: #6b6b6b;
+            --validation-red: #FF5B5B;
             --black-transparent: rgba(0, 0, 0, 0.7); /* Transparent black color */
             --ticket-grey: #303030;
         }
@@ -120,12 +121,12 @@
 
         .btn-primary {
             font-weight: 700;
-            background-color: var(--green);
-            border-color: var(--green);
+            background-color: var(--button-green);
+            border-color: var(--button-green);
         }
 
         .btn-primary:hover {
-            color: var(--green);
+            color: var(--button-green);
             background-color: var(--white);
             border-color: var(--white);
         }
@@ -133,17 +134,17 @@
         .btn-primary:not(:disabled):not(.disabled).active,
         .btn-primary:not(:disabled):not(.disabled):active,
         .show > .btn-primary.dropdown-toggle {
-            background-color: var(--green);
-            border-color: var(--green);
+            background-color: var(--button-green);
+            border-color: var(--button-green);
             box-shadow: none;
             outline: none;
         }
 
         .btn-primary:focus {
-            color: var(--green);
+            color: var(--button-green);
             background-color: var(--white);
-            border-color: var(--dark-green);
-            box-shadow: 0 0 0 0.2rem var(--dark-green);
+            border-color: var(--button-green);
+            box-shadow: 0 0 0 0.2rem var(--button-green);
         }
 
         .btn-outline-primary {
@@ -156,8 +157,8 @@
         .btn-outline-primary:not(:disabled):not(.disabled):active,
         .show > .btn-outline-primary.dropdown-toggle,
         .btn-outline-primary:hover {
-            border-color: var(--green);
-            background-color: var(--green);
+            border-color: var(--button-green);
+            background-color: var(--button-green);
         }
 
         .content-wrapper {
@@ -178,7 +179,7 @@
         }
 
         .dropdown-item.active, .dropdown-item:active {
-            background-color: var(--green);
+            background-color: var(--button-green);
         }
     </style>
 
@@ -187,48 +188,53 @@
     <title></title>
 </head>
 <body>
+    <form runat="server">
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="Homepage.aspx">
+                    <img src="logoSianema.png" alt="Logo" width="160" height="60">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="Movies.aspx">Movies<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="AboutUs.aspx">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ContactUs.aspx">Contact Us</a>
+                        </li>
+                    </ul>
+                    <asp:Button ID="LoginButton" runat="server" Text="LOGIN" CssClass="btn btn-primary login-btn my-2 my-sm-0 mr-sm-2" title="LOGIN" OnClick="LoginButton_Click" />
+                    <%--<a class="btn btn-primary login-btn my-2 my-sm-0 mr-sm-2" href="Login.aspx" title="LOGIN" role="button">LOGIN</a>--%>
+                    <asp:Button ID="RegisterButton" runat="server" Text="JOIN NOW" CssClass="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" title="JOIN NOW" OnClick="RegisterButton_Click" />
+                    <%--<a class="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" href="Register.aspx" title="JOIN NOW" role="button">JOIN NOW</a>--%>
+                    <asp:Button ID="LogoutButton" runat="server" Text="LOGOUT" CssClass="btn btn-primary logout-btn my-2 my-sm-0 mr-sm-2" title="LOGOUT" OnClick="LogoutButton_Click" />
 
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="Homepage.aspx">
-                <img src="logoSianema.png" alt="Logo" width="160" height="60">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                    <div id="DropDownListForAuthenticatedUsers" class="dropdown show" runat="server">
+                        <a class="btn btn-secondary dropdown-toggle mr-sm-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More
+                        </a>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="Movies.aspx">Movies<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="AboutUs.aspx">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ContactUs.aspx">Contact Us</a>
-                    </li>
-                </ul>
-                <a class="btn btn-primary login-btn my-2 my-sm-0 mr-sm-2" href="Login.aspx" title="LOGIN" role="button">LOGIN</a>
-                <a class="btn btn-outline-primary join-now my-2 my-sm-0 mr-sm-2" href="Register.aspx" title="JOIN NOW" role="button">JOIN NOW</a>
-                <div class="dropdown show">
-                    <a class="btn btn-secondary dropdown-toggle mr-sm-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User 1
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="./MyProfile.aspx">Edit Profile</a>
-                        <a class="dropdown-item" href="./TransactionHistory.aspx">Transaction History</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="./MyProfile.aspx">Edit Profile</a>
+                            <a class="dropdown-item" href="./TransactionHistory.aspx">Transaction History</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
 
-
+    </form>
     <!-- footer -->
     <footer
         class="text-center text-lg-start text-white">
@@ -285,23 +291,23 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="./js/jquery3.7.1.min.js"></script>
+    <script type="text/javascript" src="./js/popper2.5.4.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap4.5.2.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-datepicker1.9.0.min.js"></script>
 
     <script>
         // to show the current page at the nav bar
         $(document).ready(function () {
             // Get the current page URL
             var currentPageUrl = window.location.pathname.toLowerCase();
-            console.log("Current Page URL:", currentPageUrl);
+            //console.log("Current Page URL:", currentPageUrl);
 
             // Loop through each navigation link
             $(".navbar-nav .nav-link").each(function () {
                 // Get the href attribute of the link and convert it to lowercase
                 var linkUrl = $(this).attr("href").toLowerCase();
-                console.log("Link URL:", linkUrl);
+                //console.log("Link URL:", linkUrl);
 
                 // Check if the link URL is contained within the current page URL
                 if (currentPageUrl.indexOf(linkUrl) !== -1) {

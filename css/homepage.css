@@ -1,0 +1,63 @@
+﻿
+/* Overlay */
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* Hover effect */
+.view:hover .mask {
+    opacity: 1; /* Make overlay visible on hover */
+}
+/* Button styles */
+.btn-book-now {
+    background-color: var(--white);
+    color: var(--black);
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-more-info {
+    background-color: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for book now button */
+.btn-book-now:hover {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+/* Hover effect for more info button */
+.btn-more-info:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+ul.deco {
+    list-style-type: none;
+}
+
