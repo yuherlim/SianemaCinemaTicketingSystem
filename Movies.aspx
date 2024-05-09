@@ -51,7 +51,7 @@
 
         /* Hover effect for book now button */
         .btn-book-now:hover {
-            background-color: var(--green);
+            background-color: var(--button-green);
             color: var(--white);
         }
 
@@ -63,66 +63,62 @@
 
         ul.deco {
             list-style-type: none;
-            padding-left:0px;
+            padding-left: 0px;
         }
 
         .movie-row {
-            padding-top:30px;
-            display:flex;
-            flex-wrap:wrap;
-            gap:40px;
-            justify-content:center;
+            padding-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
         }
 
         .movie-container {
-            max-width:60%;
-            padding-top:50px;
-            padding-right:15px;
-            padding-left:15px;
-            margin-right:auto;
-            margin-left:auto;
+            max-width: 60%;
+            padding-top: 50px;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         .movie-name {
             font-size: 30px;
-            color:#fff;
-            text-transform:capitalize;
+            color: #fff;
+            text-transform: capitalize;
         }
     </style>
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form class="form1" runat="server">
         <section class="movie-container">
-            <h2>Movies in SiaNema</h2>
+            <h2>Now Showing</h2>
 
             <div class="movie-row">
-            <asp:Repeater ID="movieRepeater" runat="server" DataSourceID="SqlDataSource1">
-
-                <ItemTemplate>
-                    <div class="card view">
-                        <asp:Image ID="moviePoster" runat="server" ImageUrl='<%# Eval("moviePoster") %>' Height="400" Width="300" />
-                        <div class="mask">
-                            <div class="col">
-                                <ul class="deco">
-                                    <li><p class="movie-name"><%# Eval("movieName") %></></li>
-                                    <li><a href="MovieDetails.aspx" class="btn-book-now">Book Now</a></li>
-                                    <li>
-                                        <br />
-                                    </li>
-                                    <li><a href="MovieDetails.aspx" class="btn-more-info">More Info</a></li>
-                                </ul>
+                <asp:Repeater ID="movieRepeater" runat="server">
+                    <ItemTemplate>
+                        <div class="card view">
+                            <asp:Image ID="moviePoster" runat="server" Height="400" Width="300" ImageUrl='<%# Eval("moviePoster") %>' />
+                            <div class="mask">
+                                <div class="col">
+                                    <ul class="deco">
+                                        <li>
+                                            <p class="movie-name"><%# Eval("movieName") %></p>
+                                        </li>
+                                        <li><a href='<%# "MovieDetails.aspx?movieID=" + Eval("movieID") %>' class="btn-book-now">Book Now</a></li>
+                                        <li>
+                                            <br />
+                                        </li>
+                                        <li><a href='<%# "MovieDetails.aspx?movieID=" + Eval("movieID") %>' class="btn-more-info">More Info</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </ItemTemplate>
+                </asp:Repeater>
 
-                </ItemTemplate>
-
-            </asp:Repeater>
-                </div>
-
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Movie]"></asp:SqlDataSource>
+            </div>
         </section>
-        </form>
 </asp:Content>

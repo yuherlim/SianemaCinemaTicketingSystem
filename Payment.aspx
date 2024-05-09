@@ -35,10 +35,10 @@
             justify-content: center;
         }
 
-        .movie-seat-selection-header h3 {
-            text-align: center;
-            font-weight: 1000;
-        }
+            .movie-seat-selection-header h3 {
+                text-align: center;
+                font-weight: 1000;
+            }
 
         .movie-seat-hall-time {
             display: flex;
@@ -100,6 +100,7 @@
 
         .pay-button {
             padding: 10px 20px;
+            margin-bottom:10px;
         }
 
         .card-details-fill-container {
@@ -123,35 +124,46 @@
             border-radius: 5px;
         }
 
-        .form-control:focus {
-            border-color: var(--green);
-            box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
+            .form-control:focus {
+                border-color: var(--green);
+                box-shadow: 0 0 0 0.2rem rgb(0 255 29 / 25%);
+            }
+        .auto-style4 {
+            padding: 5px 10px;
+            width: 29%
+        }
+        .auto-style5 {
+            padding: 5px 10px;
+            width: 26%
         }
     </style>
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form class="form1" runat="server">
         <div class="movie-seat-selection-navbar">
             <div class="movie-seat-selection-container">
                 <img src="logoSianema.png" alt="Logo" width="160" height="60" class="top-nav-logo">
                 <div class="movie-seat-selection-header">
-                    <h3 id="movieName" runat="server">YOLO</h3>
+
+                    <h3 id="movieName" runat="server" />
                     <div class="movie-seat-hall-time">
                         <img src="./images/cinemaIcon/hall.png" width="20" height="20" class="icon-image" />
-                        <p id="hallNum" runat="server">Hall 1</p>
+
+                        <p id="hallNum" runat="server" />
                         <img src="./images/cinemaIcon/date.png" width="20" height="20" class="icon-image" />
-                        <p id="movieDate" runat="server">27 Mar 2024</p>
+
+                        <p id="movieDate" runat="server" />
                         <img src="./images/cinemaIcon/time.png" width="20" height="20" class="icon-image" />
-                        <p id="movieTime" runat="server">10:00 PM</p>
+
+                        <p id="movieTime" runat="server" />
                         <img src="./images/cinemaIcon/seat.png" width="20" height="20" class="icon-image" />
-                        <p id="seatsId" runat="server">A3 A4</p>
+
+                        <p id="seatsId" runat="server" />
                     </div>
                 </div>
             </div>
         </div>
-
 
         <section class="payment-container">
             <div class="payment-body">
@@ -166,51 +178,48 @@
                     <table class="payment-table">
                         <tr>
                             <td class="auto-style1" runat="server">SINGLE</td>
-                            <td class="auto-style2" id="SingleSeatPrice" runat="server">(RM 19.00 x 2)</td>
-                            <td class="auto-style3" id="SingleSeatAmount" runat="server">RM 38.00</td>
+                            <td class="auto-style2" id="SingleSeatNumber" runat="server" />
+                            <td class="auto-style5" id="SingleSeatPrice">RM 15</td>
+                            <td class="auto-style4" id="SingleSeatAmount" runat="server" />
                         </tr>
                         <tr>
-                            <td class="auto-style1" runat="server">COUPLE</td>
-                            <td class="auto-style2" id="CoupleSeatPrice" runat="server">&nbsp;</td>
-                            <td class="auto-style3" id="CoupleSeatAmount" runat="server">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style1" runat="server">Sub Total</td>
-                            <td class="auto-style2" runat="server">&nbsp;</td>
-                            <td class="auto-style3" id="SubTotal" runat="server">RM 38.00</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style1" runat="server">Processing Fee</td>
-                            <td class="auto-style2" runat="server">&nbsp;</td>
-                            <td class="auto-style3" runat="server">RM 1.00</td>
+                            <td class="auto-style1">Processing Fee</td>
+                            <td class="auto-style2">&nbsp;</td>
+                            <td class="auto-style5">&nbsp;</td>
+                            <td class="auto-style4">RM 1.00</td>
                         </tr>
                         <tr>
                             <td class="auto-style1">&nbsp;</td>
                             <td class="auto-style2">&nbsp;</td>
-                            <td class="auto-style3">&nbsp;</td>
+                            <td class="auto-style5">&nbsp;</td>
+                            <td class="auto-style4">&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="auto-style1">Total</td>
                             <td class="auto-style2">&nbsp;</td>
-                            <td class="auto-style3" id="Total">RM 39.00</td>
+                            <td class="auto-style5">&nbsp;</td>
+                            <td class="auto-style4" id="Total" runat="server" />
                         </tr>
                     </table>
 
                 </div>
 
             </div>
-
+            <asp:HiddenField ID="TotalAmountHiddenField" runat="server" />
             <div class="card-details-fill-container">
                 <div class="form-group">
                     <asp:Label ID="Label1" runat="server">Name On Card</asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Please Enter Card Holder Name" ForeColor="Red" ValidationGroup="cardValidator">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblCardNumber" runat="server">Card Number</asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCardNumber" ErrorMessage="Please Enter Card Number" ForeColor="Red" ValidationGroup="cardValidator">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="txtCardNumber" runat="server" CssClass="form-control" MaxLength="16" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblCVV" runat="server">CVV</asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCVV" ErrorMessage="Please Enter Your Card CVV" ForeColor="Red" ValidationGroup="cardValidator">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="txtCVV" runat="server" CssClass="form-control" MaxLength="3" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </div>
                 <div class="form-group">
@@ -242,16 +251,17 @@
                         <asp:ListItem>2033</asp:ListItem>
                         <asp:ListItem>2034</asp:ListItem>
                     </asp:DropDownList>
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="cardValidator" />
                 </div>
 
             </div>
 
             <div class="total-payment-botnav">
-                <h2 class="total-amount" id="TotalAmount" runat="server">RM 39.00</h2>
-                <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="btn btn-outline-primary pay-button" OnClick="PayButton_Click" />
+                <h2 class="total-amount" id="TotalAmount" runat="server"/>
+                <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="btn btn-outline-primary pay-button" OnClick="PayButton_Click" ValidationGroup="cardValidator" />
+                <asp:Button ID="BackButton" runat="server" Text="Back To Home Page" CssClass="btn btn-outline-primary back-button" OnClick="BackButton_Click" />
             </div>
         </section>
-    </form>
 </asp:Content>
 
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,18 +13,31 @@ namespace SianemaCinemaTicketingSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            if (!IsPostBack)
+            {
+                string userID = Session["UserId"].ToString();
 
-            // Generate last seen and upcoming movie data
-            List<object> lastSeenMovies = GenerateLastSeen();
-            List<object> upcomingMovies = GenerateUpcomingMovie();
+                SqlConnection conn;
+                string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-            // Bind last seen movie data to repeater
-            LastSeenRepeater.DataSource = lastSeenMovies;
-            LastSeenRepeater.DataBind();
+                conn = new SqlConnection(strCon);
+                conn.Open();
 
-            // Bind upcoming movie data to repeater
-            UpcomingMovieRepeater.DataSource = upcomingMovies;
-            UpcomingMovieRepeater.DataBind();
+                string strToRetrieve = "SELECT transactionID, transactionDateTime, transactionAmount FROM TicketTransaction WHERE custID = @userID AND transactionStatus = @transactionStatus";
+                SqlCommand cmdToRetrieve = new SqlCommand(strToRetrieve, conn);
+                cmdToRetrieve.Parameters.AddWithValue("@userID", userID);
+                cmdToRetrieve.Parameters.AddWithValue("@transactionStatus", "Completed");
+                SqlDataReader transactionReader = cmdToRetrieve.ExecuteReader();
+
+                LastSeenRepeater.DataSourceID = null;
+                LastSeenRepeater.DataSource = transactionReader;
+                LastSeenRepeater.DataBind();
+
+                transactionReader.Close();
+                conn.Close();
+            }
+
         }
 
         private List<object> GenerateLastSeen()

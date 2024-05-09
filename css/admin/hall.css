@@ -70,8 +70,8 @@ tbody tr:first-child {
     font-size: 14px
 }
 
-.hallName,.hallType, .numberOfSeats {
-    width:25%;
+.hallName, .hallType, .numberOfSeats {
+    width: 25%;
 }
 
 .border {
@@ -165,7 +165,7 @@ td {
 }
 
 
-.modalRow2, .modalRow3{
+.modalRow2, .modalRow3 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -215,17 +215,12 @@ td {
     color: black;
 }
 
-#hallImage{
-    height:300px;
-    width:400px;
+#hallImage {
+    height: 300px;
+    width: 400px;
 }
 
-.modalRow3{
-    justify-content:center;
-    margin-bottom:15px;
+.modalRow3 {
+    justify-content: center;
+    margin-bottom: 15px;
 }
-
-/*input#hallType1[disabled] {
-  background-color: var(--green);
-  accent-color: var(--green);
-}*/

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MPA.Master" AutoEventWireup="true" CodeBehind="HallTimeSlot.aspx.cs" Inherits="SianemaCinemaTicketingSystem.WebForm3"  EnableEventValidation = "false" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/MPA.Master" AutoEventWireup="true" CodeBehind="HallTimeSlot.aspx.cs" Inherits="SianemaCinemaTicketingSystem.WebForm3"  EnableEventValidation = "false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="css/admin/hallTimeSlot.css" />
@@ -9,7 +9,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <form id="form1" runat="server">
+
         <div class="container">
             <div class="card card-fluid">
                 <div id="row1" class="card-header row">
@@ -471,7 +471,6 @@
 
         </div>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [moviePoster], [movieName], [screenToDate], [screenFromDate], [movieDuration], [movieDistributor], [movieGenre] FROM [Movie]"></asp:SqlDataSource>
-    </form>
 
 
 
