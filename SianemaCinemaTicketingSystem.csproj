@@ -75,13 +75,9 @@
     </Content>
     <Content Include="ContactUs.aspx" />
     <Content Include="css\admin\adminLogin.css" />
-<<<<<<< HEAD
-    <Content Include="css\admin\boostrap-datepicker.min.css" />
-=======
     <Content Include="css\admin\boostrap5.3.3.css" />
     <Content Include="css\admin\bootstrap-datepicker.min.css" />
     <Content Include="css\admin\custInq.css" />
->>>>>>> origin/YuHer
     <Content Include="css\admin\flatpickr.min.css" />
     <Content Include="css\admin\font-awesome.min.css" />
     <Content Include="css\admin\hall.css" />
@@ -108,14 +104,9 @@
     <Content Include="images\custInq\a5dd6029-84be-43b6-aaa0-82752460d08d.jpg" />
     <Content Include="images\custInq\aa5b8409-d738-4259-b4d0-0163a21e76f9.jpg" />
     <Content Include="js\admin\adminLogin.js" />
-<<<<<<< HEAD
-    <Content Include="js\admin\boostrap-datepicker.min.js" />
-    <Content Include="js\admin\boostrap.min.js" />
-=======
     <Content Include="js\admin\bootsrap-datepicker.min.js" />
     <Content Include="js\admin\bootstrap.min.js" />
     <Content Include="js\admin\custInq.js" />
->>>>>>> origin/YuHer
     <Content Include="js\admin\flatpickr.min.js" />
     <Content Include="js\admin\hall.js" />
     <Content Include="js\admin\hallTimeSlot.js" />
