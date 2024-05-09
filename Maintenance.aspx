@@ -6,7 +6,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <form id="form1" runat="server">
         <div class="container">
             <div class="card card-fluid">
                 <div id="row1" class="card-header row">
@@ -131,7 +130,6 @@
         </div>
 
 
-    </form>
 
 
 </asp:Content>
