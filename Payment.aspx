@@ -100,6 +100,7 @@
 
         .pay-button {
             padding: 10px 20px;
+            margin-bottom:10px;
         }
 
         .card-details-fill-container {
@@ -208,14 +209,17 @@
             <div class="card-details-fill-container">
                 <div class="form-group">
                     <asp:Label ID="Label1" runat="server">Name On Card</asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Please Enter Card Holder Name" ForeColor="Red" ValidationGroup="cardValidator">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblCardNumber" runat="server">Card Number</asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCardNumber" ErrorMessage="Please Enter Card Number" ForeColor="Red" ValidationGroup="cardValidator">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="txtCardNumber" runat="server" CssClass="form-control" MaxLength="16" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblCVV" runat="server">CVV</asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCVV" ErrorMessage="Please Enter Your Card CVV" ForeColor="Red" ValidationGroup="cardValidator">*</asp:RequiredFieldValidator>
                     <asp:TextBox ID="txtCVV" runat="server" CssClass="form-control" MaxLength="3" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </div>
                 <div class="form-group">
@@ -247,14 +251,15 @@
                         <asp:ListItem>2033</asp:ListItem>
                         <asp:ListItem>2034</asp:ListItem>
                     </asp:DropDownList>
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="cardValidator" />
                 </div>
 
             </div>
 
             <div class="total-payment-botnav">
-                <h2 class="total-amount" id="TotalAmount" runat="server">RM 39.00</h2>
-                <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="btn btn-outline-primary pay-button" OnClick="PayButton_Click" />
-                <asp:Button ID="BackButton" runat="server" Text="Back To Home Page" CssClass="btn btn-outline-primary pay-button" OnClick="BackButton_Click" />
+                <h2 class="total-amount" id="TotalAmount" runat="server"/>
+                <asp:Button ID="PayButton" runat="server" Text="Pay Now" CssClass="btn btn-outline-primary pay-button" OnClick="PayButton_Click" ValidationGroup="cardValidator" />
+                <asp:Button ID="BackButton" runat="server" Text="Back To Home Page" CssClass="btn btn-outline-primary back-button" OnClick="BackButton_Click" />
             </div>
         </section>
 </asp:Content>

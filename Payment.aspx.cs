@@ -63,10 +63,11 @@ namespace SianemaCinemaTicketingSystem
                         int numberOfTicket = selectedSeatIDs.Length;
                         SingleSeatNumber.InnerText = numberOfTicket.ToString();
                         double totalAmount = numberOfTicket * 15.00;
-                        SingleSeatAmount.InnerText = "RM" + totalAmount.ToString();
+                        SingleSeatAmount.InnerText = "RM " + totalAmount.ToString();
                         double total = totalAmount + 1;
-                        Total.InnerText = "RM" + total.ToString();
+                        Total.InnerText = "RM " + total.ToString();
 
+                        TotalAmount.InnerText = "RM " + total.ToString();
                         TotalAmountHiddenField.Value = total.ToString();
 
                         List<string> seatRows = new List<string>();
