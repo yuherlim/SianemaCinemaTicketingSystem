@@ -7,22 +7,19 @@
     <title></title>
 
     <link href="/css/admin/boostrap5.3.3.css" rel="stylesheet">
-    <link href="/css/admin/boostrap-datepicker.min.css" rel="stylesheet">
+    <link href="/css/admin/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="/css/admin/font-awesome.min.css" rel="stylesheet">
     <link href="/css/admin/flatpickr.min.css" rel="stylesheet" />
     <link href="/css/admin/select2.min.css" rel="stylesheet" />
     <link href="css/admin/mpAdmin.css" rel="stylesheet" />
 
-
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="js/admin/boostrap.min.js"></script>
+    <script src="js/admin/bootstrap.min.js"></script>
     <script src="js/admin/popper.min.js"></script>
-
-    <script src="js/admin/boostrap-datepicker.min.js"></script>
+    <%--<script src="js/admin/bootstrap-datepicker.min.js"></script>--%>
     <script src="js/admin/flatpickr.min.js"></script>
-    <script src="js/admin/select2.min.js"></script> 
-    <script src="js/admin/mpa.js"></script>
-
+    <script src="js/admin/select2.min.js"></script>
+    <script src="js/mpa.js"></script>
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -30,6 +27,7 @@
 </head>
 <body>
     <form runat="server">
+
 
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" id="navbar">
@@ -63,7 +61,7 @@
                 </div>
                 <asp:Button ID="LogoutButton" runat="server" Text="LOGOUT" CssClass="btnLogout btn btn-primary btn-sm" title="LOGOUT" OnClick="LogoutButton_Click" />
             </div>
-
+        </nav>
 
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
