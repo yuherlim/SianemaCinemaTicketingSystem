@@ -26,8 +26,14 @@ namespace SianemaCinemaTicketingSystem
                 }
                 else
                 {
+                    if (!IsPostBack)
+                    {
+                        PopulateUserData();
+                    }
                     // Retrieve and display user data
-                    PopulateUserData();
+
+                    
+
                 }
             }
         }
@@ -91,7 +97,7 @@ namespace SianemaCinemaTicketingSystem
             {
                 // Update the user record in the database
                 string query = @"UPDATE Customer 
-                         SET custName = @Name, custPhoneNo = @PhoneNo, 
+                         SET username = @Name, custPhoneNo = @PhoneNo, 
                              custEmail = @Email, custBirthDate = @BirthDate
                          WHERE custID = @UserId";
 
