@@ -25,6 +25,7 @@ const lblmovCoverPhotoImage = $('#movCoverPhotoImageValue');
 const lblbtnConfirmMode = $('#btnConfirmMode');
 const txtAreaSypnosis = $('#txtSynopsis');
 const txtName = $('#txtName');
+const txtDistributor = $('#txtDistributor');
 const movPosterImage = $('#movPosterImage');
 const movCoverPhotoImage = $('#movCoverPhotoImage');
 const fuPoster = $('#fuPoster');
@@ -286,10 +287,22 @@ function convertStringToTimeFormat(string) {
 
 function clearlabel() {
     txtName.val('');
-    $('.label').text('');
+    txtDistributor.val('');
+    lblmovieGenre.val("");
+    lblmovieClass.val("");
+    lblmovieLanguage.val("");
+    lblmovieSubtitle.val("");
+    lblmovieCast.val("");
+    lblmovieDuration.val("");
+    lblmovieReleaseDate.val("");
+    lblmovieScreenFrom.val("");
+    lblmovieScreenUntil.val("");
+    lblmovieSynopsis.val("");
+    lblmovPosterImage.val("");
+    lblmovCoverPhotoImage.val("");
     lblmovCoverPhotoImage.val("");
     lblmovPosterImage.val("");
-
+    txtAreaSypnosis.val("");
 }
 
 
