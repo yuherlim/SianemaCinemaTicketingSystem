@@ -28,9 +28,9 @@ namespace SianemaCinemaTicketingSystem
                 {
                     if (!IsPostBack)
                     {
+                        // Retrieve and display user data
                         PopulateUserData();
                     }
-                    // Retrieve and display user data
 
                     
 
@@ -89,6 +89,13 @@ namespace SianemaCinemaTicketingSystem
 
         protected void SaveChangesButton_Click(object sender, EventArgs e)
         {
+
+            // Validate the input data
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
             // Get the user ID from the session
             string userId = (string)Session["UserId"];
 
