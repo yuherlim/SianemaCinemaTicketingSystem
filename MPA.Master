@@ -21,11 +21,6 @@
     <script src="js/admin/flatpickr.min.js"></script>
     <script src="js/admin/select2.min.js"></script> 
     <script src="js/admin/mpa.js"></script>
-    <%--<script src="js/admin/bootstrap-datepicker.min.js"></script>--%>
-    <script src="js/admin/flatpickr.min.js"></script>
-    <script src="js/admin/select2.min.js"></script>
-    <script src="js/mpa.js"></script>
-
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

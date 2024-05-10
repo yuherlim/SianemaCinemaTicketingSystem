@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MPA.Master" AutoEventWireup="true" CodeBehind="HallTimeSlot.aspx.cs" Inherits="SianemaCinemaTicketingSystem.WebForm3"  EnableEventValidation = "false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MPA.Master" AutoEventWireup="true" CodeBehind="HallTimeSlot.aspx.cs" Inherits="SianemaCinemaTicketingSystem.HallTimeSlot"  EnableEventValidation = "false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="css/admin/hallTimeSlot.css" />
@@ -290,10 +290,10 @@
                                 <div class="hallTimeSlotRow">
                                     <div class="hallDetailContainer">
                                         <div class="hallName">
-                                            <asp:Label ID="lblHallName" runat="server" Text="Label"></asp:Label>
+                                            <asp:Label ID="lblHallName" runat="server" ClientIDMode="Static"  Text="Label"></asp:Label>
                                         </div>
                                         <div class="hallType">
-                                            <asp:Label ID="lblHallType" runat="server" Text="Label"></asp:Label>
+                                            <asp:Label ID="lblHallType" runat="server" ClientIDMode="Static"  Text="Label"></asp:Label>
                                         </div>
                                     </div>
                                     <div class="childRptContainer">
@@ -336,14 +336,9 @@
 
                                                 <div class="mb-3 movSelect">
                                                     <label for="sltMovie" class="form-label">Movie</label><br />
-                                                    <select id="sltMovie" class="select2 form-control select2-multiple sltGenre modalInputField" data-toggle="select2" data-placeholder="Choose ..." tabindex="-1" aria-hidden="true">
-                                                        <option value="U">Gorilla</option>
-                                                        <option value="P12">P12</option>
-                                                        <option value="13">13</option>
-                                                        <option value="16">16</option>
-                                                        <option value="18">18</option>
-
+                                                    <select id="sltMovie" class="select2 form-control select2-multiple sltGenre modalInputField" data-toggle="select2" data-placeholder="Choose ..." tabindex="-1" aria-hidden="true">                                            
                                                     </select>
+                                                    <asp:HiddenField ClientIDMode="Static" Id="selectedMovieValue" runat="server"/>
                                                 </div>
 
                                                 <div class="mb-3 movStartTime">
@@ -352,6 +347,7 @@
                                                         <input id="tpMovStartTime" type="text" class="form-control modalInputField" placeholder="01:30 PM">
                                                         <span class="input-group-text"><i class="ri-time-line"></i></span>
                                                     </div>
+                                                    <asp:HiddenField ClientIDMode="Static" Id="starTimeValue" runat="server"/>
                                                 </div>
 
                                                 <div class="mb-3 movDuration">
@@ -360,6 +356,7 @@
                                                         <input id="tpMovDuration" type="text" class="form-control modalInputField" placeholder="01:30">
                                                         <span class="input-group-text"><i class="ri-time-line"></i></span>
                                                     </div>
+                                                    <asp:HiddenField ClientIDMode="Static" Id="durationTimeValue" runat="server"/>
                                                 </div>
 
                                                 <div class="mb-3 movEndTime">
@@ -386,6 +383,7 @@
                                             <asp:Button ID="btnAssignMovie" runat="server" ClientIDMode="static" CssClass="btn btn-secondary"
                                                 Text="Confirm" />
                                         </div>
+                                        <asp:HiddenField ClientIDMode="Static" Id="confirmBtnMode" runat="server"/>
                                     </div>
 
 

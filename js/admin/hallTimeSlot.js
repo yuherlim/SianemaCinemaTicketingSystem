@@ -35,9 +35,13 @@ const tpMovEndTime = $('#tpMovEndTime');
 const tpMovDuration = $('#tpMovDuration');
 const tpMtnEndTime = $('#tpMtnEndTime');
 const lblHallName = $('#lblHallName');
-tpMovEndTime.prop('disabled', true);
-tpMovDuration.prop('disabled', true);
-tpMtnEndTime.prop('disabled', true);
+const selectorMovie = $('#sltMovie');
+const movTimeSlotPosterImage = $('#movTimeSlotPosterImage');
+const lblSelectedMovieValue = $('#selectedMovieValue');
+const lblStarTimeValue = $('#starTimeValue');
+const lblDurationTimeValue = $('#durationTimeValue');
+var movieList = [];
+var timeSlotList = [];
 
 
 
@@ -73,7 +77,6 @@ flatpickrDuration = $("#tpDuration").flatpickr({
     maxTime: "04:00",
 });
 
-
 flatpickrReleaseDate = $("#tpReleaseDate").flatpickr({
     dateFormat: "d-m-Y",
 });
@@ -95,6 +98,19 @@ flatpickrScreenUntil = $("#tpScreenUntil").flatpickr({
 
 $('#sltMovie').select2({
     dropdownParent: $('#modalTimeSlot')
+}).on('change', function (e) {
+    var data = $("#sltMovie option:selected").text();
+    lblSelectedMovieValue.val(data);
+    let movCoverPhotoImageBase64String = searchPropertyValue(movieList, "movieName", data, "moviePoster");
+    let movCoverPhotoImagerDataUrl = 'data:image/jpeg;base64,' + movCoverPhotoImageBase64String;
+    movTimeSlotPosterImage.attr("src", movCoverPhotoImagerDataUrl);
+    var movieDurationStr = searchPropertyValue(movieList, "movieName", data, "movieDuration");
+    var movieDuration = add30Minutes(convertStringToTimeFormat(movieDurationStr));
+    flatpickrtpMovDuration.setDate(movieDuration);
+    flatpickrtpMovDuration.config.enableTime = true;
+    flatpickrtpMovDuration.config.noCalendar = true;
+    lblDurationTimeValue.val(convertTimeToString(movieDuration));
+
 });
 
 $('#sltLanguage').select2({
@@ -113,7 +129,7 @@ $("#tpMovStartTime").flatpickr({
 
 });
 
-$("#tpMovDuration").flatpickr({
+flatpickrtpMovDuration = $("#tpMovDuration").flatpickr({
     enableTime: true,
     noCalendar: true,
     dateFormat: "h:i",
@@ -154,6 +170,10 @@ $("#tpMtnEndTime").flatpickr({
 });
 
 flatpickrSelectDate.setDate(lblTimeSlotDateValue.val());
+tpMovEndTime.prop('disabled', true);
+tpMovDuration.prop('disabled', true);
+tpMtnEndTime.prop('disabled', true);
+
 $(".tabs").click(function () {
 
     $(".tabs").removeClass("active");
@@ -190,6 +210,7 @@ $(".tabs").click(function () {
     }
 
 });
+
 
 function openModal() {
     $('#modalMovie').modal('toggle');
@@ -228,14 +249,15 @@ function openModal() {
 
 }
 
-
 function openMovieModal() {
     $('#modalMovie').modal('toggle');
 }
 
 function openTimeSlotModal() {
     $('#modalTimeSlot').modal('toggle');
-    lblHallName
+    var hallID = formatHallId(lblHallName.text());
+    fetchMovieData(lblTimeSlotDateValue.val());
+    fetchHallTimeSlotData(hallID, lblTimeSlotDateValue.val());
 
 }
 
@@ -328,9 +350,6 @@ lblTimeSlotButtons.each(function () {
     button.parent().parent().css('grid-column', timeSlots);
 });
 
-
-
-
 function calculateTimeSlots(startTime, duration) {
     // Convert start time to minutes
     const [startHour, startMinute] = startTime.split(":").map(Number);
@@ -357,4 +376,229 @@ function calculateTimeSlots(startTime, duration) {
         startingSlotIndex,
         spanSlots
     };
+}
+
+
+function fetchMovieData(selectedDate) {
+    // Make an AJAX request to fetch data from the server based on the hallTimeSlotID
+    fetch('HallTimeSlot.aspx/GetMovieData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ selectedDate: selectedDate })
+    })
+        .then(response => {
+            // Check if the response status is successful
+            console.log('Response:', response);  // Log the response
+            if (!response.ok) {
+                throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+            }
+            return response.json(); // Parse the JSON response
+        })
+        .then(data => {
+            // Log the data
+            console.log('Received data:', data);
+            const parsedData = JSON.parse(data.d);
+            updateMovieSelection(parsedData);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
+function fetchHallTimeSlotData(hallId,selectedDate) {
+    // Make an AJAX request to fetch data from the server based on the hallTimeSlotID
+    fetch('HallTimeSlot.aspx/GetHallTimeSlotData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            hallId: hallId,
+            selectedDate: selectedDate
+        })
+    })
+        .then(response => {
+            // Check if the response status is successful
+            console.log('Response:', response);  // Log the response
+            if (!response.ok) {
+                throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+            }
+            return response.json(); // Parse the JSON response
+        })
+        .then(data => {
+            // Log the data
+            console.log('Received data:', data);
+            const parsedData = JSON.parse(data.d);
+            updateTimeSlotdata(parsedData);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
+function joinPropertyOfObjectListToString(objectList, propertyName, separator) {
+    // Extract the specified property from each object and join them using the separator
+    var joinedString = objectList.map(function (obj) {
+        return obj[propertyName];
+    }).join(separator);
+
+    return joinedString;
+}
+
+// Function to update the modal body with the fetched data
+function updateMovieSelection(data) {
+    if (data) {
+        movieList = data;
+        var movieString = joinPropertyOfObjectListToString(movieList, "movieName", ",");
+        addOption(movieString, selectorMovie);
+        let movCoverPhotoImageBase64String = movieList[0]["moviePoster"];
+        let movCoverPhotoImagerDataUrl = 'data:image/jpeg;base64,' + movCoverPhotoImageBase64String;
+        movTimeSlotPosterImage.attr("src", movCoverPhotoImagerDataUrl);
+        
+
+    } else {
+        console.warn('No data provided to update modal body');
+    }
+}
+
+function updateTimeSlotdata(data) {
+    if (data) {
+        timeSlotList = data;
+       
+    } else {
+        console.warn('No data provided to update modal body');
+    }
+}
+
+function searchPropertyValue(objectList, propertyName, propertyValue, searchPropertyName) {
+    // Iterate over each object in the array
+    for (var i = 0; i < objectList.length; i++) {
+        // Check if the current object has the specified property name
+        if (objectList[i].hasOwnProperty(propertyName)) {
+            // If the property value matches the specified value, return it
+            if (objectList[i][propertyName] === propertyValue) {
+                return objectList[i][searchPropertyName];
+            }
+        }
+    }
+    // If the property value is not found in any object, return null
+    return null;
+}
+
+
+function convertStringToTimeFormat(string) {
+    var time = new Date();
+    var parts = string.split(':');
+    time.setHours(parts[0]);
+    time.setMinutes(parts[1]);
+    time.setSeconds(parts[2]);
+
+    return time
+}
+
+function convertTimeToString(time) {
+    // Get hours, minutes, and seconds from the Date object
+    var hours = time.getHours().toString().padStart(2, '0');
+    var minutes = time.getMinutes().toString().padStart(2, '0');
+    var seconds = time.getSeconds().toString().padStart(2, '0');
+
+    // Concatenate hours, minutes, and seconds with ":" separator
+    var timeString = hours + ":" + minutes + ":" + seconds;
+
+    return timeString;
+}
+
+
+
+function add30Minutes(time) {
+    // Clone the original time object to avoid modifying it directly
+    var newTime = new Date(time);
+
+    // Add 30 minutes to the minutes component
+    var currentMinutes = newTime.getMinutes();
+    var newMinutes = (currentMinutes + 30) % 60; // Get the new minutes value
+    var overflowHours = Math.floor((currentMinutes + 30) / 60); // Calculate overflow hours
+
+    // Increment the hours by overflowHours (if any)
+    newTime.setHours(newTime.getHours() + overflowHours);
+
+    // Update the minutes component
+    newTime.setMinutes(newMinutes);
+
+    return newTime;
+}
+
+function formatHallId(hallName) {
+    // Split the hall name into two parts: "Hall" and the number
+    var parts = hallName.split(' ');
+
+    // If the split result has exactly two parts and the first part is "Hall"
+    if (parts.length === 2 && parts[0] === "Hall") {
+        // Combine the parts with a hyphen "-"
+        return parts[0] + "-" + parts[1];
+    } else {
+        // If the format is not as expected, return the original hall name
+        return hallName;
+    }
+}
+
+
+function convertStartTimeToMinutes(time) {
+    var parts = time.split(':');
+    var hours = parseInt(parts[0]);
+    var minutes = parseInt(parts[1]);
+    if (hours < 10) {
+        return (hours + 24) * 60 + minutes;
+    }
+    else { return hours * 60 + minutes; }
+ 
+}
+
+function convertTimeToMinutes(time) {
+    var parts = time.split(':');
+    var hours = parseInt(parts[0]);
+    var minutes = parseInt(parts[1]);
+    return hours * 60 + minutes;
+
+}
+
+function isNewMovieValid(cinemaStartTime, cinemaEndTime, timeSlotList, newMovieStartTime, newMovieDuration) {
+    // Convert time format inputs to minutes past midnight
+    cinemaStartTime = convertStartTimeToMinutes(cinemaStartTime);
+    cinemaEndTime = convertStartTimeToMinutes(cinemaEndTime);
+    newMovieStartTime = convertStartTimeToMinutes(newMovieStartTime);
+
+
+    // Convert movie start times in the list to minutes past midnight
+    var movieStartTimes = timeSlotList.map(function (movie) {
+        return convertStartTimeToMinutes(timeSlotList["hallStartTime"]);
+    });
+
+    var movieStartTimes = timeSlotList.map(function (movie) {
+        return convertStartTimeToMinutes(timeSlotList["hallTimeSlotDuration"]);
+    });
+
+    // Check if new movie start time is within cinema operating hours
+    if (newMovieStartTime < cinemaStartTime || newMovieStartTime + newMovieDuration > cinemaEndTime) {
+        return false;
+    }
+
+    // Check if new movie overlaps with any existing movie
+    for (var i = 0; i < movieStartTimes.length; i++) {
+        var existingStartTime = movieStartTimes[i];
+        var existingDuration = movieStartTimes[i];
+
+        if (
+            (newMovieStartTime >= existingStartTime && newMovieStartTime < existingStartTime + existingDuration) ||
+            (newMovieStartTime + newMovieDuration > existingStartTime && newMovieStartTime + newMovieDuration <= existingStartTime + existingDuration) ||
+            (newMovieStartTime <= existingStartTime && newMovieStartTime + newMovieDuration >= existingStartTime + existingDuration)
+        ) {
+            return false;
+        }
+    }
+
+    // If new movie passes all checks, return true
+    return true;
 }

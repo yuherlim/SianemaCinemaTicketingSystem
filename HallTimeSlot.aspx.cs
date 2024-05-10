@@ -4,16 +4,13 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq;
-using System.Web;
-using System.Web.Configuration;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 namespace SianemaCinemaTicketingSystem
 {
-    public partial class WebForm3 : System.Web.UI.Page
+    public partial class HallTimeSlot : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -150,36 +147,9 @@ namespace SianemaCinemaTicketingSystem
             rptAddTSMovie.DataBind();
             conn.Close();
 
-            conn.Open();
-            strRetrieve = "SELECT moviePoster, movieName, movieDuration, movieID FROM Movie WHERE movieID<> 'NA' AND screenUntilDate >= '" + selectedDate+ "'";
-            cmdRetrieve = new SqlCommand(strRetrieve, conn);
-            SqlDataReader newReader1 = cmdRetrieve.ExecuteReader();
+            
 
-            while (newReader1.Read())
-            {
-                string movID = newReader1["movieID"].ToString();
-                string movName = newReader1["movieName"].ToString();
-                string duration = newReader1["movieDuration"].ToString();
-                onScreenMovieListValue.Value += movID + '.' + movName + '.' + duration+',';
-            }
-
-            conn.Close();
-
-            conn.Open();
-            strRetrieve = "SELECT moviePoster, movieName, movieDuration, movieID FROM Movie WHERE movieID<> 'NA' AND screenUntilDate >= '" + selectedDate + "'";
-            cmdRetrieve = new SqlCommand(strRetrieve, conn);
-            SqlDataReader newReader = cmdRetrieve.ExecuteReader();
-
-            while (newReader.Read())
-            {
-                string movID = newReader["movieID"].ToString();
-                string movName = newReader["movieName"].ToString();
-                string duration = newReader["movieDuration"].ToString();
-                onScreenMovieListValue.Value += movID + '.' + movName + '.' + duration + ',';
-            }
-
-            conn.Close();
-
+      
 
             lblHallName.Text = hallID;
             lblHallType.Text = hallType;
@@ -337,5 +307,141 @@ namespace SianemaCinemaTicketingSystem
                 }
             }
         }
+
+        [WebMethod]
+        public static string GetMovieData(string selectedDate)
+        {
+
+            DateTime dateTime;
+            DateTime.TryParseExact(selectedDate, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime);
+   
+
+            // Get the connection string from the configuration
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            // Define the query to select the desired fields from the HallTimeSlot table, including upFile
+            string query = "SELECT moviePoster, movieName, movieDuration, movieID FROM Movie WHERE movieID<> 'NA' AND screenUntilDate >= @selectedDate  AND screenFromDate < @selectedDate  ";
+
+            // Initialize the JSON serializer
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            try
+            {
+                // Create a connection to the database
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // Create a command to execute the query
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    // Add the parameter for the hallTimeSlotID
+                    cmd.Parameters.AddWithValue("@selectedDate", dateTime);
+
+                    // Open the database connection
+                    conn.Open();
+
+                    // Execute the query and obtain a data reader
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Create a list to hold movie data objects
+                    List<object> movieDataList = new List<object>();
+
+                    // Loop through each record in the reader
+                    while (reader.Read())
+                    {
+                        // Create an object to hold the hallTimeSlot data for the current record
+                        var movieData = new
+                        {
+                            movieID = reader["movieID"].ToString(),
+                            movieName = reader["movieName"].ToString(),
+                            moviePoster = Convert.ToBase64String((byte[])reader["moviePoster"]),
+                            movieDuration = reader["movieDuration"].ToString(),
+                        };
+
+                        // Add the movieData object to the list
+                        movieDataList.Add(movieData);
+                    }
+
+                    // Serialize the list of movie data objects to JSON and return it
+                    serializer.MaxJsonLength = Int32.MaxValue;
+                    return serializer.Serialize(movieDataList);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed (use a proper logging library in production code)
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            // Return an error message if no data is found
+            return serializer.Serialize(new { error = "No data found for the provided hall time slot ID" });
+        }
+
+        [WebMethod]
+        public static string GetHallTimeSlotData(string hallId, string selectedDate)
+        {
+
+            DateTime dateTime;
+            DateTime.TryParseExact(selectedDate, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime);
+         
+               
+            // Get the connection string from the configuration
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            // Define the query to select the desired fields from the HallTimeSlot table, including upFile
+            string query =  "Select * from HallTimeSlot inner join Movie on HallTimeSlot.movieId = Movie.movieId inner join Maintenance on HallTimeSlot.maintenanceID = Maintenance.maintenanceID" +
+                " where hallid = @hallId and HallTimeSlot.hallTimeSlotDate = @selectedDate ";
+
+            // Initialize the JSON serializer
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            try
+            {
+                // Create a connection to the database
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // Create a command to execute the query
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@hallId", hallId);
+                    cmd.Parameters.AddWithValue("@selectedDate", dateTime);
+
+                    // Open the database connection
+                    conn.Open();
+
+                    // Execute the query and obtain a data reader
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Create a list to hold movie data objects
+                    List<object> hallTimeSlotDataList = new List<object>();
+
+                    // Loop through each record in the reader
+                    while (reader.Read())
+                    {
+                        // Create an object to hold the hallTimeSlot data for the current record
+                        var hallTimeSlotData = new
+                        {
+                            hallTimeSlotID = reader["hallTimeSlotID"].ToString(),
+                            purpose = reader["hallTimeSlotPurpose"].ToString(),
+                            hallTimeSlotTime = reader["hallTimeSlotTime"].ToString(),
+                            hallTimeSlotDuration = reader["hallTimeSlotDuration"].ToString(),
+                        };
+
+                        // Add the movieData object to the list
+                        hallTimeSlotDataList.Add(hallTimeSlotData);
+                    }
+
+                    // Serialize the list of movie data objects to JSON and return it
+                    serializer.MaxJsonLength = Int32.MaxValue;
+                    return serializer.Serialize(hallTimeSlotDataList);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if needed (use a proper logging library in production code)
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            // Return an error message if no data is found
+            return serializer.Serialize(new { error = "No data found for the provided hall ID" });
+        }
+
     }
 }
