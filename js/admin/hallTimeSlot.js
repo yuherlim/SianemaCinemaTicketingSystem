@@ -40,6 +40,8 @@ const movTimeSlotPosterImage = $('#movTimeSlotPosterImage');
 const lblSelectedMovieValue = $('#selectedMovieValue');
 const lblStarTimeValue = $('#starTimeValue');
 const lblDurationTimeValue = $('#durationTimeValue');
+const lblmovieStartTimeIsvalid = $('#movieStartTimeIsvalid');
+const lblstarTimeValidity = $('#starTimeValidity');
 var movieList = [];
 var timeSlotList = [];
 
@@ -121,12 +123,45 @@ $('#sltSubtitle').select2({
     dropdownParent: $('#modalMovie')
 });
 
-$("#tpMovStartTime").flatpickr({
+flatpickrtpMovStartTime = $("#tpMovStartTime").flatpickr({
     enableTime: true,
     noCalendar: true,
+    minTime: "10:00",
+    maxTime: "02:00",
     dateFormat: "h:i K",
     time_24hr: false,
+    onChange: function (selectedDates, dateStr, instance) {
 
+        lblStarTimeValue.val(dateStr);
+        var newMovieStartTime = convert12HrsTimeToMinutes(dateStr);
+        var newMovieDuration = convertTimeToMinutes(lblDurationTimeValue.val());
+        var result = isNewMovieValid("10:00", "02:00", timeSlotList, newMovieStartTime, newMovieDuration);
+        if (result) {
+            lblmovieStartTimeIsvalid.css({
+                'color': 'green'
+            });
+            lblmovieStartTimeIsvalid.text("Valid");
+            lblstarTimeValidity.val("Valid");
+
+
+        } else {
+            lblmovieStartTimeIsvalid.css({
+                'color': 'red'
+            });
+            lblmovieStartTimeIsvalid.text("Invalid");
+            lblstarTimeValidity.val("Invalid");
+
+
+        }
+        var movEndTime = addTimes(dateStr, lblDurationTimeValue.val());
+
+        flatpickrtpMovEndTime.setDate(convertStringToTimeFormat(movEndTime));
+        flatpickrtpMovEndTime.config.enableTime = true;
+        flatpickrtpMovEndTime.config.noCalendar = true;
+        flatpickrtpMovEndTime.config.dateFormat = "h:i K";
+        flatpickrtpMovEndTime.config.time_24hr = false;
+   
+    }
 });
 
 flatpickrtpMovDuration = $("#tpMovDuration").flatpickr({
@@ -137,7 +172,7 @@ flatpickrtpMovDuration = $("#tpMovDuration").flatpickr({
 
 });
 
-$("#tpMovEndTime").flatpickr({
+flatpickrtpMovEndTime = $("#tpMovEndTime").flatpickr({
     enableTime: true,
     noCalendar: true,
     dateFormat: "h:i K",
@@ -365,7 +400,7 @@ function calculateTimeSlots(startTime, duration) {
     const durationMinutes = durationHour * 60 + durationMinute;
 
     // Calculate starting slot index
-    var startingSlotIndex = Math.floor((startTimeMinutes - 600) / 15) + 3; 
+    var startingSlotIndex = Math.floor((startTimeMinutes - 600) / 15) + 1;
 
     // Calculate number of span slots
     const spanSlots = Math.ceil(durationMinutes / 15);
@@ -407,7 +442,7 @@ function fetchMovieData(selectedDate) {
         });
 }
 
-function fetchHallTimeSlotData(hallId,selectedDate) {
+function fetchHallTimeSlotData(hallId, selectedDate) {
     // Make an AJAX request to fetch data from the server based on the hallTimeSlotID
     fetch('HallTimeSlot.aspx/GetHallTimeSlotData', {
         method: 'POST',
@@ -456,7 +491,34 @@ function updateMovieSelection(data) {
         let movCoverPhotoImageBase64String = movieList[0]["moviePoster"];
         let movCoverPhotoImagerDataUrl = 'data:image/jpeg;base64,' + movCoverPhotoImageBase64String;
         movTimeSlotPosterImage.attr("src", movCoverPhotoImagerDataUrl);
-        
+        var movieDurationStr = searchPropertyValue(movieList, "movieName", movieList[0]["movieName"], "movieDuration");
+        var movieDuration = add30Minutes(convertStringToTimeFormat(movieDurationStr));
+        flatpickrtpMovDuration.setDate(movieDuration);
+        flatpickrtpMovDuration.config.enableTime = true;
+        flatpickrtpMovDuration.config.noCalendar = true;
+        lblDurationTimeValue.val(convertTimeToString(movieDuration));
+
+        var newMovieStartTime = convert12HrsTimeToMinutes(lblStarTimeValue.val);
+        var newMovieDuration = convertTimeToMinutes(lblDurationTimeValue.val());
+        var result = isNewMovieValid("10:00", "02:00", timeSlotList, newMovieStartTime, newMovieDuration);
+        if (result) {
+            lblmovieStartTimeIsvalid.css({
+                'color': 'green'
+            });
+            lblmovieStartTimeIsvalid.text("Valid");
+            lblstarTimeValidity.val("Valid");
+
+
+        } else {
+            lblmovieStartTimeIsvalid.css({
+                'color': 'red'
+            });
+            lblmovieStartTimeIsvalid.text("Invalid");
+            lblstarTimeValidity.val("Invalid");
+
+
+        }
+
 
     } else {
         console.warn('No data provided to update modal body');
@@ -466,7 +528,7 @@ function updateMovieSelection(data) {
 function updateTimeSlotdata(data) {
     if (data) {
         timeSlotList = data;
-       
+
     } else {
         console.warn('No data provided to update modal body');
     }
@@ -553,7 +615,7 @@ function convertStartTimeToMinutes(time) {
         return (hours + 24) * 60 + minutes;
     }
     else { return hours * 60 + minutes; }
- 
+
 }
 
 function convertTimeToMinutes(time) {
@@ -568,16 +630,15 @@ function isNewMovieValid(cinemaStartTime, cinemaEndTime, timeSlotList, newMovieS
     // Convert time format inputs to minutes past midnight
     cinemaStartTime = convertStartTimeToMinutes(cinemaStartTime);
     cinemaEndTime = convertStartTimeToMinutes(cinemaEndTime);
-    newMovieStartTime = convertStartTimeToMinutes(newMovieStartTime);
 
 
     // Convert movie start times in the list to minutes past midnight
     var movieStartTimes = timeSlotList.map(function (movie) {
-        return convertStartTimeToMinutes(timeSlotList["hallStartTime"]);
+        return convertStartTimeToMinutes(movie.hallTimeSlotTime);
     });
 
-    var movieStartTimes = timeSlotList.map(function (movie) {
-        return convertStartTimeToMinutes(timeSlotList["hallTimeSlotDuration"]);
+    var movieDurations = timeSlotList.map(function (movie) {
+        return convertTimeToMinutes(movie.hallTimeSlotDuration);
     });
 
     // Check if new movie start time is within cinema operating hours
@@ -588,7 +649,7 @@ function isNewMovieValid(cinemaStartTime, cinemaEndTime, timeSlotList, newMovieS
     // Check if new movie overlaps with any existing movie
     for (var i = 0; i < movieStartTimes.length; i++) {
         var existingStartTime = movieStartTimes[i];
-        var existingDuration = movieStartTimes[i];
+        var existingDuration = movieDurations[i];
 
         if (
             (newMovieStartTime >= existingStartTime && newMovieStartTime < existingStartTime + existingDuration) ||
@@ -601,4 +662,74 @@ function isNewMovieValid(cinemaStartTime, cinemaEndTime, timeSlotList, newMovieS
 
     // If new movie passes all checks, return true
     return true;
+}
+
+function convert12HrsTimeToMinutes(timeStr) {
+    // Extract hours, minutes, and period from the input string
+    var [time, period] = timeStr.split(" ");
+    var [hours, minutes] = time.split(":").map(Number);
+
+    // Adjust hours based on AM/PM
+    if (period === "PM" && hours !== 12) {
+        hours += 12; // Add 12 hours for PM times (except 12 PM)
+    } else if (period === "AM" && hours === 12) {
+        hours = 0; // Convert 12 AM to 0 hours
+    }
+
+    // Add 24 hours if time falls between 12:00 AM and 2:00 AM
+    if (hours >= 0 && hours < 2) {
+        hours += 24;
+    }
+
+    // Calculate total minutes
+    var totalMinutes = hours * 60 + minutes;
+    return totalMinutes;
+}
+
+
+function convertTo24Hours(time12) {
+    var [hours, minutes, ampm] = time12.split(/:| /);
+    hours = parseInt(hours) % 12;
+    if (ampm.toLowerCase() === 'pm') {
+        hours += 12;
+    }
+    return `${hours.toString().padStart(2, '0')}:${minutes.padStart(2, '0')}`;
+}
+
+function addTimes(time12, time24) {
+    // Convert time1 from 12-hour format to 24-hour format
+    var time1 = convertTo24Hours(time12);
+
+    // Parse time strings into hours, minutes, and seconds
+    var [hours1, minutes1] = time1.split(':').map(Number);
+    var [hours2, minutes2, seconds2] = time24.split(':').map(Number);
+
+    // Add the hours, minutes, and seconds
+    var totalSeconds = seconds2;
+    var totalMinutes = minutes1 + minutes2 + Math.floor(totalSeconds / 60);
+    var totalHours = hours1 + hours2 + Math.floor(totalMinutes / 60);
+
+    // Calculate the remainder after adding minutes and seconds
+    totalSeconds %= 60;
+    totalMinutes %= 60;
+
+    // Format the result into a string
+    var result = `${totalHours.toString().padStart(2, '0')}:${totalMinutes.toString().padStart(2, '0')}:${totalSeconds.toString().padStart(2, '0')}`;
+
+    return result;
+}
+
+function convertTo12Hours(time24) {
+    var [hours, minutes, seconds] = time24.split(':').map(Number);
+
+    // Determine AM or PM
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+
+    // Convert hours to 12-hour format
+    hours = hours % 12 || 12;
+
+    // Format the result into a string
+    var result = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+
+    return result;
 }

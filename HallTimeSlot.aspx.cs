@@ -443,5 +443,20 @@ namespace SianemaCinemaTicketingSystem
             return serializer.Serialize(new { error = "No data found for the provided hall ID" });
         }
 
+        protected void btnAssignMovie_Click(object sender, EventArgs e)
+        {
+            if (starTimeValidity.Value == "Invalid")
+            {
+
+                ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$(document).ready(function () {openTimeSlotModal();});", true);
+
+
+            }
+            else
+            {
+
+
+            }
+        }
     }
 }
