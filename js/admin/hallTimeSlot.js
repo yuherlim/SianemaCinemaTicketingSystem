@@ -101,6 +101,7 @@ flatpickrScreenUntil = $("#tpScreenUntil").flatpickr({
 $('#sltMovie').select2({
     dropdownParent: $('#modalTimeSlot')
 }).on('change', function (e) {
+    var hallID = formatHallId(lblHallName.text());
     var data = $("#sltMovie option:selected").text();
     lblSelectedMovieValue.val(data);
     let movCoverPhotoImageBase64String = searchPropertyValue(movieList, "movieName", data, "moviePoster");
@@ -112,6 +113,36 @@ $('#sltMovie').select2({
     flatpickrtpMovDuration.config.enableTime = true;
     flatpickrtpMovDuration.config.noCalendar = true;
     lblDurationTimeValue.val(convertTimeToString(movieDuration));
+
+    var startTime = lblStarTimeValue.val();
+    flatpickrtpMovStartTime.setDate(startTime);
+    var newMovieStartTime = convert12HrsTimeToMinutes(startTime);
+    var newMovieDuration = convertTimeToMinutes(lblDurationTimeValue.val());
+    var result = isNewMovieValid("10:00", "02:00", timeSlotList, newMovieStartTime, newMovieDuration);
+    if (result) {
+        lblmovieStartTimeIsvalid.css({
+            'color': 'green'
+        });
+        lblmovieStartTimeIsvalid.text("Valid");
+        lblstarTimeValidity.val(hallID + ".Valid");
+
+
+    } else {
+        lblmovieStartTimeIsvalid.css({
+            'color': 'red'
+        });
+        lblmovieStartTimeIsvalid.text("Invalid");
+        lblstarTimeValidity.val(hallID + ".Invalid");
+    }
+    var movEndTime = addTimes(startTime, lblDurationTimeValue.val());
+
+    flatpickrtpMovEndTime.setDate(convertStringToTimeFormat(movEndTime));
+    flatpickrtpMovEndTime.config.enableTime = true;
+    flatpickrtpMovEndTime.config.noCalendar = true;
+    flatpickrtpMovEndTime.config.dateFormat = "h:i K";
+    flatpickrtpMovEndTime.config.time_24hr = false;
+
+
 
 });
 
@@ -131,7 +162,7 @@ flatpickrtpMovStartTime = $("#tpMovStartTime").flatpickr({
     dateFormat: "h:i K",
     time_24hr: false,
     onChange: function (selectedDates, dateStr, instance) {
-
+        var hallID = formatHallId(lblHallName.text());
         lblStarTimeValue.val(dateStr);
         var newMovieStartTime = convert12HrsTimeToMinutes(dateStr);
         var newMovieDuration = convertTimeToMinutes(lblDurationTimeValue.val());
@@ -140,8 +171,9 @@ flatpickrtpMovStartTime = $("#tpMovStartTime").flatpickr({
             lblmovieStartTimeIsvalid.css({
                 'color': 'green'
             });
+            var hallID = formatHallId(lblHallName.text());
             lblmovieStartTimeIsvalid.text("Valid");
-            lblstarTimeValidity.val("Valid");
+            lblstarTimeValidity.val(hallID+".Valid");
 
 
         } else {
@@ -149,7 +181,7 @@ flatpickrtpMovStartTime = $("#tpMovStartTime").flatpickr({
                 'color': 'red'
             });
             lblmovieStartTimeIsvalid.text("Invalid");
-            lblstarTimeValidity.val("Invalid");
+            lblstarTimeValidity.val(hallID+".Invalid");
 
 
         }
@@ -209,43 +241,6 @@ tpMovEndTime.prop('disabled', true);
 tpMovDuration.prop('disabled', true);
 tpMtnEndTime.prop('disabled', true);
 
-$(".tabs").click(function () {
-
-    $(".tabs").removeClass("active");
-    $(".tabs h6").removeClass("font-weight-bold");
-    $(".tabs h6").addClass("text-muted");
-    $(this).children("h6").removeClass("text-muted");
-    $(this).children("h6").addClass("font-weight-bold");
-    $(this).addClass("active");
-
-    $current_fs = $(".active");
-
-    next_fs = $(this).attr('id');
-    next_fs = "#" + next_fs + "1";
-
-    $("fieldset").removeClass("show");
-    $(next_fs).addClass("show");
-
-    $current_fs.animate({}, {
-        step: function () {
-            current_fs.css({
-                'display': 'none',
-                'position': 'relative'
-            });
-            next_fs.css({
-                'display': 'block'
-            });
-        }
-    });
-
-    if ($("#modalTSTitle").text() == "Assign Movie") {
-        $("#modalTSTitle").text("Add Maintenance");
-    } else {
-        $("#modalTSTitle").text("Assign Movie");
-    }
-
-});
-
 
 function openModal() {
     $('#modalMovie').modal('toggle');
@@ -288,12 +283,12 @@ function openMovieModal() {
     $('#modalMovie').modal('toggle');
 }
 
-function openTimeSlotModal() {
+async function openTimeSlotModal() {
     $('#modalTimeSlot').modal('toggle');
     var hallID = formatHallId(lblHallName.text());
-    fetchMovieData(lblTimeSlotDateValue.val());
-    fetchHallTimeSlotData(hallID, lblTimeSlotDateValue.val());
-
+    await fetchMovieData(lblTimeSlotDateValue.val());
+   
+    
 }
 
 function viewMovie() {
@@ -301,7 +296,6 @@ function viewMovie() {
     inputField.prop('disabled', true);
     openModal();
 }
-
 
 function addOption(string, selector) {
     // Split the string into an array of values
@@ -360,7 +354,6 @@ function convertStringToTimeFormat(string) {
     return time
 }
 
-
 const lblTimeSlotButtons = $('.timeSlotButton');
 
 lblTimeSlotButtons.each(function () {
@@ -414,7 +407,7 @@ function calculateTimeSlots(startTime, duration) {
 }
 
 
-function fetchMovieData(selectedDate) {
+ function fetchMovieData(selectedDate) {
     // Make an AJAX request to fetch data from the server based on the hallTimeSlotID
     fetch('HallTimeSlot.aspx/GetMovieData', {
         method: 'POST',
@@ -436,13 +429,14 @@ function fetchMovieData(selectedDate) {
             console.log('Received data:', data);
             const parsedData = JSON.parse(data.d);
             updateMovieSelection(parsedData);
+            
         })
         .catch(error => {
             console.error('Fetch error:', error);
         });
 }
 
-function fetchHallTimeSlotData(hallId, selectedDate) {
+ function fetchHallTimeSlotData(hallId, selectedDate) {
     // Make an AJAX request to fetch data from the server based on the hallTimeSlotID
     fetch('HallTimeSlot.aspx/GetHallTimeSlotData', {
         method: 'POST',
@@ -486,39 +480,8 @@ function joinPropertyOfObjectListToString(objectList, propertyName, separator) {
 function updateMovieSelection(data) {
     if (data) {
         movieList = data;
-        var movieString = joinPropertyOfObjectListToString(movieList, "movieName", ",");
-        addOption(movieString, selectorMovie);
-        let movCoverPhotoImageBase64String = movieList[0]["moviePoster"];
-        let movCoverPhotoImagerDataUrl = 'data:image/jpeg;base64,' + movCoverPhotoImageBase64String;
-        movTimeSlotPosterImage.attr("src", movCoverPhotoImagerDataUrl);
-        var movieDurationStr = searchPropertyValue(movieList, "movieName", movieList[0]["movieName"], "movieDuration");
-        var movieDuration = add30Minutes(convertStringToTimeFormat(movieDurationStr));
-        flatpickrtpMovDuration.setDate(movieDuration);
-        flatpickrtpMovDuration.config.enableTime = true;
-        flatpickrtpMovDuration.config.noCalendar = true;
-        lblDurationTimeValue.val(convertTimeToString(movieDuration));
-
-        var newMovieStartTime = convert12HrsTimeToMinutes(lblStarTimeValue.val);
-        var newMovieDuration = convertTimeToMinutes(lblDurationTimeValue.val());
-        var result = isNewMovieValid("10:00", "02:00", timeSlotList, newMovieStartTime, newMovieDuration);
-        if (result) {
-            lblmovieStartTimeIsvalid.css({
-                'color': 'green'
-            });
-            lblmovieStartTimeIsvalid.text("Valid");
-            lblstarTimeValidity.val("Valid");
-
-
-        } else {
-            lblmovieStartTimeIsvalid.css({
-                'color': 'red'
-            });
-            lblmovieStartTimeIsvalid.text("Invalid");
-            lblstarTimeValidity.val("Invalid");
-
-
-        }
-
+        var hallID = formatHallId(lblHallName.text());
+        fetchHallTimeSlotData(hallID, lblTimeSlotDateValue.val());
 
     } else {
         console.warn('No data provided to update modal body');
@@ -528,6 +491,7 @@ function updateMovieSelection(data) {
 function updateTimeSlotdata(data) {
     if (data) {
         timeSlotList = data;
+        timeSlotModalInitialSetting();
 
     } else {
         console.warn('No data provided to update modal body');
@@ -548,7 +512,6 @@ function searchPropertyValue(objectList, propertyName, propertyValue, searchProp
     // If the property value is not found in any object, return null
     return null;
 }
-
 
 function convertStringToTimeFormat(string) {
     var time = new Date();
@@ -571,8 +534,6 @@ function convertTimeToString(time) {
 
     return timeString;
 }
-
-
 
 function add30Minutes(time) {
     // Clone the original time object to avoid modifying it directly
@@ -606,25 +567,6 @@ function formatHallId(hallName) {
     }
 }
 
-
-function convertStartTimeToMinutes(time) {
-    var parts = time.split(':');
-    var hours = parseInt(parts[0]);
-    var minutes = parseInt(parts[1]);
-    if (hours < 10) {
-        return (hours + 24) * 60 + minutes;
-    }
-    else { return hours * 60 + minutes; }
-
-}
-
-function convertTimeToMinutes(time) {
-    var parts = time.split(':');
-    var hours = parseInt(parts[0]);
-    var minutes = parseInt(parts[1]);
-    return hours * 60 + minutes;
-
-}
 
 function isNewMovieValid(cinemaStartTime, cinemaEndTime, timeSlotList, newMovieStartTime, newMovieDuration) {
     // Convert time format inputs to minutes past midnight
@@ -664,6 +606,25 @@ function isNewMovieValid(cinemaStartTime, cinemaEndTime, timeSlotList, newMovieS
     return true;
 }
 
+function convertStartTimeToMinutes(time) {
+    var parts = time.split(':');
+    var hours = parseInt(parts[0]);
+    var minutes = parseInt(parts[1]);
+    if (hours < 10) {
+        return (hours + 24) * 60 + minutes;
+    }
+    else { return hours * 60 + minutes; }
+
+}
+
+function convertTimeToMinutes(time) {
+    var parts = time.split(':');
+    var hours = parseInt(parts[0]);
+    var minutes = parseInt(parts[1]);
+    return hours * 60 + minutes;
+
+}
+
 function convert12HrsTimeToMinutes(timeStr) {
     // Extract hours, minutes, and period from the input string
     var [time, period] = timeStr.split(" ");
@@ -686,6 +647,20 @@ function convert12HrsTimeToMinutes(timeStr) {
     return totalMinutes;
 }
 
+function convertTo12Hours(time24) {
+    var [hours, minutes, seconds] = time24.split(':').map(Number);
+
+    // Determine AM or PM
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+
+    // Convert hours to 12-hour format
+    hours = hours % 12 || 12;
+
+    // Format the result into a string
+    var result = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+
+    return result;
+}
 
 function convertTo24Hours(time12) {
     var [hours, minutes, ampm] = time12.split(/:| /);
@@ -719,17 +694,42 @@ function addTimes(time12, time24) {
     return result;
 }
 
-function convertTo12Hours(time24) {
-    var [hours, minutes, seconds] = time24.split(':').map(Number);
+function timeSlotModalInitialSetting() {
+    var hallID = formatHallId(lblHallName.text());
+    var validitity = lblstarTimeValidity.val();
+    if (validitity == "") {
+        validitity = "hall-XX.Valid";
+    }
 
-    // Determine AM or PM
-    var ampm = hours >= 12 ? 'PM' : 'AM';
+    if (validitity.split('.')[0] == hallID && validitity.split('.')[1] =="Invalid" ) {
+        var selectedMovie = lblSelectedMovieValue.val();
+        var movieString = joinPropertyOfObjectListToString(movieList, "movieName", ",");
+        addOption(movieString, selectorMovie);
+        selectorMovie.val(stringToArray(selectedMovie)).trigger('change');
+        var movieDurationStr = searchPropertyValue(movieList, "movieName", selectedMovie, "movieDuration");
+        var movieDuration = add30Minutes(convertStringToTimeFormat(movieDurationStr));
+        flatpickrtpMovDuration.setDate(movieDuration);
+        flatpickrtpMovDuration.config.enableTime = true;
+        flatpickrtpMovDuration.config.noCalendar = true;
+        lblDurationTimeValue.val(convertTimeToString(movieDuration));
+ 
 
-    // Convert hours to 12-hour format
-    hours = hours % 12 || 12;
+    } else {
+        var startTime = "10:00 AM"
+        lblStarTimeValue.val(startTime);
+        var selectedMovie = movieList[0]["movieName"];
+        var movieString = joinPropertyOfObjectListToString(movieList, "movieName", ",");
+        addOption(movieString, selectorMovie);
+        selectorMovie.val(stringToArray(selectedMovie)).trigger('change');
+        var movieDurationStr = searchPropertyValue(movieList, "movieName", selectedMovie, "movieDuration");
+        var movieDuration = add30Minutes(convertStringToTimeFormat(movieDurationStr));
+        flatpickrtpMovDuration.setDate(movieDuration);
+        flatpickrtpMovDuration.config.enableTime = true;
+        flatpickrtpMovDuration.config.noCalendar = true;
+        lblDurationTimeValue.val(convertTimeToString(movieDuration));
 
-    // Format the result into a string
-    var result = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
 
-    return result;
+ }
+
+
 }

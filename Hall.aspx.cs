@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
@@ -189,6 +190,43 @@ namespace SianemaCinemaTicketingSystem
                         // Log the number of rows affected for debugging
                         System.Diagnostics.Debug.WriteLine($"Rows affected: {rowsAffected}");
 
+
+                        List<string> rows;
+                        int numOfSeat;
+                        
+
+                        if (hallType == "Large")
+                        {
+                            rows = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L" };
+                            numOfSeat = 17;
+
+
+                        }
+                        else
+                        {
+                            rows = new List<string> { "A", "B", "C", "D", "E", "F", "G" };
+                            numOfSeat = 14;
+
+                        }
+
+
+                        foreach (string row in rows)
+                        {
+                            for (int seatNo = 1; seatNo < numOfSeat; seatNo++)
+                            {
+                                string seatID = hallID + "-" + row + seatNo;
+                                string seatQuery = $"INSERT INTO Seat (seatID, hallID, row,seatNo) VALUES (@seatID, @hallID,@row,@seatNo)";
+                                SqlCommand rowCommand = new SqlCommand(seatQuery, conn);
+                                rowCommand.Parameters.AddWithValue("@seatID", seatID);
+                                rowCommand.Parameters.AddWithValue("@hallID", hallID);
+                                rowCommand.Parameters.AddWithValue("@row", row);
+                                rowCommand.Parameters.AddWithValue("@seatNo", seatNo);
+                                rowCommand.ExecuteNonQuery();
+                            }
+                        }
+
+
+
                         // Check if the insert was successful
                         if (rowsAffected > 0)
                         {
@@ -255,5 +293,5 @@ namespace SianemaCinemaTicketingSystem
 
     }
 
-    
+
 }

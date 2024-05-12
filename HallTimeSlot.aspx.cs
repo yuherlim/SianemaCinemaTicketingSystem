@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Globalization;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
+using System.Web.UI.MobileControls;
 using System.Web.UI.WebControls;
 namespace SianemaCinemaTicketingSystem
 {
@@ -147,9 +149,6 @@ namespace SianemaCinemaTicketingSystem
             rptAddTSMovie.DataBind();
             conn.Close();
 
-            
-
-      
 
             lblHallName.Text = hallID;
             lblHallType.Text = hallType;
@@ -314,7 +313,7 @@ namespace SianemaCinemaTicketingSystem
 
             DateTime dateTime;
             DateTime.TryParseExact(selectedDate, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime);
-   
+
 
             // Get the connection string from the configuration
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -381,13 +380,13 @@ namespace SianemaCinemaTicketingSystem
 
             DateTime dateTime;
             DateTime.TryParseExact(selectedDate, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime);
-         
-               
+
+
             // Get the connection string from the configuration
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             // Define the query to select the desired fields from the HallTimeSlot table, including upFile
-            string query =  "Select * from HallTimeSlot inner join Movie on HallTimeSlot.movieId = Movie.movieId inner join Maintenance on HallTimeSlot.maintenanceID = Maintenance.maintenanceID" +
+            string query = "Select * from HallTimeSlot inner join Movie on HallTimeSlot.movieId = Movie.movieId inner join Maintenance on HallTimeSlot.maintenanceID = Maintenance.maintenanceID" +
                 " where hallid = @hallId and HallTimeSlot.hallTimeSlotDate = @selectedDate ";
 
             // Initialize the JSON serializer
@@ -445,7 +444,7 @@ namespace SianemaCinemaTicketingSystem
 
         protected void btnAssignMovie_Click(object sender, EventArgs e)
         {
-            if (starTimeValidity.Value == "Invalid")
+            if (starTimeValidity.Value.Split('.')[1] == "Invalid")
             {
 
                 ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$(document).ready(function () {openTimeSlotModal();});", true);
@@ -454,9 +453,201 @@ namespace SianemaCinemaTicketingSystem
             }
             else
             {
+                var hallID = lblHallName.Text;
+                var maintenanceID = "NA";
+                var movieName = selectedMovieValue.Value;
+                var movieID = GetMovieIDByMovieName(movieName);
+                var timeSlotStartTimeStr = starTimeValue.Value;
+                var timeSlotDurationStr = durationTimeValue.Value;
+                var purpose = "Movie";
+                var timeSlotDateStr = TimeSlotDateValue.Value;
+
+                DateTime timeSlotDate;
+                DateTime.TryParseExact(timeSlotDateStr, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out timeSlotDate);
+                timeSlotDateStr = timeSlotDate.ToString("yyMMdd");
+                DateTime timeSlotStartTime = DateTime.ParseExact(timeSlotStartTimeStr, "h:mm tt", CultureInfo.InvariantCulture);
+                var timeSlotStartTimeHourStr = timeSlotStartTime.ToString("HH");
+                var timeSlotStartTimeMinuteStr = timeSlotStartTime.ToString("MM");
+                DateTime timeSlotDuration = DateTime.ParseExact(timeSlotDurationStr, "hh:mm:ss", CultureInfo.InvariantCulture);
+                var hallTimeslotID = hallID + "-" + timeSlotDateStr + "-" + timeSlotStartTimeHourStr + "-" + timeSlotStartTimeMinuteStr;
+                SqlConnection conn;
+                String stringCon = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+                string strAddTimeSlot = @"INSERT INTO HallTimeSlot 
+                        (hallTimeSlotID, hallID, movieID, maintenanceID, hallTimeSlotDate, hallTimeSlotTime, hallTimeSlotDuration, hallTimeSlotPurpose) 
+                        VALUES (@HallTimeSlotID, @HallID, @MovieID, @MaintenanceID, @HallTimeSlotDate, @HallTimeSlotTime, @HallTimeSlotDuration, @HallTimeSlotPurpose)";
+                using (conn = new SqlConnection(stringCon))
+                {
+                    SqlCommand command = new SqlCommand(strAddTimeSlot, conn);
+                    command.Parameters.AddWithValue("@HallTimeSlotID", hallTimeslotID);
+                    command.Parameters.AddWithValue("@HallID", hallID);
+                    command.Parameters.AddWithValue("@MovieID", movieID);
+                    command.Parameters.AddWithValue("@MaintenanceID", maintenanceID);
+                    command.Parameters.AddWithValue("@HallTimeSlotDate", timeSlotDate);
+                    command.Parameters.AddWithValue("@HallTimeSlotTime", timeSlotStartTime);
+                    command.Parameters.AddWithValue("@HallTimeSlotDuration", timeSlotDuration);
+                    command.Parameters.AddWithValue("@HallTimeSlotPurpose", purpose);
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                    conn.Close();
+                }
+                var seatIDs = GetSeatIDListByHallId(hallID);
+                conn = new SqlConnection(stringCon);
+                conn.Open();
+                foreach (string seat in seatIDs)
+                {
 
 
+                    var seatNo = "";
+                    if (AreLastTwoCharactersIntegers(seat)){
+                         seatNo = seat.Substring(seat.Length - 3);
+                    }else
+                    {
+                         seatNo = seat.Substring(seat.Length - 2);
+                    }
+                    
+                    string movieSeatID = hallTimeslotID + "-" + seatNo;
+                    string status = "Available";
+                    string seatQuery = $"INSERT INTO MovieSeat (movieSeatID, hallTimeSlotID, seatID,movieSeatStatus) VALUES (@movieSeatID, @hallTimeSlotID,@seatID,@movieSeatStatus)";
+                    SqlCommand rowCommand = new SqlCommand(seatQuery, conn);
+                    rowCommand.Parameters.AddWithValue("@movieSeatID", movieSeatID);
+                    rowCommand.Parameters.AddWithValue("@hallTimeSlotID", hallTimeslotID);
+                    rowCommand.Parameters.AddWithValue("@seatID", seat);
+                    rowCommand.Parameters.AddWithValue("@movieSeatStatus", status);
+                    rowCommand.ExecuteNonQuery();
+
+                }
+                conn.Close();
+                starTimeValidity.Value = "";
+                HallRepeater.DataBind();
             }
+            bindData();
         }
+
+        static string GetMovieIDByMovieName(string movieName)
+        {
+            string movieID = ""; // Default value if movie ID is not found
+
+            // SQL query to select movie ID by movie name
+            string query = "SELECT movieID FROM Movie WHERE movieName = @movieName";
+
+
+            String stringCon = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+
+
+            using (SqlConnection conn = new SqlConnection(stringCon))
+            {
+                SqlCommand strRetrieve = new SqlCommand(query, conn);
+                strRetrieve.Parameters.AddWithValue("@MovieName", movieName);
+
+                try
+                {
+                    conn.Open();
+                    object result = strRetrieve.ExecuteScalar();
+                    if (result != null)
+                    {
+                        movieID = Convert.ToString(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
+
+            return movieID;
+        }
+
+        static List<string> GetSeatIDListByHallId(string hallID)
+        {
+            List<string> seatIDs = new List<string>();
+
+            // SQL query to select seat IDs
+            string query = "SELECT seatID FROM Seat WHERE hallID = @hallID";
+
+            String stringCon = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(stringCon))
+            {
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@hallID", hallID);
+
+                try
+                {
+                    conn.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Read each row and add seatID to the list
+                    while (reader.Read())
+                    {
+                        string seatID = reader["seatID"].ToString();
+                        seatIDs.Add(seatID);
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
+
+            return seatIDs;
+        }
+
+        protected void bindData() {
+
+            SqlConnection conn;
+            String stringCon = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+            conn = new SqlConnection(stringCon);
+            conn.Open();
+            string hallID = lblHallName.Text;
+            string strRetrieve = "Select * from HallTimeSlot " +
+                    "inner join Movie on HallTimeSlot.movieId = Movie.movieId " +
+                    "inner join Maintenance on HallTimeSlot.maintenanceID = Maintenance.maintenanceID " +
+                    "where hallid ='" + hallID + "'";
+
+
+            DateTime dateTime;
+            string selectedDate = ViewState["SelectedDate"].ToString();
+            DateTime.TryParseExact(selectedDate, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime);
+            selectedDate = dateTime.ToString("yyyy-MM-dd");
+            strRetrieve += " and HallTimeSlot.hallTimeSlotDate = '" + selectedDate + "'";
+
+
+            SqlCommand cmdRetrieve;
+            cmdRetrieve = new SqlCommand(strRetrieve, conn);
+            SqlDataReader reader = cmdRetrieve.ExecuteReader();
+
+
+            rptAddTSMovie.DataSource = reader;
+            rptAddTSMovie.DataBind();
+            conn.Close();
+        }
+
+        static bool AreLastTwoCharactersIntegers(string input)
+        {
+            // Check if the string has at least three characters
+            if (input.Length < 2)
+                return false;
+
+            // Get the substring containing the last three characters
+            string lastTwoCharacters = input.Substring(input.Length - 2);
+
+            // Check if each character in the substring is a digit
+            foreach (char c in lastTwoCharacters)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return false; // Return false if any character is not a digit
+                }
+            }
+
+            return true; // Return true if all characters are digits
+        }
+
+
+
+
+
     }
 }

@@ -261,7 +261,6 @@
                             </div>
 
                             <div class="modal-footer">
-                                <asp:Button ID="btnRemoveMov" runat="server" ClientIDMode="static" CssClass="btn btn-secondary" Text="Remove" />
                                 <button type="button" id="btnCloseMovieModal" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -276,9 +275,6 @@
                         <div class="modal-header row d-flex justify-content-between mx-1 mx-sm-3 mb-0 pb-0 border-0 addTimeSlotModalHeader">
                             <div class="tabs active" id="tab01">
                                 <h6 class="font-weight-bold ">Movie</h6>
-                            </div>
-                            <div class="tabs" id="tab02">
-                                <h6 class="text-muted">Maintenance</h6>
                             </div>
                         </div>
                         <div class="line"></div>
@@ -390,80 +386,7 @@
                                             Text="Confirm" OnClick="btnAssignMovie_Click" />
                                     </div>
                                     <asp:HiddenField ClientIDMode="Static" ID="confirmBtnMode" runat="server" />
-                                </div>
-
-
-                            </fieldset>
-                            <fieldset id="tab021">
-                                <div class="modal-body">
-                                    <div class="modalRow1Maintenance modalRow">
-                                        <div class="modalText">Maintenance ID</div>
-                                        <div class="modalColon">: </div>
-                                        <div id="maintenanceID">
-                                            MOV-310324-0001
-                                        </div>
-                                    </div>
-
-
-                                    <div class="modalRow2 modalRow">
-                                        <section class="row2Section1">
-
-                                            <div class="mb-3 movStaffSelect">
-                                                <label for="sltStaff" class="form-label">Staff In Charge</label><br />
-                                                <select id="sltStaff" class="select2 form-control select2-multiple sltGenre modalInputField" data-toggle="select2" data-placeholder="Choose ..." tabindex="-1" aria-hidden="true">
-                                                    <option value="U">Gorilla</option>
-                                                    <option value="P12">P12</option>
-                                                    <option value="13">13</option>
-                                                    <option value="16">16</option>
-                                                    <option value="18">18</option>
-
-                                                </select>
-                                            </div>
-
-                                            <div class="mb-3 movMaintenanceTime">
-                                                <label class="form-label">Maintenance Start Time</label>
-                                                <div class="input-group">
-                                                    <input id="tpMtnStartTime" type="text" class="form-control modalInputField" placeholder="01:30 PM">
-                                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-3 movDuration">
-                                                <label class="form-label">Maintenance Duration</label>
-                                                <div class="input-group">
-                                                    <input id="tpMtnDuration" type="text" class="form-control modalInputField" placeholder="01:30">
-                                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-3 movEndTime">
-                                                <label class="form-label">Maintenance End Time</label>
-                                                <div class="input-group">
-                                                    <input id="tpMtnEndTime" type="text" class="form-control modalInputField" placeholder="01:30 PM">
-                                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
-                                                </div>
-                                            </div>
-                                        </section>
-
-                                        <section class="row2Section2">
-                                            <section class="row2Section2-1">
-                                                <div class="mb-3 mtnDescription">
-                                                    <label for="txtMtnDescriptiion" class="form-label">Maintenance Description</label>
-                                                    <textarea class="form-control modalInputField" id="Textarea1" rows="5" runat="server" clientidmode="static"></textarea>
-                                                </div>
-                                            </section>
-                                        </section>
-
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" id="btnCloseTSModalAddMtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <asp:Button ID="btnAddMtn" runat="server" ClientIDMode="static" CssClass="btn btn-secondary"
-                                            Text="Confirm" />
-                                    </div>
-
-                                </div>
-                            </fieldset>
+                                </div>                  
 
                         </div>
                     </div>

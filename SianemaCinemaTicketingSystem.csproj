@@ -169,7 +169,6 @@
     <Content Include="Login.aspx" />
     <Content Include="ManageMovie.aspx" />
     <Content Include="HallTimeSlot.aspx" />
-    <Content Include="Maintenance.aspx" />
     <Content Include="AdminLogin.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -337,13 +336,6 @@
     </Compile>
     <Compile Include="UserAccount.master.designer.cs">
       <DependentUpon>UserAccount.master</DependentUpon>
-    </Compile>
-    <Compile Include="Maintenance.aspx.cs">
-      <DependentUpon>Maintenance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Maintenance.aspx.designer.cs">
-      <DependentUpon>Maintenance.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminLogin.aspx.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
