@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
@@ -491,11 +492,35 @@ namespace SianemaCinemaTicketingSystem
                     conn.Close();
                 }
                 var seatIDs = GetSeatIDListByHallId(hallID);
+                seatIDs.Sort((x, y) =>
+                {
+                    // Split strings by '-' and get the hall number, section, and seat number parts
+                    string[] partsX = x.Split('-');
+                    string[] partsY = y.Split('-');
+
+                    // Extract section and seat numbers
+                    string sectionX = partsX[2];
+                    string sectionY = partsY[2];
+
+                    // Extract the letter part from the section
+                    string letterX = sectionX.Substring(0, 1);
+                    string letterY = sectionY.Substring(0, 1);
+
+                    // Compare hall sections (letter part) first
+                    int sectionCompare = string.Compare(letterX, letterY);
+                    if (sectionCompare != 0)
+                        return sectionCompare;
+
+                    // If hall sections (letter part) are the same, compare the numeric part
+                    int numX = int.Parse(sectionX.Substring(1));
+                    int numY = int.Parse(sectionY.Substring(1));
+                    return numX.CompareTo(numY);
+                });
                 conn = new SqlConnection(stringCon);
                 conn.Open();
+                int order = 1;
                 foreach (string seat in seatIDs)
                 {
-
 
                     var seatNo = "";
                     if (AreLastTwoCharactersIntegers(seat)){
@@ -507,12 +532,15 @@ namespace SianemaCinemaTicketingSystem
                     
                     string movieSeatID = hallTimeslotID + "-" + seatNo;
                     string status = "Available";
-                    string seatQuery = $"INSERT INTO MovieSeat (movieSeatID, hallTimeSlotID, seatID,movieSeatStatus) VALUES (@movieSeatID, @hallTimeSlotID,@seatID,@movieSeatStatus)";
+                    string seatQuery = $"INSERT INTO MovieSeat (movieSeatID, hallTimeSlotID,seatID,movieSeatStatus,sortingOrder) VALUES (@movieSeatID,@hallTimeSlotID,@seatID,@movieSeatStatus,@sortingOrder)";
                     SqlCommand rowCommand = new SqlCommand(seatQuery, conn);
                     rowCommand.Parameters.AddWithValue("@movieSeatID", movieSeatID);
                     rowCommand.Parameters.AddWithValue("@hallTimeSlotID", hallTimeslotID);
                     rowCommand.Parameters.AddWithValue("@seatID", seat);
                     rowCommand.Parameters.AddWithValue("@movieSeatStatus", status);
+                    rowCommand.Parameters.AddWithValue("@sortingOrder", order);
+           
+                    order++;
                     rowCommand.ExecuteNonQuery();
 
                 }
@@ -646,7 +674,38 @@ namespace SianemaCinemaTicketingSystem
         }
 
 
+        public class SeatIdComparer : IComparer<string>
+        {
+            public int Compare(string x, string y)
+            {
+                var partsX = SplitSeatId(x);
+                var partsY = SplitSeatId(y);
 
+                int hallCompare = string.Compare(partsX.Hall, partsY.Hall);
+                if (hallCompare != 0)
+                    return hallCompare;
+
+                int sectionCompare = string.Compare(partsX.Section, partsY.Section);
+                if (sectionCompare != 0)
+                    return sectionCompare;
+
+                return partsX.SeatNumber.CompareTo(partsY.SeatNumber);
+            }
+
+            private (string Hall, string Section, int SeatNumber) SplitSeatId(string seatId)
+            {
+                var parts = seatId.Split('-');
+                int seatNumber;
+                if (int.TryParse(parts[3].Substring(1), out seatNumber))
+                {
+                    return (parts[1], parts[2], seatNumber);
+                }
+                else
+                {
+                    throw new FormatException("Invalid seat ID format");
+                }
+            }
+        }
 
 
     }

@@ -193,6 +193,7 @@ namespace SianemaCinemaTicketingSystem
 
                         List<string> rows;
                         int numOfSeat;
+                        List<string> seats = new List<string> { };
                         
 
                         if (hallType == "Large")
@@ -209,20 +210,33 @@ namespace SianemaCinemaTicketingSystem
 
                         }
 
-
                         foreach (string row in rows)
                         {
-                            for (int seatNo = 1; seatNo < numOfSeat; seatNo++)
+                            for (int seatNo = 1; seatNo <= numOfSeat; seatNo++)
                             {
                                 string seatID = hallID + "-" + row + seatNo;
-                                string seatQuery = $"INSERT INTO Seat (seatID, hallID, row,seatNo) VALUES (@seatID, @hallID,@row,@seatNo)";
+                                seats.Add(seatID);
+                            }
+                        }
+
+
+                        int order = 1;
+                        foreach (string seat in seats)
+                        {
+                                
+                                string seatID = seat;
+                                string[] parts = seatID.Split('-');
+                                string seatRow = parts[2].Substring(0, 1);
+                                String seatNo = parts[2].Substring(1);
+                                string seatQuery = $"INSERT INTO Seat (seatID, hallID, row,seatNo, sortingOrder ) VALUES (@seatID, @hallID,@row,@seatNo, @sortingOrder)";
                                 SqlCommand rowCommand = new SqlCommand(seatQuery, conn);
                                 rowCommand.Parameters.AddWithValue("@seatID", seatID);
                                 rowCommand.Parameters.AddWithValue("@hallID", hallID);
-                                rowCommand.Parameters.AddWithValue("@row", row);
+                                rowCommand.Parameters.AddWithValue("@row", seatRow);
                                 rowCommand.Parameters.AddWithValue("@seatNo", seatNo);
+                                 rowCommand.Parameters.AddWithValue("@sortingOrder", order);
+                                 order++;
                                 rowCommand.ExecuteNonQuery();
-                            }
                         }
 
 
