@@ -11,17 +11,8 @@ namespace SianemaCinemaTicketingSystem
 {
 
 
-    public partial class WebForm3
+    public partial class HallTimeSlot
     {
-
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
         /// TimeSlotDateValue control.
@@ -240,15 +231,6 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.HiddenField movScreenUntilValue;
 
         /// <summary>
-        /// btnRemoveMov control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemoveMov;
-
-        /// <summary>
         /// lblHallName control.
         /// </summary>
         /// <remarks>
@@ -285,6 +267,42 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.HiddenField onScreenMovieListValue;
 
         /// <summary>
+        /// selectedMovieValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField selectedMovieValue;
+
+        /// <summary>
+        /// starTimeValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField starTimeValue;
+
+        /// <summary>
+        /// starTimeValidity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField starTimeValidity;
+
+        /// <summary>
+        /// durationTimeValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField durationTimeValue;
+
+        /// <summary>
         /// movTimeSlotPosterImage control.
         /// </summary>
         /// <remarks>
@@ -303,22 +321,13 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.Button btnAssignMovie;
 
         /// <summary>
-        /// Textarea1 control.
+        /// confirmBtnMode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea Textarea1;
-
-        /// <summary>
-        /// btnAddMtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddMtn;
+        protected global::System.Web.UI.WebControls.HiddenField confirmBtnMode;
 
         /// <summary>
         /// SqlDataSource1 control.

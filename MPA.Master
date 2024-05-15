@@ -21,11 +21,6 @@
     <script src="js/admin/flatpickr.min.js"></script>
     <script src="js/admin/select2.min.js"></script> 
     <script src="js/admin/mpa.js"></script>
-    <%--<script src="js/admin/bootstrap-datepicker.min.js"></script>--%>
-    <script src="js/admin/flatpickr.min.js"></script>
-    <script src="js/admin/select2.min.js"></script>
-    <script src="js/mpa.js"></script>
-
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -54,10 +49,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="ManageMovie.aspx">Movie<span class="sr-only"></span></a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="Maintenance.aspx">Maintenance</a>
                         </li>
 
                         <li class="nav-item">

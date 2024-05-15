@@ -435,3 +435,14 @@ a:hover {
     color: #333 !important;
     opacity: 1 !important;
 }
+
+.MovieStartTimeLabel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#movieStartTimeIsvalid{
+    color:green;
+    font-weight:bold;
+}

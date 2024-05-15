@@ -186,7 +186,7 @@
 
                                         <div class="movImage">
                                             <asp:Image ID="movPosterImage" runat="server" ClientIDMode="Static" />
-                                            <asp:HiddenField runat="server" ClientIDMode="Static" ID="movPosterImageValue"></asp:HiddenField>
+                                            <asp:HiddenField runat="server"  ClientIDMode="Static" ID="movPosterImageValue"></asp:HiddenField>
                                         </div>
                                     </section>
 

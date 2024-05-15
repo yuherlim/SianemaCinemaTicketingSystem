@@ -25,6 +25,7 @@ const lblmovCoverPhotoImage = $('#movCoverPhotoImageValue');
 const lblbtnConfirmMode = $('#btnConfirmMode');
 const txtAreaSypnosis = $('#txtSynopsis');
 const txtName = $('#txtName');
+const txtDistributor = $('#txtDistributor');
 const movPosterImage = $('#movPosterImage');
 const movCoverPhotoImage = $('#movCoverPhotoImage');
 const fuPoster = $('#fuPoster');
@@ -276,7 +277,7 @@ function stringToArray(string) {
 
 function convertStringToTimeFormat(string) {
     var time = new Date();
-    var parts = '02:00:00'.split(':');
+    var parts = string.split(':');
     time.setHours(parts[0]);
     time.setMinutes(parts[1]);
     time.setSeconds(parts[2]);
@@ -284,12 +285,37 @@ function convertStringToTimeFormat(string) {
     return time
 }
 
+function convertTimeToString(time) {
+    // Get hours, minutes, and seconds from the Date object
+    var hours = time.getHours().toString().padStart(2, '0');
+    var minutes = time.getMinutes().toString().padStart(2, '0');
+    var seconds = time.getSeconds().toString().padStart(2, '0');
+
+    // Concatenate hours, minutes, and seconds with ":" separator
+    var timeString = hours + ":" + minutes + ":" + seconds;
+
+    return timeString;
+}
+
+
 function clearlabel() {
     txtName.val('');
-    $('.label').text('');
+    txtDistributor.val('');
+    lblmovieGenre.val("");
+    lblmovieClass.val("");
+    lblmovieLanguage.val("");
+    lblmovieSubtitle.val("");
+    lblmovieCast.val("");
+    lblmovieDuration.val("");
+    lblmovieReleaseDate.val("");
+    lblmovieScreenFrom.val("");
+    lblmovieScreenUntil.val("");
+    lblmovieSynopsis.val("");
+    lblmovPosterImage.val("");
+    lblmovCoverPhotoImage.val("");
     lblmovCoverPhotoImage.val("");
     lblmovPosterImage.val("");
-
+    txtAreaSypnosis.val("");
 }
 
 

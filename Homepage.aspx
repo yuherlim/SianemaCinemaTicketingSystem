@@ -57,11 +57,11 @@
                                 <div class="carousel-item<%# Container.ItemIndex == 0 ? " active" : "" %>">
                                     <div class="row">
                                         <!-- Nested repeater for movie posters -->
-                                        <asp:Repeater ID="rptSlide" runat="server" DataSource='<%# Container.DataItem %>'>
+                                        <asp:Repeater ID="rptSlide" runat="server" OnItemDataBound="rptSlide_ItemDataBound" DataSource='<%# Container.DataItem %>'>
                                             <ItemTemplate>
                                                 <div class="col-md-4 mb-3">
                                                     <div class="card view">
-                                                        <img class="cardImg" alt="<%# Eval("movieName") %>" src="<%# Eval("moviePoster") %>" />
+                                                        <asp:Image runat="server" CssClass="cardImg" id="moviePoster"  />                                                       
                                                         <div class="mask">
                                                             <div class="col">
                                                                 <ul class="deco">
