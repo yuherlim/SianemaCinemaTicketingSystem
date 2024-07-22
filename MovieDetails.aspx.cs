@@ -84,7 +84,7 @@ namespace SianemaCinemaTicketingSystem
                         conn2 = new SqlConnection(strCon2);
                         conn2.Open();
 
-                        string strToRetrieve2 = "SELECT * FROM HallTimeSlot WHERE movieID = @MovieID AND hallTimeSlotDate = @MovieDate AND hallTimeSlotPurpose = @hallPurpose";
+                        string strToRetrieve2 = "SELECT * FROM HallTimeSlot WHERE movieID = @MovieID AND hallTimeSlotDate = @MovieDate AND hallTimeSlotPurpose = @hallPurpose ORDER BY hallTimeSlotTime";
 
                         SqlCommand cmdToRetrieve2;
                         cmdToRetrieve2 = new SqlCommand(strToRetrieve2, conn2);

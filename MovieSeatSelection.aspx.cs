@@ -77,7 +77,8 @@ namespace SianemaCinemaTicketingSystem
                     string strToRetrieve2 = "SELECT MovieSeat.movieSeatID, MovieSeat.movieSeatStatus, " +
                         "Seat.row, Seat.seatNo FROM MovieSeat " +
                         "INNER JOIN Seat ON MovieSeat.seatID = Seat.seatID " +
-                        "WHERE hallTimeSlotID = @hallTimeSlotID";
+                        "WHERE hallTimeSlotID = @hallTimeSlotID " +
+                        "ORDER BY Seat.row, Seat.seatNo";
 
                     SqlCommand cmdToRetrieve2 = new SqlCommand(strToRetrieve2, conn2);
                     cmdToRetrieve2.Parameters.AddWithValue("@hallTimeSlotID", hallTimeSlotID);

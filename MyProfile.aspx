@@ -24,18 +24,23 @@
                     <div class="field-group">
                         <div class="row">
                             <div class="col name-field">
-                                <label for="name">Name<span>*</span></label>
+                                <label for="name">
+                                    Name<span>
+                                        <asp:RequiredFieldValidator ID="UserNameRequiredField" runat="server" ControlToValidate="Username" ErrorMessage="Username is required." ToolTip="Username is required." Display="Dynamic" ValidationGroup="MyProfile" SetFocusOnError="False">*</asp:RequiredFieldValidator>
+                                    </span>
+                                </label>
                                 <%--<input type="text" class="form-control" id="name" placeholder="" value="User 1">--%>
-                                <asp:TextBox ID="Username" runat="server" CssClass="form-control" type="text" placeholder="" value="User 1"></asp:TextBox>
+                                <asp:TextBox ID="Username" runat="server" CssClass="form-control" type="text" placeholder=""></asp:TextBox>
                             </div>
 
-                            <div class="col gender-field">
+                            <%--<div class="col gender-field">
                                 <p class="gender-field-title">Gender<span>*</span></p>
                                 <asp:RadioButtonList ID="GenderRadioButtonList" runat="server">
                                     <asp:ListItem>Male</asp:ListItem>
                                     <asp:ListItem>Female</asp:ListItem>
                                 </asp:RadioButtonList>
-                                <%--<div class="form-check form-check-inline">
+                            </div>--%>
+                            <%--<div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="gender" id="inlineRadioMale" value="male">
                 <label class="form-check-label" for="inlineRadioMale">Male</label>
             </div>
@@ -43,12 +48,11 @@
                 <input class="form-check-input" type="radio" name="gender" id="inlineRadioFemale" value="female">
                 <label class="form-check-label" for="inlineRadioFemale">Female</label>
             </div>--%>
-                            </div>
                         </div>
-                        <div class="row">
+                        <%--<input type="text" class="form-control" id="address" placeholder="">--%>
+                        <%--<div class="row">
                             <div class="col address-field">
                                 <label for="address">Address<span>*</span></label>
-                                <%--<input type="text" class="form-control" id="address" placeholder="">--%>
                                 <asp:TextBox ID="Address" runat="server" CssClass="form-control" type="text" placeholder=""></asp:TextBox>
                             </div>
                             <div class="col">
@@ -57,20 +61,34 @@
                                     <asp:ListItem Selected="True">Select the state</asp:ListItem>
                                     <asp:ListItem>...</asp:ListItem>
                                 </asp:DropDownList>
-                                <%--<select id="state" class="form-control">
-                <option selected>Select the state</option>
-                <option>...</option>
-            </select>--%>
+                               
                             </div>
-                        </div>
+                        </div>--%>
+                        <%--<select id="state" class="form-control">
+    <option selected>Select the state</option>
+    <option>...</option>
+</select>--%>
                         <div class="row">
                             <div class="col email-field">
-                                <label for="email">Email address<span>*</span></label>
+                                <label for="email">
+                                    Email address<span>
+                                        <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." Display="Dynamic" ValidationGroup="MyProfile" SetFocusOnError="False">*</asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="EmailRegularExpressionValidator" runat="server" ControlToValidate="Email" ErrorMessage="Invalid email format." ToolTip="Invalid email format." Display="Dynamic" ValidationGroup="MyProfile" ValidationExpression="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">*</asp:RegularExpressionValidator>
+                                        <asp:CustomValidator ID="EmailDuplicateValidator" runat="server" OnServerValidate="EmailDuplicateValidator_ServerValidate" ErrorMessage="Error: Email already exists." Display="Dynamic" ValidationGroup="MyProfile">*</asp:CustomValidator>
+                                    </span>
+                                </label>
                                 <%--<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="">--%>
                                 <asp:TextBox ID="Email" runat="server" CssClass="form-control" aria-describedby="emailHelp" type="email" placeholder=""></asp:TextBox>
                             </div>
                             <div class="col mobile-number-field">
-                                <label for="mobileNumber">Mobile Number<span>*</span></label>
+                                <label for="mobileNumber">
+                                    Mobile Number<span>
+                                        <asp:RequiredFieldValidator ID="MobileNumberRequired" runat="server" ControlToValidate="MobileNumber" ErrorMessage="Mobile number is required." ToolTip="Mobile number is required." Display="Dynamic" ValidationGroup="MyProfile">*</asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="PhoneNumberValidator" runat="server" ControlToValidate="MobileNumber"
+                                            ErrorMessage="Please enter a valid phone number in the format 01XXXXXXXX or 01XXXXXXXXX."
+                                            ValidationExpression="^01\d{8,9}$" Display="Dynamic" ValidationGroup="MyProfile">*</asp:RegularExpressionValidator>
+                                    </span>
+                                </label>
                                 <%--<input type="tel" class="form-control" id="mobileNumber" placeholder="">--%>
                                 <asp:TextBox ID="MobileNumber" runat="server" CssClass="form-control" type="tel" placeholder=""></asp:TextBox>
                             </div>
@@ -82,12 +100,15 @@
                                 <asp:TextBox ID="BirthDate" runat="server" CssClass="form-control" TextMode="Date" placeholder=""></asp:TextBox>
                             </div>
                         </div>
+                        <div class="myProfile-validation-msg">
+                            <asp:ValidationSummary ID="MyProfileValidationSummary" runat="server" ValidationGroup="MyProfile" HeaderText="Note: " />
+                        </div>
                     </div>
                 </div>
                 <div class="save-changes">
                     <div class="save-btn-container">
                         <%--<a class="btn btn-primary save-btn" href="#" title="SAVE CHANGES" role="button">SAVE CHANGES</a>--%>
-                        <asp:Button ID="SaveChangesButton" runat="server" Text="SAVE CHANGES" CssClass="btn btn-primary save-btn" title="SAVE CHANGES" />
+                        <asp:Button ID="SaveChangesButton" runat="server" Text="SAVE CHANGES" CssClass="btn btn-primary save-btn" title="SAVE CHANGES" ValidationGroup="MyProfile" OnClick="SaveChangesButton_Click" />
                     </div>
                 </div>
 

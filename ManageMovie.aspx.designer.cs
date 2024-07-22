@@ -15,15 +15,6 @@ namespace SianemaCinemaTicketingSystem
     {
 
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
         /// ddlFilter control.
         /// </summary>
         /// <remarks>
@@ -51,13 +42,40 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.GridView gvMovie;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// allMovieDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.SqlDataSource allMovieDataSource;
+
+        /// <summary>
+        /// offScreenDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource offScreenDataSource;
+
+        /// <summary>
+        /// onScreenDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource onScreenDataSource;
+
+        /// <summary>
+        /// movID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label movID;
 
         /// <summary>
         /// txtName control.
@@ -67,6 +85,51 @@ namespace SianemaCinemaTicketingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
+
+        /// <summary>
+        /// movGenreValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movGenreValue;
+
+        /// <summary>
+        /// movClassificationValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movClassificationValue;
+
+        /// <summary>
+        /// movLanguageValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movLanguageValue;
+
+        /// <summary>
+        /// movSubtitleValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movSubtitleValue;
+
+        /// <summary>
+        /// movDurationValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movDurationValue;
 
         /// <summary>
         /// fuPoster control.
@@ -87,6 +150,15 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.Image movPosterImage;
 
         /// <summary>
+        /// movPosterImageValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movPosterImageValue;
+
+        /// <summary>
         /// fuCoverPhoto control.
         /// </summary>
         /// <remarks>
@@ -105,6 +177,15 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.Image movCoverPhotoImage;
 
         /// <summary>
+        /// movCoverPhotoImageValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movCoverPhotoImageValue;
+
+        /// <summary>
         /// txtDistributor control.
         /// </summary>
         /// <remarks>
@@ -114,13 +195,58 @@ namespace SianemaCinemaTicketingSystem
         protected global::System.Web.UI.WebControls.TextBox txtDistributor;
 
         /// <summary>
-        /// txtSypnosis control.
+        /// movReleaseDateValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtSypnosis;
+        protected global::System.Web.UI.WebControls.HiddenField movReleaseDateValue;
+
+        /// <summary>
+        /// movCastValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movCastValue;
+
+        /// <summary>
+        /// txtSynopsis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtSynopsis;
+
+        /// <summary>
+        /// movSynopsisValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movSynopsisValue;
+
+        /// <summary>
+        /// movScreenFromValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movScreenFromValue;
+
+        /// <summary>
+        /// movScreenUntilValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField movScreenUntilValue;
 
         /// <summary>
         /// btnConfirm control.
@@ -130,5 +256,14 @@ namespace SianemaCinemaTicketingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConfirm;
+
+        /// <summary>
+        /// btnConfirmMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField btnConfirmMode;
     }
 }

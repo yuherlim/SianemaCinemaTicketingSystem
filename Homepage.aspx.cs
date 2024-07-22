@@ -56,5 +56,18 @@ namespace SianemaCinemaTicketingSystem
 
             return groupedData;
         }
+
+        protected void rptSlide_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Image image = (Image)e.Item.FindControl("moviePoster");
+                byte[] imageData = (byte[])DataBinder.Eval(e.Item.DataItem, "moviePoster");
+                string base64String = Convert.ToBase64String(imageData);
+                image.ImageUrl = $"data:image/jpeg;base64,{base64String}";
+            }
+        }
+
+      
     }
 }
